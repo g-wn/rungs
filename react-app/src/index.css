@@ -13,6 +13,7 @@ body {
 /* GLOBAL COLOR VARIABLES */
 :root {
     --global-faded-text-color: #797979;
+    --global-saturated-text-color: #191919;
     --global-faded-blue: #378FE9;
     --global-saturated-blue: #0A66C2;
     --global-faded-border-color: #E0DFDC;

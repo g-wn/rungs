@@ -1,24 +1,41 @@
-import { HiOutlinePhoto } from 'react-icons/hi2'
-import './PostForm.css'
+import { useState } from 'react';
+import { HiOutlinePhoto } from 'react-icons/hi2';
+import { Modal } from '../../../context/Modal';
+import PostForm from './PostForm'
+import './PostFormOpener.css';
 
-const PostForm = () => {
-    return (
-      <>
-        <div className='post-form-opener-container'>
-          <div className='post-form-opener-input-container'>
-            <div className="post-form-opener-profile-img"></div>
-            <button className="post-form-opener-input">
-                <span>Start a post</span>
-            </button>
-          </div>
-          <div className='post-form-opener-btns-container'>
-            <button className="post-form-opener-img-btn">
-              <HiOutlinePhoto className='post-form-opener-photo-icon' size={25} /> Photo
-            </button>
-          </div>
+const PostFormOpener = () => {
+  const [showPostForm, setShowPostForm] = useState(false);
+
+  return (
+    <>
+      <div className='post-form-opener-container'>
+        <div className='post-form-opener-input-container'>
+          <div className='post-form-opener-profile-img'></div>
+          <button
+            className='post-form-opener-input'
+            onClick={() => setShowPostForm(true)}
+          >
+            <span>Start a post</span>
+          </button>
+          {showPostForm && (
+            <Modal onClose={() => setShowPostForm(false)}>
+              <PostForm setShowPostForm={setShowPostForm} />
+            </Modal>
+          )}
         </div>
-      </>
-    );
-}
+        <div className='post-form-opener-btns-container'>
+          <button className='post-form-opener-img-btn'>
+            <HiOutlinePhoto
+              className='post-form-opener-photo-icon'
+              size={25}
+            />{' '}
+            Photo
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default PostForm;
+export default PostFormOpener;
