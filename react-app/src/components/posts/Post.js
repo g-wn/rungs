@@ -23,9 +23,9 @@ const Post = ({ post, currentUser }) => {
       </div>
       <div className='single-post-likes'>This is for like count</div>
       <div className='single-post-footer'>
-        <div className='single-post-like-btn'>
+        <button className='single-post-like-btn'>
           <SlLike size={20} /> Like
-        </div>
+        </button>
         {+currentUser.id === +post.ownerId && (
           <div className='single-post-user-btns'>
             <button className='single-post-edit-btn'>
