@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User
 
 
@@ -9,7 +9,7 @@ def user_exists(form, field):
     email = field.data
     user = User.query.filter(User.email == email).first()
     if user:
-        raise ValidationError('Email address is already in use.')
+        raise ValidationError("Email address is already in use.")
 
 
 def username_exists(form, field):
@@ -17,11 +17,44 @@ def username_exists(form, field):
     username = field.data
     user = User.query.filter(User.username == username).first()
     if user:
-        raise ValidationError('Username is already in use.')
+        raise ValidationError("Username is already in use.")
 
 
 class SignUpForm(FlaskForm):
+    first_name = StringField(
+        "first_name",
+        validators=[
+            DataRequired("Please enter a first name."),
+            Length(
+                min=3,
+                max=50,
+                message="Please enter a first name between 3 and 50 characters.",
+            ),
+        ],
+    )
+    last_name = StringField(
+        "last_name",
+        validators=[
+            DataRequired("Please enter a last name."),
+            Length(
+                min=3,
+                max=50,
+                message="Please enter a last name between 3 and 50 characters.",
+            ),
+        ],
+    )
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+        "username",
+        validators=[DataRequired("Please enter a username."), username_exists],
+    )
+    email = StringField(
+        "email",
+        validators=[
+            DataRequired("Please enter an email."),
+            Email(message="Please enter a valid email."),
+            user_exists,
+        ],
+    )
+    password = StringField(
+        "password", validators=[DataRequired("Please enter a password.")]
+    )

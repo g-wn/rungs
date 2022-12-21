@@ -3,17 +3,39 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    gray = User(
+        first_name="Gray",
+        last_name="Nance",
+        username="g_nance",
+        email="gray@rungs.io",
+        password="password",
+    )
+    chris = User(
+        first_name="Christopher",
+        last_name="Cohen",
+        username="c_cohen",
+        email="chris@rungs.io",
+        password="password",
+    )
+    mike = User(
+        first_name="Mike",
+        last_name="Miller",
+        username="m_miller",
+        email="mike@rungs.io",
+        password="password",
+    )
+    sara = User(
+        first_name="Sara",
+        last_name="Dunlop",
+        username="s_dunlop",
+        email="sara@rungs.io",
+        password="password",
+    )
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-
+    db.session.add(gray)
+    db.session.add(chris)
+    db.session.add(mike)
+    db.session.add(sara)
     db.session.commit()
 
 
@@ -23,5 +45,5 @@ def seed_users():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_users():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute("TRUNCATE users RESTART IDENTITY CASCADE;")
     db.session.commit()
