@@ -3,6 +3,8 @@
 const LOAD_POSTS = 'posts/LOAD_POSTS';
 const LOAD_USER_POSTS = 'posts/LOAD_USER_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
+const UPDATE_POST = 'posts/UPDATE_POST';
+const REMOVE_POST = 'posts/REMOVE_POST';
 
 const loadPosts = posts => ({
   type: LOAD_POSTS,
@@ -17,6 +19,16 @@ const loadUserPosts = userPosts => ({
 const createPost = post => ({
   type: CREATE_POST,
   post
+});
+
+const updatePost = post => ({
+  type: UPDATE_POST,
+  post
+});
+
+const removePost = postId => ({
+  type: REMOVE_POST,
+  postId
 });
 
 /* ---------------------- THUNK CREATORS ----------------------- */
@@ -54,8 +66,40 @@ export const postPost = payload => async dispatch => {
   });
 
   if (res.ok) {
-    const data = res.json();
+    const data = await res.json();
     dispatch(createPost(data));
+    return data;
+  }
+  return res;
+};
+
+// UPDATE A POST:
+export const putPost = payload => async dispatch => {
+  const { id } = payload;
+  const res = await fetch(`/api/posts/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(updatePost(data));
+    return data;
+  }
+  return res;
+};
+
+// DELETE A POST:
+export const deletePost = postId => async dispatch => {
+  const res = await fetch(`/api/posts/${postId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(removePost(postId));
     return data;
   }
   return res;
@@ -75,6 +119,14 @@ const postsReducer = (state = initialState, action) => {
     }
     case CREATE_POST: {
       return { ...state, [action.post.id]: action.post };
+    }
+    case UPDATE_POST: {
+      return { ...state, [action.post.id]: action.post };
+    }
+    case REMOVE_POST: {
+      const newState = { ...state };
+      delete newState[action.postId];
+      return newState;
     }
     default:
       return state;

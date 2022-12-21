@@ -7,14 +7,11 @@ import './Feed.css';
 const Feed = () => {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const posts = useSelector(state => Object.values(state.posts));
   const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
-    (async function fetchPosts() {
-      const postsObj = await dispatch(getPosts());
-      setPosts(Object.values(postsObj));
-    })();
+    dispatch(getPosts());
 
     // Set a 0.75s timer to give time for the fetch while displaying a loading dial.
     const loadingTimer = setTimeout(() => setIsLoaded(true), 750);

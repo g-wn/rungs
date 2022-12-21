@@ -94,8 +94,7 @@ def delete_post(post_id):
 
     post = Post.query.get(post_id)
 
-    if post.owner_id == current_user.get_id():
+    if int(post.owner_id) == int(current_user.get_id()):
         db.session.delete(post)
         db.session.commit()
         return {"message": "Successfully deleted"}, 200
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
