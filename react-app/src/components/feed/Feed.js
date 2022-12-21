@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../store/posts';
 import Post from '../posts/Post';
 import './Feed.css';
+import PostForm from './postForm/PostFormOpener';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Feed = () => {
 
   return (
     <>
+      <PostForm />
       {isLoaded ? (
         <div className='feed-container'>
           {posts.map((post, idx) => (

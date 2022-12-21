@@ -28,6 +28,8 @@
 .single-post-edit-btn,
 .single-post-delete-btn {
     align-items: center;
+    background: none;
+    border: none;
     border-radius: 0.6em;
     color: rgba(0, 0, 0, .7);
     cursor: pointer;

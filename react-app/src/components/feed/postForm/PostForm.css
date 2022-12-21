@@ -1,0 +1,45 @@
+.post-form-opener-btns-container,
+.post-form-opener-input-container {
+    align-items: center;
+    display: flex;
+    padding: 1em;
+}
+
+.post-form-opener-container {
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0.6em;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.post-form-opener-input {
+    align-items: center;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 2em;
+    cursor: pointer;
+    display: flex;
+    height: 48px;
+    justify-content: flex-start;
+    margin-left: 1em;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+    width: 90%;
+}
+
+.post-form-opener-input:hover {
+    background-color: #ebebeb;
+}
+
+.post-form-opener-input>span {
+    margin-left: 1em;
+}
+
+.post-form-opener-profile-img {
+    background-color: rgba(128, 128, 128, .25);
+    border-radius: 50%;
+    cursor: pointer;
+    height: 48px;
+    width: 48px;
+}
