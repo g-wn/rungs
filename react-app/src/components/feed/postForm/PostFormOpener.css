@@ -16,7 +16,7 @@
     width: 60%;
 }
 
-.post-form-opener-img-btn {
+.post-form-opener-photo-btn {
     align-items: center;
     background: none;
     border: none;
@@ -32,7 +32,7 @@
 }
 
 .post-form-opener-img-btn:hover {
-    background-color: #ebebeb;
+    background-color: var(--global-button-hover-color);
 }
 
 .post-form-opener-input {

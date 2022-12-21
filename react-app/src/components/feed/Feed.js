@@ -24,7 +24,7 @@ const Feed = () => {
       <PostFormOpener />
       {isLoaded ? (
         <div className='feed-container'>
-          {posts.map((post, idx) => (
+          {posts.reverse().map((post, idx) => (
             <Post
               currentUser={currentUser}
               post={post}

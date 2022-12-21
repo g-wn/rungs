@@ -29,8 +29,8 @@ class Post(db.Model):
     #     "PostImage", back_populates="image_post", cascade="all, delete"
     # )
 
-    # # post_owner <---> owner_posts
-    # post_owner = db.relationship("User", back_populates="user_posts")
+    # post_owner <---> owner_posts
+    post_owner = db.relationship("User", back_populates="user_posts")
 
     def to_dict(self):
         return {
@@ -44,4 +44,4 @@ class Post(db.Model):
         }
 
     def __repr__(self):
-        return f"<Post {self.id} by: {self.post_owner.first_name}{self.post_owner.last_name}>"
+        return f"<Post {self.id} by: {self.post_owner.first_name} {self.post_owner.last_name}>"

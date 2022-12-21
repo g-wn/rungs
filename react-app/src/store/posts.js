@@ -70,7 +70,7 @@ export const postPost = payload => async dispatch => {
     dispatch(createPost(data));
     return data;
   }
-  return res;
+  return await res.json();
 };
 
 // UPDATE A POST:

@@ -25,7 +25,7 @@ const PostFormOpener = () => {
           )}
         </div>
         <div className='post-form-opener-btns-container'>
-          <button className='post-form-opener-img-btn'>
+          <button className='post-form-opener-photo-btn'>
             <HiOutlinePhoto
               className='post-form-opener-photo-icon'
               size={25}
