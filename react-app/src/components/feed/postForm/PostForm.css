@@ -1,23 +1,44 @@
-.post-form-opener-btns-container,
+.post-form-opener-btns-container {
+    padding: 0.25em 1em;
+}
+
 .post-form-opener-input-container {
     align-items: center;
     display: flex;
-    padding: 1em;
+    padding: 1em 1em 0.1em 1em;
 }
 
 .post-form-opener-container {
-    border: 1px solid rgba(0, 0, 0, .2);
+    background-color: var(--global-card-background-color);
+    border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
+    margin: 1em auto;
     width: 60%;
+}
+
+.post-form-opener-img-btn {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 0.6em;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    display: flex;
+    font-weight: bold;
+    gap: 1em;
+    justify-content: center;
+    padding: 1em 0.5em;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.post-form-opener-img-btn:hover {
+    background-color: #ebebeb;
 }
 
 .post-form-opener-input {
     align-items: center;
     background: none;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid var(--global-saturated-border-color);
     border-radius: 2em;
     cursor: pointer;
     display: flex;
@@ -29,11 +50,15 @@
 }
 
 .post-form-opener-input:hover {
-    background-color: #ebebeb;
+    background-color: var(--global-button-hover-color);
 }
 
 .post-form-opener-input>span {
     margin-left: 1em;
+}
+
+.post-form-opener-photo-icon {
+    color: var(--global-faded-blue);
 }
 
 .post-form-opener-profile-img {

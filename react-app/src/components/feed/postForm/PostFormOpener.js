@@ -1,3 +1,4 @@
+import { HiOutlinePhoto } from 'react-icons/hi2'
 import './PostForm.css'
 
 const PostForm = () => {
@@ -10,7 +11,11 @@ const PostForm = () => {
                 <span>Start a post</span>
             </button>
           </div>
-          <div className='post-form-opener-btns-container'>post-form-opener-btns</div>
+          <div className='post-form-opener-btns-container'>
+            <button className="post-form-opener-img-btn">
+              <HiOutlinePhoto className='post-form-opener-photo-icon' size={25} /> Photo
+            </button>
+          </div>
         </div>
       </>
     );
