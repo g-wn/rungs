@@ -48,6 +48,12 @@
     margin: 0 1em;
 }
 
+.post-form-errors {
+    color: red;
+    list-style: none;
+    text-align: center;
+}
+
 .post-form-hashtag {
     align-items: center;
     color: var(--global-saturated-blue);
@@ -178,13 +184,20 @@
     cursor: not-allowed;
 }
 
-.post-form-text-area {
+.post-form-text-area,
+.post-form-text-area-errors {
     height: 6.75em;
     height: 100%;
     margin: 0.6em 1em;
 }
 
-.post-form-text-area>textarea {
+.post-form-text-area-errors {
+    border: 1px solid red;
+    box-shadow: 0 0 2px red;
+}
+
+.post-form-text-area>textarea,
+.post-form-text-area-errors>textarea {
     border: none;
     font-size: 1em;
     height: 6.75em;
@@ -192,7 +205,8 @@
     width: 100%;
 }
 
-.post-form-text-area>textarea:focus {
+.post-form-text-area>textarea:focus,
+.post-form-text-area-errors>textarea:focus {
     outline: none;
 }
 

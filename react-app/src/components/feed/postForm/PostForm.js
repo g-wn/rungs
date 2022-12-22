@@ -88,7 +88,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
             )}
           </div>
         </div>
-        <div className='post-form-text-area'>
+        <div className={errors.length > 0 ? 'post-form-text-area-errors' : 'post-form-text-area'}>
           <textarea
             placeholder='What do you want to talk about?'
             value={body}
