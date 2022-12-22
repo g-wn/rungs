@@ -36,6 +36,7 @@ class Post(db.Model):
         return {
             "id": self.id,
             "ownerId": self.owner_id,
+            "owner": self.post_owner.to_dict(),
             "body": self.body,
             "imageUrl": self.image_url,
             "private": self.private,

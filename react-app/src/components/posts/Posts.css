@@ -10,6 +10,31 @@
     width: 100%;
 }
 
+.single-post-follow-btn {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 0.3em;
+    color: var(--global-saturated-blue);
+    cursor: pointer;
+    display: flex;
+    font-weight: var(--global-bold);
+    font-size: 1.05em;
+    justify-content: space-between;
+    padding: 0.25em 0.4em;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.single-post-follow-btn:hover {
+    background-color: var(--global-faded-blue-hover);
+}
+
+.single-post-follow-btn-icon:first-child {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .single-post-footer {
     align-items: center;
     display: flex;
@@ -18,7 +43,10 @@
 }
 
 .single-post-header {
+    align-items: center;
+    display: flex;
     padding: 1em;
+    justify-content: space-between;
 }
 
 .single-post-image>img {
@@ -59,4 +87,49 @@
 .single-post-user-btns {
     display: flex;
     gap: 0.5em;
+}
+
+.single-post-user-details {
+    margin: 0 0.75em 0 0.75em;
+    max-width: 65%;
+}
+
+.single-post-user-description {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.single-post-user-description,
+.single-post-time-and-private {
+    color: var(--global-faded-text-color);
+    font-size: 12px;
+}
+
+.single-post-time-and-private {
+    align-items: center;
+    display: flex;
+}
+
+.single-post-user-name {
+    font-weight: var(--global-bold);
+}
+
+.single-post-user-profile-img {
+    background-color: var(--global-button-hover-color);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.single-post-private-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 0.25em;
+}
+
+.single-post-time-since {
+    margin-right: 0.25em;
 }
