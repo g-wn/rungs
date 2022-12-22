@@ -74,9 +74,8 @@ export const postPost = payload => async dispatch => {
 };
 
 // UPDATE A POST:
-export const putPost = payload => async dispatch => {
-  const { id } = payload;
-  const res = await fetch(`/api/posts/${id}`, {
+export const putPost = (postId, payload) => async dispatch => {
+  const res = await fetch(`/api/posts/${postId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)

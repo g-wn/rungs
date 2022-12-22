@@ -1,12 +1,17 @@
+import { useState } from 'react';
+import TimeAgo from 'react-timeago';
 import { useDispatch } from 'react-redux';
 import { BiWorld, BiPlus } from 'react-icons/bi';
 import { CiEdit } from 'react-icons/ci';
 import { MdPeopleAlt } from 'react-icons/md';
 import { SlLike, SlTrash } from 'react-icons/sl';
-import './Posts.css';
+import { Modal } from '../../context/Modal';
+import PostForm from '../feed/postForm/PostForm';
 import { deletePost } from '../../store/posts';
+import './Posts.css';
 
 const Post = ({ post, currentUser }) => {
+  const [showPostForm, setShowPostForm] = useState(false);
   const dispatch = useDispatch();
 
   return (
@@ -21,7 +26,9 @@ const Post = ({ post, currentUser }) => {
             Professor of Radiology/Head R & D - Digitization / Chief Responsibility Officer
           </div>
           <div className='single-post-time-and-private'>
-            <div className='single-post-time-since'>1w</div>
+            <div className='single-post-time-since'>
+              <TimeAgo date={post.createdAt} />
+            </div>
             &bull;
             <div className='single-post-private-icon'>
               {post.private ? <MdPeopleAlt size={15} /> : <BiWorld size={15} />}
@@ -29,16 +36,15 @@ const Post = ({ post, currentUser }) => {
           </div>
         </div>
         {currentUser.id !== post.ownerId ? (
-                  <button className='single-post-follow-btn'>
-          <div className='single-post-follow-btn-icon'>
-            <BiPlus size={24} />
-          </div>
-          <div>Follow</div>
-        </button>
+          <button className='single-post-follow-btn'>
+            <div className='single-post-follow-btn-icon'>
+              <BiPlus size={24} />
+            </div>
+            <div>Follow</div>
+          </button>
         ) : (
-          <div className="single-post-user-details-right-spacer"></div>
+          <div className='single-post-user-details-right-spacer'></div>
         )}
-
       </div>
       <div className='single-post-body'>{post.body}</div>
       <div className='single-post-image'>
@@ -62,9 +68,17 @@ const Post = ({ post, currentUser }) => {
         </button>
         {+currentUser.id === +post.ownerId && (
           <div className='single-post-user-btns'>
-            <button className='single-post-edit-btn'>
+            <button
+              className='single-post-edit-btn'
+              onClick={() => setShowPostForm(true)}
+            >
               <CiEdit size={29} /> Edit
             </button>
+            {showPostForm && (
+              <Modal onClose={() => setShowPostForm(false)}>
+                <PostForm setShowPostForm={setShowPostForm} formType='edit' post={post}/>
+              </Modal>
+            )}
             <button
               className='single-post-delete-btn'
               onClick={() => dispatch(deletePost(post.id))}

@@ -5,20 +5,20 @@ import { BiWorld } from 'react-icons/bi';
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import { BiSmile } from 'react-icons/bi';
 import './PostForm.css';
-import { postPost } from '../../../store/posts';
+import { postPost, putPost } from '../../../store/posts';
 import { IsPrivateModal } from '../../../context/Modal';
 import IsPrivateForm from './IsPrivateForm';
 
-const PostForm = ({ setShowPostForm }) => {
+const PostForm = ({ setShowPostForm, formType, post }) => {
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const [body, setBody] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [isPrivate, setIsPrivate] = useState(false);
+  const [body, setBody] = useState(formType === 'edit' ? post.body : '');
+  const [imageUrl, setImageUrl] = useState(formType === 'edit' ? post.imageUrl : '');
+  const [isPrivate, setIsPrivate] = useState(formType === 'edit' ? post.private : false);
   const [showIsPrivateModal, setShowIsPrivateModal] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = async e => {
+  const handlePost = async e => {
     e.preventDefault();
 
     const newPost = await dispatch(
@@ -32,10 +32,24 @@ const PostForm = ({ setShowPostForm }) => {
     if (newPost) newPost.errors ? setErrors(newPost.errors) : setShowPostForm(false);
   };
 
+  const handleEdit = async e => {
+    e.preventDefault();
+
+    const updatedPost = await dispatch(
+      putPost(post.id, {
+        body,
+        image_url: imageUrl,
+        private: isPrivate
+      })
+    );
+
+    if (updatedPost) updatedPost.errors ? setErrors(updatedPost.errors) : setShowPostForm(false);
+  };
+
   return (
     <form
       className='post-form-container'
-      onSubmit={handleSubmit}
+      onSubmit={formType === 'edit' ? handleEdit : handlePost}
     >
       <div className='post-form-header-container'>
         <div className='post-form-header-text'>Create a post</div>
