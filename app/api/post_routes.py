@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from datetime import datetime
 from app.forms import PostForm
@@ -49,8 +49,6 @@ def create_post():
             body=data["body"],
             image_url=data["image_url"],
             private=data["private"],
-            created_at=data["created_at"],
-            updated_at=data["updated_at"],
         )
 
         db.session.add(new_post)

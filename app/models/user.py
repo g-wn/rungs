@@ -38,10 +38,10 @@ class User(db.Model, UserMixin):
     #     secondaryjoin=id == connections.following_user_id
     # )
 
-    # # user_posts <---> post_owner
-    # user_posts = db.relationship(
-    #     "Post", back_populates="post_owner", cascade="all, delete"
-    # )
+    # user_posts <---> post_owner
+    user_posts = db.relationship(
+        "Post", back_populates="post_owner", cascade="all, delete"
+    )
 
     @property
     def password(self):

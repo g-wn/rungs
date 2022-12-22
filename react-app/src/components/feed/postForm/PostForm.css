@@ -1,45 +1,210 @@
-.post-form-opener-btns-container,
-.post-form-opener-input-container {
+.post-form-body-user-details {
     align-items: center;
     display: flex;
+    height: 5.4em;
     padding: 1em;
 }
 
-.post-form-opener-container {
-    border: 1px solid rgba(0, 0, 0, .2);
+.post-form-btns-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75em 1em;
+}
+
+.post-form-container {
+    background-color: var(--global-card-background-color);
     border-radius: 0.6em;
+    margin: 1em auto;
+    max-width: 552px;
+}
+
+.post-form-details {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    width: 60%;
+    gap: 0.1em;
+    margin-left: 1em;
 }
 
-.post-form-opener-input {
+.post-form-emoji {
     align-items: center;
-    background: none;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 2em;
+    border-radius: 50%;
+    color: var(--global-faded-text-color);
     cursor: pointer;
     display: flex;
-    height: 48px;
-    justify-content: flex-start;
-    margin-left: 1em;
+    height: 40px;
+    justify-content: center;
     transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
-    width: 90%;
+    width: 40px;
 }
 
-.post-form-opener-input:hover {
-    background-color: #ebebeb;
+.post-form-emoji:hover {
+    background-color: var(--global-button-hover-color);
 }
 
-.post-form-opener-input>span {
-    margin-left: 1em;
+.post-form-emoji-hashtag-container {
+    align-items: center;
+    display: flex;
+    margin: 0 1em;
 }
 
-.post-form-opener-profile-img {
+.post-form-hashtag {
+    align-items: center;
+    color: var(--global-saturated-blue);
+    cursor: pointer;
+    border-radius: 0.6em;
+    display: flex;
+    font-weight: var(--global-bold);
+    height: 35px;
+    justify-content: center;
+    padding: 0 0.5em;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.post-form-hashtag:hover {
+    background-color: var(--global-faded-blue-hover);
+}
+
+.post-form-header-close-btn {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+    width: 40px;
+}
+
+.post-form-header-close-btn:hover {
+    background-color: var(--global-button-hover-color);
+}
+
+.post-form-header-container {
+    align-items: center;
+    border-bottom: 1px solid var(--global-faded-border-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6em 1em;
+}
+
+.post-form-header-text {
+    color: var(--global-saturated-text-color);
+    font-size: 1.15em;
+}
+
+.post-form-photo-btn {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    display: flex;
+    font-weight: bold;
+    gap: 1em;
+    height: 40px;
+    justify-content: center;
+    padding: 1em 0.5em;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+    width: 40px;
+}
+
+.post-form-photo-btn:hover {
+    background-color: var(--global-button-hover-color);
+}
+
+.post-form-photo-icon {
+    color: var(--global-faded-text-color);
+}
+
+.post-form-private-select {
+    align-items: center;
+    background: none;
+    border: 1.5px solid var(--global-saturated-border-color);
+    border-radius: 2em;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-between;
+    padding: 0.1em 1em;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.post-form-private-select:hover {
+    background-color: var(--global-button-hover-color);
+    border: 2px solid var(--global-saturated-border-color-hover);
+}
+
+.post-form-profile-img {
     background-color: rgba(128, 128, 128, .25);
     border-radius: 50%;
-    cursor: pointer;
     height: 48px;
     width: 48px;
+}
+
+.post-form-submit-btn-blue,
+.post-form-submit-btn-gray {
+    border: none;
+    border-radius: 2em;
+    font-weight: var(--global-bold);
+    height: 32px;
+    transition: all 0.5s cubic-bezier(.4, 0, .2, 1);
+    width: 65px;
+}
+
+.post-form-submit-btn-blue:focus,
+.post-form-submit-btn-gray:focus {
+    outline: none;
+}
+
+.post-form-submit-btn-blue {
+    background-color: var(--global-saturated-blue);
+    color: var(--global-card-background-color);
+    cursor: pointer;
+}
+
+.post-form-submit-btn-blue:hover {
+    background-color: var(--global-dark-blue);
+}
+
+.post-form-submit-btn-gray {
+    background-color: var(--global-button-hover-color);
+    color: var(--global-faded-text-color);
+    cursor: not-allowed;
+}
+
+.post-form-text-area {
+    height: 6.75em;
+    height: 100%;
+    margin: 0.6em 1em;
+}
+
+.post-form-text-area>textarea {
+    border: none;
+    font-size: 1em;
+    height: 6.75em;
+    resize: none;
+    width: 100%;
+}
+
+.post-form-text-area>textarea:focus {
+    outline: none;
+}
+
+.post-form-text-area>textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.post-form-text-area>textarea {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.post-form-user-name {
+    font-weight: var(--global-bold)
 }
