@@ -21,7 +21,9 @@ const Feed = () => {
 
   return (
     <>
-      <PostFormOpener />
+      <div className='post-form-opener'>
+        <PostFormOpener />
+      </div>
       {isLoaded ? (
         <div className='feed-container'>
           {posts.reverse().map((post, idx) => (

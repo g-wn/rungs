@@ -16,7 +16,6 @@
     background-color: var(--global-card-background-color);
     border-radius: 0.6em;
     margin: 1em auto;
-    max-width: 552px;
 }
 
 .post-form-details {
