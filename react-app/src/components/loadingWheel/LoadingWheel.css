@@ -20,7 +20,9 @@
     margin-top: -30px;
     margin-left: -30px;
     border-radius: 50%;
-    border: 8px solid var(--global-button-hover-color);
-    border-top-color: var(--global-saturated-text-color);
-    animation: spinner 1s linear infinite;
+    border: 8px solid transparent;
+    border-top: 8px dotted var(--global-saturated-text-color);
+    border-right: 8px dotted var(--global-saturated-text-color);
+    /* border-top-color: var(--global-saturated-text-color); */
+    animation: spinner 0.6s linear infinite;
 }
