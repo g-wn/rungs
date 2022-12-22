@@ -20,7 +20,7 @@ const Feed = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className='feed-right'>
       <div className='post-form-opener'>
         <PostFormOpener />
       </div>
@@ -37,7 +37,7 @@ const Feed = () => {
       ) : (
         <h1>LOADING POSTS...</h1>
       )}
-    </>
+    </div>
   );
 };
 

@@ -11,6 +11,13 @@ body {
     background-color: #f3f2ef;
 }
 
+.feed-outer-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: max-content;
+}
+
 /* GLOBAL COLOR VARIABLES */
 :root {
     --global-faded-text-color: #797979;

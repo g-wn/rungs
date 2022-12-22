@@ -13,7 +13,7 @@
     border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
     margin: 1em auto;
-    width: 100%;
+    min-width: 100%;
 }
 
 .post-form-opener-photo-btn {

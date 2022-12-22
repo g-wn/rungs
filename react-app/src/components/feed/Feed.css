@@ -4,6 +4,11 @@
     margin: 1em auto;
 }
 
+.feed-right {
+    margin: 0 2em 0 0.5em;
+    min-width: 550px;
+}
+
 .post-form-opener {
     border-bottom: 1px solid var(--global-saturated-border-color);
 }

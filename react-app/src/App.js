@@ -9,13 +9,14 @@ import UsersList from './components/users/UsersList';
 import User from './components/users/User';
 import Feed from './components/feed/Feed';
 import { authenticate } from './store/session';
+import ProfileCard from './components/feed/profileCard/ProfileCard';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -29,22 +30,43 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route
+          path='/login'
+          exact={true}
+        >
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route
+          path='/sign-up'
+          exact={true}
+        >
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute
+          path='/users'
+          exact={true}
+        >
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute
+          path='/users/:userId'
+          exact={true}
+        >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/feed' exact={true}>
-          <Feed />
+        <ProtectedRoute
+          path='/feed'
+          exact={true}
+        >
+          <div className='feed-outer-container'>
+            <ProfileCard />
+            <Feed />
+          </div>
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route
+          path='/'
+          exact={true}
+        >
           <h1>My Home Page</h1>
         </Route>
       </Switch>
