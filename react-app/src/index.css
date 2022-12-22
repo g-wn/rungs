@@ -19,8 +19,9 @@ body {
     --global-faded-blue-hover: #ddeaf8;
     --global-saturated-blue: #0A66C2;
     --global-dark-blue: #073f78;
+    --global-saturated-green: #057642;
     --global-faded-border-color: #E0DFDC;
-    --global-saturated-border-color: #A5A5A5;
+    --global-saturated-border-color: #666666;
     --global-saturated-border-color-hover: #848181;
     --global-button-hover-color: #EBEBEB;
     --global-card-background-color: #FFFFFF;

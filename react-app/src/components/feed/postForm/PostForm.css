@@ -151,7 +151,7 @@
 .post-form-submit-btn-gray {
     border: none;
     border-radius: 2em;
-    font-weight: bold;
+    font-weight: var(--global-bold);
     height: 32px;
     transition: all 0.5s cubic-bezier(.4, 0, .2, 1);
     width: 65px;
