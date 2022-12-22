@@ -1,5 +1,6 @@
 .single-post-body {
     padding: 1em;
+    white-space: pre-line;
 }
 
 .single-post-container {
