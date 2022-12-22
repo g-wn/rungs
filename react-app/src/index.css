@@ -11,6 +11,13 @@ body {
     background-color: #f3f2ef;
 }
 
+.feed-outer-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: max-content;
+}
+
 /* GLOBAL COLOR VARIABLES */
 :root {
     --global-faded-text-color: #797979;
@@ -21,7 +28,7 @@ body {
     --global-dark-blue: #073f78;
     --global-saturated-green: #057642;
     --global-faded-border-color: #E0DFDC;
-    --global-saturated-border-color: #666666;
+    --global-saturated-border-color: #8a8888;
     --global-saturated-border-color-hover: #848181;
     --global-button-hover-color: #EBEBEB;
     --global-card-background-color: #FFFFFF;

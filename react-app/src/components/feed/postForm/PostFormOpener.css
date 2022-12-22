@@ -13,7 +13,7 @@
     border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
     margin: 1em auto;
-    width: 60%;
+    min-width: 100%;
 }
 
 .post-form-opener-photo-btn {
@@ -24,14 +24,14 @@
     color: var(--global-faded-text-color);
     cursor: pointer;
     display: flex;
-    font-weight: bold;
+    font-weight: var(--global-bold);
     gap: 1em;
     justify-content: center;
     padding: 1em 0.5em;
     transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
 }
 
-.post-form-opener-img-btn:hover {
+.post-form-opener-photo-btn:hover {
     background-color: var(--global-button-hover-color);
 }
 
@@ -62,7 +62,7 @@
 }
 
 .post-form-opener-profile-img {
-    background-color: rgba(128, 128, 128, .25);
+    background-color: var(--global-button-hover-color);
     border-radius: 50%;
     cursor: pointer;
     height: 48px;

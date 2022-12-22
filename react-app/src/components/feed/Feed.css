@@ -1,4 +1,14 @@
-.feed-container {
-    width: 60%;
-    margin: 0 auto;
+.feed-container,
+.post-form-opener {
+    max-width: 552px;
+    margin: 1em auto;
+}
+
+.feed-right {
+    margin: 0 2em 0 0.5em;
+    min-width: 550px;
+}
+
+.post-form-opener {
+    border-bottom: 1px solid var(--global-saturated-border-color);
 }

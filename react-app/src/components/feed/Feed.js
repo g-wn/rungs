@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../store/posts';
+import LoadingWheel from '../loadingWheel/LoadingWheel';
 import Post from '../posts/Post';
 import './Feed.css';
 import PostFormOpener from './postForm/PostFormOpener';
@@ -20,8 +21,10 @@ const Feed = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <PostFormOpener />
+    <div className='feed-right'>
+      <div className='post-form-opener'>
+        <PostFormOpener />
+      </div>
       {isLoaded ? (
         <div className='feed-container'>
           {posts.reverse().map((post, idx) => (
@@ -33,9 +36,9 @@ const Feed = () => {
           ))}
         </div>
       ) : (
-        <h1>LOADING POSTS...</h1>
+        <LoadingWheel />
       )}
-    </>
+    </div>
   );
 };
 
