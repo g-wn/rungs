@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import { BsSearch } from 'react-icons/bs';
 import { HiChatBubbleLeftEllipsis } from 'react-icons/hi2';
 import { IoHomeSharp } from 'react-icons/io5';

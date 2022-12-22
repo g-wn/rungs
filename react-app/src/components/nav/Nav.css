@@ -53,6 +53,10 @@
     color: black;
 }
 
+.rungs-main-icon {
+    margin-right: 1.5em;
+}
+
 .active {
     text-decoration: underline;
     text-decoration-thickness: 1.75px ;
