@@ -1,6 +1,7 @@
 .post-form-body-user-details {
     align-items: center;
     display: flex;
+    height: 5.4em;
     padding: 1em;
 }
 
@@ -15,6 +16,7 @@
     background-color: var(--global-card-background-color);
     border-radius: 0.6em;
     margin: 1em auto;
+    max-width: 552px;
 }
 
 .post-form-details {
@@ -22,6 +24,45 @@
     flex-direction: column;
     gap: 0.1em;
     margin-left: 1em;
+}
+
+.post-form-emoji {
+    align-items: center;
+    border-radius: 50%;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+    width: 40px;
+}
+
+.post-form-emoji:hover {
+    background-color: var(--global-button-hover-color);
+}
+
+.post-form-emoji-hashtag-container {
+    align-items: center;
+    display: flex;
+    margin: 0 1em;
+}
+
+.post-form-hashtag {
+    align-items: center;
+    color: var(--global-saturated-blue);
+    cursor: pointer;
+    border-radius: 0.6em;
+    display: flex;
+    font-weight: var(--global-bold);
+    height: 35px;
+    justify-content: center;
+    padding: 0 0.5em;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.post-form-hashtag:hover {
+    background-color: var(--global-faded-blue-hover);
 }
 
 .post-form-header-close-btn {
@@ -138,14 +179,15 @@
 }
 
 .post-form-text-area {
-    min-height: 10em;
-    padding: 0.6em 1em;
+    height: 6.75em;
+    height: 100%;
+    margin: 0.6em 1em;
 }
 
 .post-form-text-area>textarea {
     border: none;
     font-size: 1em;
-    min-height: 10em;
+    height: 6.75em;
     resize: none;
     width: 100%;
 }

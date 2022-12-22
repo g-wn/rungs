@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineClose, MdOutlineArrowDropDown } from 'react-icons/md';
 import { BiWorld } from 'react-icons/bi';
 import { HiOutlinePhoto } from 'react-icons/hi2';
+import { BiSmile } from 'react-icons/bi';
 import './PostForm.css';
 import { postPost } from '../../../store/posts';
+import { IsPrivateModal } from '../../../context/Modal';
+import IsPrivateForm from './IsPrivateForm';
 
 const PostForm = ({ setShowPostForm }) => {
   const currentUser = useSelector(state => state.session.user);
@@ -12,6 +15,7 @@ const PostForm = ({ setShowPostForm }) => {
   const [body, setBody] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [isPrivate, setIsPrivate] = useState(false);
+  const [showIsPrivateModal, setShowIsPrivateModal] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async e => {
@@ -50,11 +54,24 @@ const PostForm = ({ setShowPostForm }) => {
             <div className='post-form-user-name'>
               {currentUser.firstName} {currentUser.lastName}
             </div>
-            <div className='post-form-private-select'>
+            <div
+              className='post-form-private-select'
+              onClick={() => setShowIsPrivateModal(true)}
+            >
               <BiWorld size={15} />
-              Anyone
+              {isPrivate ? 'Connections only' : 'Anyone'}
               <MdOutlineArrowDropDown size={25} />
             </div>
+            {showIsPrivateModal && (
+              <IsPrivateModal onClose={() => setShowIsPrivateModal(false)}>
+                <IsPrivateForm
+                  isPrivate={isPrivate}
+                  setIsPrivate={setIsPrivate}
+                  setShowIsPrivateModal={setShowIsPrivateModal}
+                  setShowPostForm={setShowPostForm}
+                />
+              </IsPrivateModal>
+            )}
           </div>
         </div>
         <div className='post-form-text-area'>
@@ -63,6 +80,24 @@ const PostForm = ({ setShowPostForm }) => {
             value={body}
             onChange={e => setBody(e.target.value)}
           ></textarea>
+        </div>
+        {errors.length > 0 && (
+          <ul className='post-form-errors'>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        )}
+        <div className='post-form-emoji-hashtag-container'>
+          <div className='post-form-emoji'>
+            <BiSmile size={25} />
+          </div>
+          <div
+            className='post-form-hashtag'
+            onClick={() => setBody(oldBody => oldBody + '#')}
+          >
+            Add hashtag
+          </div>
         </div>
       </div>
 
@@ -73,7 +108,7 @@ const PostForm = ({ setShowPostForm }) => {
             size={25}
           />
         </button>
-        {body.length > 0 ? (
+        {body.length > 1 ? (
           <button
             className='post-form-submit-btn-blue'
             type='submit'

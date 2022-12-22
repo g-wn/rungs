@@ -87,7 +87,7 @@ export const putPost = payload => async dispatch => {
     dispatch(updatePost(data));
     return data;
   }
-  return res;
+  return await res.json();
 };
 
 // DELETE A POST:

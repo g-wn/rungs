@@ -1,0 +1,40 @@
+.icon-and-text-container {
+    display: flex;
+    gap: 1em;
+}
+
+.is-private-form-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.is-private-form-container {
+    background-color: var(--global-card-background-color);
+    border-radius: 0.6em;
+    margin: 1em auto;
+    max-width: 552px;
+    height: 24em;
+}
+
+.is-private-form-disclaimer {
+    color: var(--global-faded-text-color);
+    font-size: 14px;
+    margin: 0.75em;
+}
+
+.is-public-selection-icon,
+.is-private-selection-icon {
+    color: var(--global-faded-text-color);
+}
+
+.is-public-selection-container,
+.is-private-selection-container {
+    border: 1px solid red;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    width: 100%;
+}
