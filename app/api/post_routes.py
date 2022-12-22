@@ -74,7 +74,7 @@ def update_post(post_id):
 
         setattr(post, "body", data["body"])
         setattr(post, "image_url", data["image_url"])
-        setattr(post, "priave", data["private"])
+        setattr(post, "private", data["private"])
         setattr(post, "updated_at", db.func.now())
 
         db.session.commit()
