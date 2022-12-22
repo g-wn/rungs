@@ -107,6 +107,11 @@
     font-size: 12px;
 }
 
+.single-post-user-details-right-spacer {
+    content: '';
+    width: 87.4326px;
+}
+
 .single-post-time-and-private {
     align-items: center;
     display: flex;

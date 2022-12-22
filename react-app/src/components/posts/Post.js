@@ -9,8 +9,6 @@ import { deletePost } from '../../store/posts';
 const Post = ({ post, currentUser }) => {
   const dispatch = useDispatch();
 
-  console.log(post);
-
   return (
     <div className='single-post-container'>
       <div className='single-post-header'>
@@ -30,12 +28,17 @@ const Post = ({ post, currentUser }) => {
             </div>
           </div>
         </div>
-        <button className='single-post-follow-btn'>
+        {currentUser.id !== post.ownerId ? (
+                  <button className='single-post-follow-btn'>
           <div className='single-post-follow-btn-icon'>
             <BiPlus size={24} />
           </div>
           <div>Follow</div>
         </button>
+        ) : (
+          <div className="single-post-user-details-right-spacer"></div>
+        )}
+
       </div>
       <div className='single-post-body'>{post.body}</div>
       <div className='single-post-image'>
