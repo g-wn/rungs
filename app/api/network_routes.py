@@ -55,5 +55,5 @@ def remove_user_from_network(userId):
     db.session.commit()
 
     return jsonify(
-        {"message": f"You are no longer connected with {user_to_remove.first_name}"}
+        {"message": f"You are no longer connected with {user_to_remove.first_name}."}
     )
