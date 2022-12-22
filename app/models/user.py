@@ -1,4 +1,5 @@
 from .db import db
+from .network import connections
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -14,6 +15,14 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # # RELATIONSHIPS:
+
+    # network <-- connections --> network
+    network = db.relationship(
+        "User",
+        secondary=connections,
+        primaryjoin=id == connections.c.user_id_1,
+        secondaryjoin=id == connections.c.user_id_2,
+    )
 
     # # user_likes <-- likes --> users_who_liked
     # user_likes = db.relationship(
