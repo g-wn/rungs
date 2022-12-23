@@ -11,6 +11,7 @@ import Feed from './components/feed/Feed';
 import { authenticate } from './store/session';
 import ProfileCard from './components/feed/profileCard/ProfileCard';
 import Network from './components/myNetwork/Network';
+import Landing from './components/landing/Landing';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -75,7 +76,7 @@ function App() {
           path='/'
           exact={true}
         >
-          <h1>My Home Page</h1>
+          <Landing />
         </Route>
       </Switch>
     </BrowserRouter>
