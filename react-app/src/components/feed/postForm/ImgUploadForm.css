@@ -1,0 +1,8 @@
+.img-upload-form-container {
+    background-color: var(--global-card-background-color);
+    border-radius: 0.6em;
+    height: 23.5em;
+    margin: 1em auto;
+    max-width: 552px;
+    position: relative;
+}

@@ -34,8 +34,8 @@ export function Modal({ onClose, children }) {
     </div>,
     modalNode
   );
-
 }
+
 export function IsPrivateModal({ onClose, children }) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
@@ -44,6 +44,22 @@ export function IsPrivateModal({ onClose, children }) {
     <div id='modal'>
       <div
         id='is-private-modal-background'
+        onClick={onClose}
+      />
+      <div id='modal-content'>{children}</div>
+    </div>,
+    modalNode
+  );
+}
+
+export function ImgUploadModal({ onClose, children }) {
+  const modalNode = useContext(ModalContext);
+  if (!modalNode) return null;
+
+  return ReactDOM.createPortal(
+    <div id='modal'>
+      <div
+        id='img-upload-modal-background'
         onClick={onClose}
       />
       <div id='modal-content'>{children}</div>

@@ -6,16 +6,20 @@ import { HiOutlinePhoto } from 'react-icons/hi2';
 import { BiSmile } from 'react-icons/bi';
 import './PostForm.css';
 import { postPost, putPost } from '../../../store/posts';
-import { IsPrivateModal } from '../../../context/Modal';
+import { ImgUploadModal, IsPrivateModal, Modal } from '../../../context/Modal';
 import IsPrivateForm from './IsPrivateForm';
+import ImgUploadForm from './ImgUploadForm';
 
 const PostForm = ({ setShowPostForm, formType, post }) => {
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [body, setBody] = useState(formType === 'edit' ? post.body : '');
-  const [imageUrl, setImageUrl] = useState(formType === 'edit' ? post.imageUrl : '');
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(formType === 'edit' ? post.imageUrl : null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [isPrivate, setIsPrivate] = useState(formType === 'edit' ? post.private : false);
   const [showIsPrivateModal, setShowIsPrivateModal] = useState(false);
+  const [showUploadImgModal, setShowUploadImgModal] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handlePost = async e => {
@@ -44,6 +48,31 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
     );
 
     if (updatedPost) updatedPost.errors ? setErrors(updatedPost.errors) : setShowPostForm(false);
+  };
+
+  const uploadImage = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', image);
+
+    setImageLoading(true);
+
+    const res = await fetch(`/api/posts/images`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      setImageLoading(false);
+      return data;
+    }
+    return await res.json();
+  };
+
+  const updateImage = e => {
+    const file = e.target.files[0];
+    setImageUrl(file);
   };
 
   return (
@@ -116,12 +145,25 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
       </div>
 
       <div className='post-form-btns-container'>
-        <button className='post-form-photo-btn'>
+        <button
+          className='post-form-photo-btn'
+          onClick={() => setShowUploadImgModal(true)}
+          type='button'
+        >
           <HiOutlinePhoto
             className='post-form-photo-icon'
             size={25}
           />
         </button>
+        {showUploadImgModal && (
+          <ImgUploadModal onClose={() => setShowUploadImgModal(false)}>
+            <ImgUploadForm
+              setImageUrl={setImageUrl}
+              setShowUploadImgModal={setShowUploadImgModal}
+              setShowPostForm={setShowPostForm}
+            />
+          </ImgUploadModal>
+        )}
         {body.length > 1 ? (
           <button
             className='post-form-submit-btn-blue'
