@@ -12,11 +12,18 @@ const NetworkMain = () => {
         <NetworkInvitations />
       </div>
       <div className='network-main-container'>
-        {connectionsArray.map((connection, idx) => (
-          <div className="single-connection" key={idx}>
-            <SingleConnectionCard user={connection} />
-          </div>
-        ))}
+        {connectionsArray.length > 0 ? (
+          connectionsArray.map((connection, idx) => (
+            <div
+              className='single-connection'
+              key={idx}
+            >
+              <SingleConnectionCard user={connection} />
+            </div>
+          ))
+        ) : (
+          <div className='no-connections-message'>YOU DON'T HAVE ANY CONNECTIONS</div>
+        )}
       </div>
     </div>
   );
