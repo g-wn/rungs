@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     # network <-- connections --> network
     network = db.relationship(
         "User",
+        back_populates="network",
         secondary=connections,
         primaryjoin=id == connections.c.user_id_1,
         secondaryjoin=id == connections.c.user_id_2,

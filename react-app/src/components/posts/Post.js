@@ -9,10 +9,11 @@ import { Modal } from '../../context/Modal';
 import PostForm from '../feed/postForm/PostForm';
 import { deletePost } from '../../store/posts';
 import './Posts.css';
+import { postConnection } from '../../store/connections';
 
 const Post = ({ post, currentUser }) => {
-  const [showPostForm, setShowPostForm] = useState(false);
   const dispatch = useDispatch();
+  const [showPostForm, setShowPostForm] = useState(false);
 
   return (
     <div className='single-post-container'>
@@ -36,7 +37,10 @@ const Post = ({ post, currentUser }) => {
           </div>
         </div>
         {currentUser.id !== post.ownerId ? (
-          <button className='single-post-follow-btn'>
+          <button
+            className='single-post-follow-btn'
+            onClick={() => dispatch(postConnection(post.ownerId))}
+          >
             <div className='single-post-follow-btn-icon'>
               <BiPlus size={24} />
             </div>
@@ -76,7 +80,11 @@ const Post = ({ post, currentUser }) => {
             </button>
             {showPostForm && (
               <Modal onClose={() => setShowPostForm(false)}>
-                <PostForm setShowPostForm={setShowPostForm} formType='edit' post={post}/>
+                <PostForm
+                  setShowPostForm={setShowPostForm}
+                  formType='edit'
+                  post={post}
+                />
               </Modal>
             )}
             <button

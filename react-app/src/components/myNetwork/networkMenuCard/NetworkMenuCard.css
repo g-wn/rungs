@@ -1,0 +1,38 @@
+.connections-btn-right,
+.connections-btn-left {
+    color: var(--global-faded-text-color);
+    display: flex;
+}
+
+.network-menu-card-connections-btn {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    padding: 1em;
+    transition: background-color 0.5s cubic-bezier(.4, 0, .2, 1);
+    width: 100%;
+}
+
+.network-menu-card-connections-btn:hover {
+    background-color: var(--global-button-hover-color);
+}
+
+.network-menu-card-connections-btn:focus {
+    outline: none;
+}
+
+.network-menu-card-container {
+    background-color: var(--global-card-background-color);
+    border: 1px solid var(--global-faded-border-color);
+    border-radius: 0.6em;
+    margin: 1em 0.5em 1em 1em;
+    width: 300px;
+}
+
+.network-menu-card-header {
+    color: var(--global-saturated-text-color);
+    border-bottom: 1px solid red;
+    padding: 1em;
+}
