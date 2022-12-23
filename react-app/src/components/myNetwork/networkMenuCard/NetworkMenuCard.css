@@ -1,10 +1,16 @@
+.connections-btn-left,
 .connections-btn-right,
-.connections-btn-left {
+.followers-btn-left,
+.followers-btn-right,
+.following-btn-left,
+.following-btn-right {
     color: var(--global-faded-text-color);
     display: flex;
 }
 
-.network-menu-card-connections-btn {
+.network-menu-card-connections-btn,
+.network-menu-card-followers-btn,
+.network-menu-card-following-btn {
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -15,11 +21,15 @@
     width: 100%;
 }
 
-.network-menu-card-connections-btn:hover {
+.network-menu-card-connections-btn:hover,
+.network-menu-card-followers-btn:hover,
+.network-menu-card-following-btn:hover {
     background-color: var(--global-button-hover-color);
 }
 
-.network-menu-card-connections-btn:focus {
+.network-menu-card-connections-btn:focus,
+.network-menu-card-followers-btn:focus,
+.network-menu-card-following-btn:focus {
     outline: none;
 }
 
@@ -27,12 +37,14 @@
     background-color: var(--global-card-background-color);
     border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
-    margin: 1em 0.5em 1em 1em;
-    width: 300px;
+    width: 100%;
 }
 
 .network-menu-card-header {
     color: var(--global-saturated-text-color);
-    border-bottom: 1px solid red;
     padding: 1em;
+}
+
+.network-menu-card-icons {
+    margin-right: 0.25em;
 }

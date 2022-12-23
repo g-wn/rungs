@@ -1,19 +1,13 @@
-import { useSelector } from 'react-redux';
-import NetworkInvitations from '../networkInvitations/NetworkInvitations';
 import SingleConnectionCard from '../singleConnection/SingleConnectionCard';
 import './NetworkMain.css';
 
-const NetworkMain = () => {
-  const connectionsArray = useSelector(state => Object.values(state.network.connections));
+const NetworkMain = ({ networkCategory }) => {
+  const networkCategoryArray = Object.values(networkCategory);
 
   return (
-    <div className='network-right-side-container'>
-      <div className='network-invitations-on-main'>
-        <NetworkInvitations />
-      </div>
-      <div className='network-main-container'>
-        {connectionsArray.length > 0 ? (
-          connectionsArray.map((connection, idx) => (
+      <div className='network-content-container'>
+        {networkCategoryArray.length > 0 ? (
+          networkCategoryArray.map((connection, idx) => (
             <div
               className='single-connection'
               key={idx}
@@ -25,7 +19,6 @@ const NetworkMain = () => {
           <div className='no-connections-message'>YOU DON'T HAVE ANY CONNECTIONS</div>
         )}
       </div>
-    </div>
   );
 };
 

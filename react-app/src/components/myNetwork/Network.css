@@ -1,0 +1,35 @@
+.invitations-container {
+    margin-bottom: 1em;
+}
+
+.invitations-container,
+.main-content-container,
+.menu-card-container {
+    width: 100%;
+}
+
+.network-page-container {
+    display: flex;
+    min-height: fit-content;
+    justify-content: center;
+    padding: 1.5em;
+    width: 100%;
+}
+
+.network-left-container,
+.network-right-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.network-left-container {
+    margin-right: 0.5em;
+    width: 300px;
+}
+
+.network-right-container {
+    margin-left: 0.5em;
+    width: 636px;
+}

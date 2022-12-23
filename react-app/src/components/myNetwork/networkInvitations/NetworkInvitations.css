@@ -1,0 +1,15 @@
+.network-invitations-body {
+    padding: 1em;
+}
+
+.network-invitations-container {
+    background-color: var(--global-card-background-color);
+    border: 1px solid var(--global-faded-border-color);
+    border-radius: 0.6em;
+    width: 100%;
+}
+
+.network-invitations-header {
+    padding: 1em;
+    border-bottom: 1px solid var(--global-faded-border-color);
+}
