@@ -126,6 +126,11 @@
     background-color: var(--global-button-hover-color);
 }
 
+.post-form-photo-btn[disabled] {
+    cursor: not-allowed;
+    background: none;
+}
+
 .post-form-photo-icon {
     color: var(--global-faded-text-color);
 }

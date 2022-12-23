@@ -136,6 +136,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
           className='post-form-photo-btn'
           onClick={() => setShowUploadImgModal(true)}
           type='button'
+          disabled={imageUrl ? true : false}
         >
           <HiOutlinePhoto
             className='post-form-photo-icon'
