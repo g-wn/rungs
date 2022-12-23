@@ -4,7 +4,7 @@ import SingleConnectionCard from '../singleConnection/SingleConnectionCard';
 import './NetworkMain.css';
 
 const NetworkMain = () => {
-  const connectionsArray = useSelector(state => Object.values(state.connections));
+  const connectionsArray = useSelector(state => Object.values(state.network.connections));
 
   return (
     <div className='network-right-side-container'>

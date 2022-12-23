@@ -9,7 +9,7 @@ import { Modal } from '../../context/Modal';
 import PostForm from '../feed/postForm/PostForm';
 import { deletePost } from '../../store/posts';
 import './Posts.css';
-import { postConnection } from '../../store/connections';
+import { postFollow } from '../../store/network';
 
 const Post = ({ post, currentUser }) => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Post = ({ post, currentUser }) => {
         {currentUser.id !== post.ownerId ? (
           <button
             className='single-post-follow-btn'
-            onClick={() => dispatch(postConnection(post.ownerId))}
+            onClick={() => dispatch(postFollow(post.ownerId))}
           >
             <div className='single-post-follow-btn-icon'>
               <BiPlus size={24} />

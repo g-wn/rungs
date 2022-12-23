@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdPeopleAlt } from 'react-icons/md';
-import { getConnections } from '../../../store/connections';
+import { getConnections } from '../../../store/network';
 import './NetworkMenuCard.css';
 
 const NetworkMenuCard = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const connections = useSelector(state => state.connections);
+  const connections = useSelector(state => state.network.connections);
 
   useEffect(() => {
     dispatch(getConnections(user.id));
