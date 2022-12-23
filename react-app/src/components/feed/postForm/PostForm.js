@@ -6,7 +6,7 @@ import { HiOutlinePhoto } from 'react-icons/hi2';
 import { BiSmile } from 'react-icons/bi';
 import './PostForm.css';
 import { postPost, putPost } from '../../../store/posts';
-import { ImgUploadModal, IsPrivateModal, Modal } from '../../../context/Modal';
+import { ImgUploadModal, IsPrivateModal } from '../../../context/Modal';
 import IsPrivateForm from './IsPrivateForm';
 import ImgUploadForm from './ImgUploadForm';
 
@@ -14,9 +14,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [body, setBody] = useState(formType === 'edit' ? post.body : '');
-  const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(formType === 'edit' ? post.imageUrl : null);
-  const [imageLoading, setImageLoading] = useState(false);
   const [isPrivate, setIsPrivate] = useState(formType === 'edit' ? post.private : false);
   const [showIsPrivateModal, setShowIsPrivateModal] = useState(false);
   const [showUploadImgModal, setShowUploadImgModal] = useState(false);
@@ -24,7 +22,6 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
 
   const handlePost = async e => {
     e.preventDefault();
-
     const newPost = await dispatch(
       postPost({
         body,
@@ -48,31 +45,6 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
     );
 
     if (updatedPost) updatedPost.errors ? setErrors(updatedPost.errors) : setShowPostForm(false);
-  };
-
-  const uploadImage = async e => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('image', image);
-
-    setImageLoading(true);
-
-    const res = await fetch(`/api/posts/images`, {
-      method: 'POST',
-      body: formData
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      setImageLoading(false);
-      return data;
-    }
-    return await res.json();
-  };
-
-  const updateImage = e => {
-    const file = e.target.files[0];
-    setImageUrl(file);
   };
 
   return (
@@ -124,6 +96,21 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
             onChange={e => setBody(e.target.value)}
           ></textarea>
         </div>
+        {imageUrl && (
+          <div className='uploaded-image-container'>
+            <img
+              src={imageUrl}
+              alt='uploaded-img'
+              className='uploaded-image'
+            />
+            <button
+              onClick={() => setImageUrl(null)}
+              className='remove-uploaded-img-btn'
+            >
+              <MdOutlineClose size={23} />
+            </button>
+          </div>
+        )}
         {errors.length > 0 && (
           <ul className='post-form-errors'>
             {errors.map((error, idx) => (
