@@ -16,42 +16,32 @@ class User(db.Model, UserMixin):
 
     # # RELATIONSHIPS:
 
-    # network <-- connections --> network
-    network = db.relationship(
-        "User",
-        back_populates="network",
-        secondary=connections,
-        primaryjoin=id == connections.c.user_id_1,
-        secondaryjoin=id == connections.c.user_id_2,
-    )
-
     # # user_likes <-- likes --> users_who_liked
     # user_likes = db.relationship(
     #     "Post", back_populates="users_who_liked", secondary=likes, lazy="joined"
     # )
 
-    # # users_following <-- connections --> following_users
-    # users_following = db.relationship(
-    #     "User",
-    #     backref="following_users",
-    #     secondary=connections,
-    #     primaryjoin=id == connections.c.following_user_id,
-    #     secondaryjoin=id == connections.c.user_following_id,
-    # )
+    # users_following <-- connections --> following_users
+    followers = db.relationship(
+        "User",
+        secondary=connections,
+        primaryjoin=id == connections.c.user_id_2,
+        secondaryjoin=id == connections.c.user_id_1,
+    )
 
-    # # following_users <-- connections --> users_following
-    # following_users = db.relationship(
-    #     "User",
-    #     backref="users_following",
-    #     secondary=connections,
-    #     primaryjoin=id == connections.user_following_id,
-    #     secondaryjoin=id == connections.following_user_id
-    # )
+    # following_users <-- connections --> users_following
+    following = db.relationship(
+        "User",
+        secondary=connections,
+        primaryjoin=id == connections.c.user_id_1,
+        secondaryjoin=id == connections.c.user_id_2,
+    )
 
     # user_posts <---> post_owner
     user_posts = db.relationship(
         "Post", back_populates="post_owner", cascade="all, delete"
     )
+
 
     @property
     def password(self):
@@ -71,6 +61,15 @@ class User(db.Model, UserMixin):
             "lastName": self.last_name,
             "username": self.username,
             "email": self.email,
+            "followers": {
+                user.id: {"firstName": user.first_name, "lastName": user.last_name}
+                for user in self.followers
+            },
+            "following": {
+                user.id: {"firstName": user.first_name, "lastName": user.last_name}
+                for user in self.following
+            },
+            "posts": [post.id for post in self.user_posts],
         }
 
     def __repr__(self):

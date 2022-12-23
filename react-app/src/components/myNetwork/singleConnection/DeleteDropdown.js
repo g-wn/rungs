@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { SlOptions } from 'react-icons/sl';
-import { deleteConnection } from '../../../store/connections';
+import { deleteFollow } from '../../../store/network';
 
 const DeleteDropdown = ({ connection }) => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const DeleteDropdown = ({ connection }) => {
         <div className='connection-delete-dropdown'>
           <button
             className='connection-delete-btn'
-            onClick={() => dispatch(deleteConnection(connection.id))}
+            onClick={() => dispatch(deleteFollow(connection.id))}
           >
             Remove connection
           </button>
