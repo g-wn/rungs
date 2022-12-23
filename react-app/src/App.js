@@ -10,6 +10,8 @@ import User from './components/users/User';
 import Feed from './components/feed/Feed';
 import { authenticate } from './store/session';
 import ProfileCard from './components/feed/profileCard/ProfileCard';
+import NetworkMenuCard from './components/myNetwork/networkMenuCard/NetworkMenuCard';
+import NetworkMain from './components/myNetwork/networkMain/NetworkMain';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,9 +61,18 @@ function App() {
           path='/feed'
           exact={true}
         >
-          <div className='feed-outer-container'>
+          <div className='outer-container'>
             <ProfileCard />
             <Feed />
+          </div>
+        </ProtectedRoute>
+        <ProtectedRoute
+          path='/mynetwork'
+          exact={true}
+        >
+          <div className='outer-container'>
+            <NetworkMenuCard />
+            <NetworkMain />
           </div>
         </ProtectedRoute>
         <Route

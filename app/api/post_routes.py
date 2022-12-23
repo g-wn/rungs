@@ -53,7 +53,7 @@ def create_post():
 
         db.session.add(new_post)
         db.session.commit()
-        return new_post.to_dict()
+        return new_post.to_dict(), 201
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 

@@ -11,7 +11,7 @@ body {
     background-color: #f3f2ef;
 }
 
-.feed-outer-container {
+.outer-container {
     display: flex;
     justify-content: space-around;
     margin: 0 auto;
