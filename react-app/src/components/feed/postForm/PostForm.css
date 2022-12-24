@@ -1,8 +1,11 @@
+.post-form-body-container {
+    padding: 1em;
+}
+
 .post-form-body-user-details {
     align-items: center;
     display: flex;
     height: 5.4em;
-    padding: 1em;
 }
 
 .post-form-btns-container {
@@ -45,7 +48,7 @@
 .post-form-emoji-hashtag-container {
     align-items: center;
     display: flex;
-    margin: 0 1em;
+    margin: 1em 0 0 0;
 }
 
 .post-form-errors {
@@ -123,6 +126,11 @@
     background-color: var(--global-button-hover-color);
 }
 
+.post-form-photo-btn[disabled] {
+    cursor: not-allowed;
+    background: none;
+}
+
 .post-form-photo-icon {
     color: var(--global-faded-text-color);
 }
@@ -188,7 +196,7 @@
 .post-form-text-area-errors {
     height: 6.75em;
     height: 100%;
-    margin: 0.6em 1em;
+    margin: 0.6em 0;
 }
 
 .post-form-text-area-errors {
@@ -221,4 +229,41 @@
 
 .post-form-user-name {
     font-weight: var(--global-bold)
+}
+
+.uploaded-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.uploaded-image-container {
+    align-items: center;
+    border: 1px solid var(--global-faded-border-color);
+    border-radius: 0.6em;
+    display: flex;
+    height: 250px;
+    justify-content: center;
+    padding: 0.5em;
+    position: relative;
+    width: 100%;
+}
+
+.remove-uploaded-img-btn {
+    align-items: center;
+    background-color: var(--global-faded-text-color);
+    border: none;
+    border-radius: 50%;
+    color: var(--global-card-background-color);
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    padding: 0.25em;
+    right: 3%;
+    top: 5%;
+    transition: background-color 0.5s cubic-bezier(.4, 0, .2, 1);
+}
+
+.remove-uploaded-img-btn:hover {
+    background-color: var(--global-saturated-text-color);
 }

@@ -4,6 +4,7 @@ from datetime import datetime
 from app.forms import PostForm
 from app.models import db, Post
 from .auth_routes import validation_errors_to_error_messages
+from app.utils.s3 import upload_to_bucket, allowed_file, get_unique_filename
 
 
 post_routes = Blueprint("posts", __name__)
@@ -55,6 +56,31 @@ def create_post():
         db.session.commit()
         return new_post.to_dict(), 201
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# UPLOAD IMAGE FOR A POST:
+@post_routes.route("/images", methods=["POST"])
+@login_required
+def upload_image():
+    """
+    Query to upload an image for a post.
+    """
+    if "image" in request.files:
+
+        image = request.files["image"]
+
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_to_bucket(image)
+
+        if "url" not in upload:
+            return upload, 400
+
+        url = upload["url"]
+        return {"url": url}
 
 
 # UPDATE A POST:

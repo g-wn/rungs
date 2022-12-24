@@ -6,21 +6,22 @@ import { HiOutlinePhoto } from 'react-icons/hi2';
 import { BiSmile } from 'react-icons/bi';
 import './PostForm.css';
 import { postPost, putPost } from '../../../store/posts';
-import { IsPrivateModal } from '../../../context/Modal';
+import { ImgUploadModal, IsPrivateModal } from '../../../context/Modal';
 import IsPrivateForm from './IsPrivateForm';
+import ImgUploadForm from './ImgUploadForm';
 
 const PostForm = ({ setShowPostForm, formType, post }) => {
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [body, setBody] = useState(formType === 'edit' ? post.body : '');
-  const [imageUrl, setImageUrl] = useState(formType === 'edit' ? post.imageUrl : '');
+  const [imageUrl, setImageUrl] = useState(formType === 'edit' ? post.imageUrl : null);
   const [isPrivate, setIsPrivate] = useState(formType === 'edit' ? post.private : false);
   const [showIsPrivateModal, setShowIsPrivateModal] = useState(false);
+  const [showUploadImgModal, setShowUploadImgModal] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handlePost = async e => {
     e.preventDefault();
-
     const newPost = await dispatch(
       postPost({
         body,
@@ -95,6 +96,21 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
             onChange={e => setBody(e.target.value)}
           ></textarea>
         </div>
+        {imageUrl && (
+          <div className='uploaded-image-container'>
+            <img
+              src={imageUrl}
+              alt='uploaded-img'
+              className='uploaded-image'
+            />
+            <button
+              onClick={() => setImageUrl(null)}
+              className='remove-uploaded-img-btn'
+            >
+              <MdOutlineClose size={23} />
+            </button>
+          </div>
+        )}
         {errors.length > 0 && (
           <ul className='post-form-errors'>
             {errors.map((error, idx) => (
@@ -116,12 +132,26 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
       </div>
 
       <div className='post-form-btns-container'>
-        <button className='post-form-photo-btn'>
+        <button
+          className='post-form-photo-btn'
+          onClick={() => setShowUploadImgModal(true)}
+          type='button'
+          disabled={imageUrl ? true : false}
+        >
           <HiOutlinePhoto
             className='post-form-photo-icon'
             size={25}
           />
         </button>
+        {showUploadImgModal && (
+          <ImgUploadModal onClose={() => setShowUploadImgModal(false)}>
+            <ImgUploadForm
+              setImageUrl={setImageUrl}
+              setShowUploadImgModal={setShowUploadImgModal}
+              setShowPostForm={setShowPostForm}
+            />
+          </ImgUploadModal>
+        )}
         {body.length > 1 ? (
           <button
             className='post-form-submit-btn-blue'

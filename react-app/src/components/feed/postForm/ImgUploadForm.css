@@ -1,0 +1,48 @@
+.img-upload-form-body {
+    align-items: center;
+    display: flex;
+    height: 63%;
+    width: 100%;
+    justify-content: center;
+}
+
+.img-upload-form-container {
+    background-color: var(--global-card-background-color);
+    border-radius: 0.6em;
+    height: 23.5em;
+    margin: 1em auto;
+    max-width: 552px;
+    position: relative;
+}
+
+#post-photo-upload {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.post-photo-upload {
+    border-radius: 0.2em;
+    color: var(--global-saturated-blue);
+    cursor: pointer;
+    font-weight: var(--global-bold);
+    padding: 0.25em;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.post-photo-upload:hover {
+    background-color: var(--global-faded-blue-hover);
+}
+
+.upload-img-form-btns {
+    align-items: center;
+    border-top: 1px solid var(--global-faded-border-color);
+    bottom: 0;
+    display: flex;
+    gap: 1em;
+    height: 5em;
+    justify-content: flex-end;
+    padding: 1em;
+    position: absolute;
+    width: 100%;
+}
