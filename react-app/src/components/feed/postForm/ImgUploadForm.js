@@ -24,9 +24,11 @@ const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) 
       setImageLoading(false);
       setImageUrl(data.url);
       setShowUploadImgModal(false);
+      console.log("RESPONSE OK", data)
       return data;
     } else {
       setImageLoading(false);
+      console.log("RESPONSE NOT OK", await res.json())
       alert('Please upload a valid file type!');
     }
   };
