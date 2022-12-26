@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { FaTrashAlt } from 'react-icons/fa'
 import { SlOptions } from 'react-icons/sl';
 import { deleteFollow } from '../../../store/network';
 
@@ -25,12 +26,12 @@ const DeleteDropdown = ({ connection }) => {
   }, [showDeleteDrop]);
 
   return (
-    <>
+    <div className='single-connection-options-container'>
       <button
         className='single-connection-options-btn'
         onClick={openDrop}
       >
-        <SlOptions />
+        <SlOptions size={18}/>
       </button>
       {showDeleteDrop && (
         <div className='connection-delete-dropdown'>
@@ -38,11 +39,12 @@ const DeleteDropdown = ({ connection }) => {
             className='connection-delete-btn'
             onClick={() => dispatch(deleteFollow(connection.id))}
           >
+            <FaTrashAlt size={18} />
             Remove connection
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
