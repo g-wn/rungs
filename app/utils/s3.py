@@ -39,6 +39,9 @@ def get_unique_filename(filename):
 # UPLOAD THE FILE TO THE BUCKET:
 def upload_to_bucket(file, acl="public-read"):
     try:
+        print("------------------ FILE ------------------", file)
+        print("------------------ FILENAME IS STRING? ------------------", isinstance(file.filename, str))
+        print("------------------ BUCKET_NAME IS STRING? ------------------", isinstance(BUCKET_NAME, str))
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
