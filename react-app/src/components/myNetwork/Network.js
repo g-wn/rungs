@@ -41,9 +41,9 @@ const Network = () => {
           <NetworkInvitations />
         </div>
         <div className='main-content-container'>
-          {connectionsSelected && <NetworkMain networkCategory={connections} />}
-          {followersSelected && <NetworkMain networkCategory={followers} />}
-          {followingSelected && <NetworkMain networkCategory={following} />}
+          {connectionsSelected && <NetworkMain networkCategory={connections} displaying='connections'/>}
+          {followersSelected && <NetworkMain networkCategory={followers} displaying='followers'/>}
+          {followingSelected && <NetworkMain networkCategory={following} displaying='following'/>}
         </div>
       </div>
     </div>

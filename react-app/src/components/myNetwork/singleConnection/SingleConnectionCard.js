@@ -1,8 +1,7 @@
 import DeleteDropdown from './DeleteDropdown';
 import './SingleConnectionCard.css';
 
-const SingleConnectionCard = ({ user }) => {
-
+const SingleConnectionCard = ({ user, displaying }) => {
   return (
     <div className='single-connection-container'>
       <div className='single-connection-profile-img'>Profile Img</div>
@@ -16,9 +15,11 @@ const SingleConnectionCard = ({ user }) => {
       </div>
       <div className='single-connection-btns'>
         <div className='single-connection-message-btn'>Message</div>
-        <div className='single-connection-options-btn-container'>
-          <DeleteDropdown connection={user} />
-        </div>
+        {displaying === 'connections' || displaying === 'following' && (
+          <div className='single-connection-options-btn-container'>
+            <DeleteDropdown connection={user} />
+          </div>
+        )}
       </div>
     </div>
   );
