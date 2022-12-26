@@ -65,29 +65,21 @@ def upload_image():
     """
     Query to upload an image for a post.
     """
-    print("------------------ IN UPLOAD IMAGE FUNCTIONS ------------------")
     if "image" in request.files:
-        print("------------------ IMAGE WAS IN REQUEST.FILES ------------------")
 
         image = request.files["image"]
-        print(("------------------ IMAGE ------------------", image))
 
         if not allowed_file(image.filename):
-            print("------------------ IMAGE WAS NOT AN ALLOWED FILE ------------------", image.filename)
             return {"errors": "file type not permitted"}, 400
 
         image.filename = get_unique_filename(image.filename)
-        print("------------------ IMAGE WAS AN ALLOWED FILE ------------------", image.filename)
 
         upload = upload_to_bucket(image)
-        print("------------------ UPLOAD ------------------", upload)
 
         if "url" not in upload:
-            print("------------------ URL NOT IN UPLOAD ------------------", upload)
             return upload, 400
 
         url = upload["url"]
-        print("------------------ URL ------------------", url)
         return {"url": url}
 
 
