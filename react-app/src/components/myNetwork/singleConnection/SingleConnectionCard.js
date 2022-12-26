@@ -15,7 +15,7 @@ const SingleConnectionCard = ({ user, displaying }) => {
       </div>
       <div className='single-connection-btns'>
         <div className='single-connection-message-btn'>Message</div>
-        {displaying === 'connections' || displaying === 'following' && (
+        {(displaying === 'connections' || displaying === 'following') && (
           <div className='single-connection-options-btn-container'>
             <DeleteDropdown connection={user} />
           </div>
