@@ -14,6 +14,8 @@ const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) 
 
     setImageLoading(true);
 
+    console.log("IMAGE:", image)
+
     const res = await fetch(`/api/posts/images`, {
       method: 'POST',
       body: formData
