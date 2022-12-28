@@ -4,7 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { SlOptions } from 'react-icons/sl';
 import { deleteFollow } from '../../../store/network';
 
-const DeleteDropdown = ({ connection }) => {
+const DeleteDropdown = ({ connection, displaying }) => {
   const dispatch = useDispatch();
   const [showDeleteDrop, setShowDeleteDrop] = useState(false);
 
@@ -40,7 +40,11 @@ const DeleteDropdown = ({ connection }) => {
             onClick={() => dispatch(deleteFollow(connection.id))}
           >
             <FaTrashAlt size={18} />
-            Remove connection
+            {displaying === 'connections' ? (
+              'Remove connection'
+            ) : (
+              'Unfollow'
+            )}
           </button>
         </div>
       )}
