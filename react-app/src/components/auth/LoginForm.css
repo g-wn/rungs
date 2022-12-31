@@ -1,0 +1,87 @@
+.forgot-password {
+    cursor: pointer;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+    width: fit-content;
+}
+
+.forgot-password:hover {
+    color: var(--global-saturated-blue);
+    text-decoration: underline;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.login-form-input-field {
+    border: 1px solid var(--global-saturated-border-color);
+    border-radius: 0.2em;
+    height: 48px;
+    padding: 16px;
+    position: relative;
+    width: 100%;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.login-form-input-field:focus {
+    border: none;
+    box-shadow: 0 0 0 2px var(--global-saturated-blue);
+    outline: none;
+}
+
+.login-form-input-field::placeholder {
+    flex-direction: column;
+    font-size: 1.2em;
+    left: 16px;
+    position: absolute;
+    top: 12px;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.login-form-input-field:focus::placeholder {
+    top: 1px;
+    left: 16px;
+    font-size: 0.75em;
+}
+
+.login-form-signup-redirect,
+.demo-user-login-btn {
+    background: none;
+    border: 1px solid var(--global-saturated-border-color);
+    border-radius: 2em;
+    color: var(--global-saturated-text-color);
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 0.75em 1.25em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.login-form-signup-redirect:hover,
+.demo-user-login-btn:hover {
+    background-color: var(--global-button-hover-color);
+}
+
+.login-form-signup-redirect {
+    font-weight: var(--global-bold);
+}
+
+.login-form-submit-btn {
+    border: none;
+    background-color: var(--global-saturated-blue);
+    border-radius: 2em;
+    color: var(--global-card-background-color);
+    cursor: pointer;
+    font-size: 1.2em;
+    height: 56px;
+    width: 100%;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.login-form-submit-btn:hover {
+    background-color: var(--global-dark-blue);
+}
