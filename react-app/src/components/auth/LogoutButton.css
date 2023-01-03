@@ -1,0 +1,10 @@
+.logout-btn {
+    background: none;
+    border: none;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    text-decoration: underline;
+}
