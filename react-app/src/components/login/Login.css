@@ -1,0 +1,63 @@
+.login-page-container {
+    align-items: center;
+    background-color: var(--global-card-background-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-page-container a {
+    text-decoration: none;
+}
+
+.login-page-form-container {
+    border-radius: 0.75em;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, .15);
+    display: flex;
+    flex-direction: column;
+    height: 536px;
+    width: 325px;
+}
+
+.login-page-form-header {
+    padding: 1em;
+}
+
+.login-page-form-header>h1 {
+    font-weight: var(--global-bold);
+}
+
+.login-page-form-header>p {
+    color: var(--global-saturated-text-color);
+    font-size: 14px;
+    margin-top: 0.5em;
+}
+
+.login-page-nav {
+    align-items: center;
+    display: flex;
+    height: 65px;
+    padding: 0 3em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.redirect-to-signup-container {
+    margin: 2em auto;
+}
+
+.redirect-to-signup-container>a {
+    border-radius: 2em;
+    color: var(--global-saturated-blue);
+    font-weight: var(--global-bold);
+    padding: 0.25em 0.5em;
+    transition: all 0.167s ease-in-out;
+}
+
+.redirect-to-signup-container>a:hover {
+    background-color: var(--global-faded-blue-hover);
+    text-decoration: underline;
+}
