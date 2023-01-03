@@ -85,11 +85,6 @@
     padding: 1em;
 }
 
-.single-post-user-btns {
-    display: flex;
-    gap: 0.5em;
-}
-
 .single-post-user-details {
     margin: 0 0.75em 0 0.75em;
     max-width: 65%;

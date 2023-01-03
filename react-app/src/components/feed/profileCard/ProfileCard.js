@@ -1,4 +1,3 @@
-import LogoutButton from '../../auth/LogoutButton';
 import './ProfileCard.css';
 
 const ProfileCard = () => {
@@ -8,9 +7,6 @@ const ProfileCard = () => {
       <div className='profile-card-profile-img'>PROFILE IMAGE</div>
       <div className='profile-card-body'>
         <div className='profile-card-body-text'>PROFILE BODY</div>
-        <div className='profile-card-logout-btn'>
-          <LogoutButton />
-        </div>
       </div>
     </div>
   );

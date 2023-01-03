@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
 import { HiChatBubbleLeftEllipsis } from 'react-icons/hi2';
@@ -6,9 +6,21 @@ import { IoHomeSharp } from 'react-icons/io5';
 import { MdPeopleAlt } from 'react-icons/md';
 import './Nav.css';
 import ProfileDropdown from './ProfileDropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { getConnections, getFollowers, getFollowing } from '../../store/network';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const currentUser = useSelector(state => state.session.user);
+
+  useEffect(() => {
+    dispatch(getConnections(currentUser.id));
+    dispatch(getFollowers(currentUser.id));
+    dispatch(getFollowing(currentUser.id));
+  });
+
   return (
     <nav className='main-nav-bar'>
       <div className='main-nav-bar-content'>
@@ -60,7 +72,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className='nav-right'>
-            <ProfileDropdown />
+          <ProfileDropdown />
         </div>
       </div>
     </nav>

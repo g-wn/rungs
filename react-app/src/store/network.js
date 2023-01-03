@@ -104,29 +104,25 @@ export const deleteFollow = userId => async dispatch => {
 const initialState = { connections: {}, followers: {}, following: {} };
 
 const networkReducer = (state = initialState, action) => {
+  const newState = { ...state };
   switch (action.type) {
     case LOAD_CONNECTIONS: {
-      const newState = { ...state };
       newState.connections = action.connections;
       return newState;
     }
     case LOAD_FOLLOWERS: {
-      const newState = { ...state };
       newState.followers = action.followers;
       return newState;
     }
     case LOAD_FOLLOWING: {
-      const newState = { ...state };
       newState.following = action.following;
       return newState;
     }
     case FOLLOW_USER: {
-      const newState = { ...state };
       newState.following[action.user.id] = action.user;
       return newState;
     }
     case UNFOLLOW_USER: {
-      const newState = { ...state };
       delete newState.following[action.userId];
       if (newState.connections[action.userId]) delete newState.connections[action.userId];
       return newState;

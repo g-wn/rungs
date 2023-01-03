@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import TimeAgo from 'react-timeago';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BiWorld, BiPlus } from 'react-icons/bi';
-import { CiEdit } from 'react-icons/ci';
 import { MdPeopleAlt } from 'react-icons/md';
-import { SlLike, SlTrash } from 'react-icons/sl';
-import { Modal } from '../../context/Modal';
-import PostForm from '../feed/postForm/PostForm';
-import { deletePost } from '../../store/posts';
-import './Posts.css';
+import { SlLike } from 'react-icons/sl';
 import { postFollow } from '../../store/network';
+import { Modal } from '../../context/Modal';
+import PostOptions from './PostOptions';
+import PostForm from '../feed/postForm/PostForm';
+import './Posts.css';
 
 const Post = ({ post, currentUser }) => {
   const dispatch = useDispatch();
   const [showPostForm, setShowPostForm] = useState(false);
+  const following = useSelector(state => state.network.following);
 
   return (
     <div className='single-post-container'>
@@ -36,7 +36,7 @@ const Post = ({ post, currentUser }) => {
             </div>
           </div>
         </div>
-        {currentUser.id !== post.ownerId ? (
+        {currentUser.id !== post.ownerId && !(post.ownerId in following) ? (
           <button
             className='single-post-follow-btn'
             onClick={() => dispatch(postFollow(post.ownerId))}
@@ -71,29 +71,20 @@ const Post = ({ post, currentUser }) => {
           Like
         </button>
         {+currentUser.id === +post.ownerId && (
-          <div className='single-post-user-btns'>
-            <button
-              className='single-post-edit-btn'
-              onClick={() => setShowPostForm(true)}
-            >
-              <CiEdit size={29} /> Edit
-            </button>
-            {showPostForm && (
-              <Modal onClose={() => setShowPostForm(false)}>
-                <PostForm
-                  setShowPostForm={setShowPostForm}
-                  formType='edit'
-                  post={post}
-                />
-              </Modal>
-            )}
-            <button
-              className='single-post-delete-btn'
-              onClick={() => dispatch(deletePost(post.id))}
-            >
-              <SlTrash size={20} /> Delete
-            </button>
-          </div>
+          <PostOptions
+            post={post}
+            showPostForm={showPostForm}
+            setShowPostForm={setShowPostForm}
+          />
+        )}
+        {showPostForm && (
+          <Modal onClose={() => setShowPostForm(false)}>
+            <PostForm
+              setShowPostForm={setShowPostForm}
+              formType='edit'
+              post={post}
+            />
+          </Modal>
         )}
       </div>
     </div>
