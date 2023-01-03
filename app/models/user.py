@@ -21,6 +21,11 @@ class User(db.Model, UserMixin):
     #     "Post", back_populates="users_who_liked", secondary=likes, lazy="joined"
     # )
 
+    # user_profile <---> profile_user
+    user_profile = db.relationship(
+        "Profile", back_populates="profile_user", cascade="all, delete"
+    )
+
     # users_following <-- connections --> following_users
     followers = db.relationship(
         "User",
@@ -42,7 +47,6 @@ class User(db.Model, UserMixin):
         "Post", back_populates="post_owner", cascade="all, delete"
     )
 
-
     @property
     def password(self):
         return self.hashed_password
@@ -61,6 +65,7 @@ class User(db.Model, UserMixin):
             "lastName": self.last_name,
             "username": self.username,
             "email": self.email,
+            "profile": {"hello": "hello"},
             "followers": {
                 user.id: {"firstName": user.first_name, "lastName": user.last_name}
                 for user in self.followers

@@ -53,7 +53,7 @@ const LoginForm = () => {
       <div className='email-input-container'>
         <input
           className={
-            errors.length > 0 && errors[0].toLowerCase().includes('email')
+            errors.filter(error => error.toLowerCase().includes('email')).length > 0
               ? 'form-input-field-errors'
               : 'form-input-field'
           }
@@ -66,7 +66,7 @@ const LoginForm = () => {
       <div className='pwd-input-container'>
         <input
           className={
-            errors.length > 0 && errors[1].toLowerCase().includes('password')
+            errors.filter(error => error.toLowerCase().includes('password')).length > 0
               ? 'form-input-field-errors'
               : 'form-input-field'
           }
