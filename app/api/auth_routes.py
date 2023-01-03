@@ -74,16 +74,6 @@ def sign_up():
         login_user(user)
 
         profile = Profile(user_id=current_user.get_id())
-        print(
-            """
-
-
-        PROFILE:
-
-
-        """,
-            profile,
-        )
         db.session.add(profile)
         db.session.commit()
         return user.to_dict()
