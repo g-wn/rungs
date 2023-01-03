@@ -8,6 +8,7 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -49,45 +50,49 @@ const LoginForm = () => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <input
-        className='login-form-input-field'
-        type='text'
-        placeholder='Email'
-        value={email}
-        onChange={updateEmail}
-      />
-      <input
-        className='login-form-input-field'
-        type='password'
-        placeholder='Password'
-        value={password}
-        onChange={updatePassword}
-      />
-      <span
-        className='forgot-password'
-        onClick={() => alert("It's probably password...")}
-      >
-        Forgot password?
-      </span>
+      <div className='email-input-container'>
+        <input
+          className='login-form-input-field'
+          type='text'
+          placeholder='Email'
+          value={email}
+          onChange={updateEmail}
+        />
+      </div>
+      <div className='pwd-input-container'>
+        <input
+          className='login-form-input-field'
+          type={showPassword ? 'text' : 'password'}
+          placeholder='Password'
+          value={password}
+          onChange={updatePassword}
+        />
+        <button
+          className='show-pwd-btn'
+          onClick={() => setShowPassword(!showPassword)}
+          type='button'
+        >
+          {showPassword ? 'Hide' : 'Show'}
+        </button>
+      </div>
+      <div className='forgot-password'>
+        <span onClick={() => alert("It's probably password...")}>Forgot password?</span>
+      </div>
       <button
         className='login-form-submit-btn'
         type='submit'
       >
         Sign In
       </button>
-      <span className='login-form-or-divider'>or</span>
+      <div className='login-form-or-divider'>
+        <span>or</span>
+      </div>
       <button
         className='demo-user-login-btn'
         onClick={handleDemoLogin}
       >
         Sign in with Demo User
       </button>
-      <NavLink
-        className='login-form-signup-redirect'
-        to='/sign-up'
-      >
-        New to Rungs? Join now
-      </NavLink>
     </form>
   );
 };
