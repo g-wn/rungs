@@ -2,6 +2,10 @@
     padding: 1em;
 }
 
+.post-form-body-container-hidden {
+    display: none;
+}
+
 .post-form-body-user-details {
     align-items: center;
     display: flex;
@@ -13,6 +17,10 @@
     display: flex;
     justify-content: space-between;
     padding: 0.75em 1em;
+}
+
+.post-form-btns-container-hidden {
+    display: none;
 }
 
 .post-form-container {
