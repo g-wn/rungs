@@ -1,10 +1,15 @@
+import { useSelector } from 'react-redux';
 import DeleteDropdown from './DeleteDropdown';
 import './SingleConnectionCard.css';
 
 const SingleConnectionCard = ({ user, displaying }) => {
+  const currentUser = useSelector(state => state.session.user);
+
   return (
     <div className='single-connection-container'>
-      <div className='single-connection-profile-img'>Profile Img</div>
+      <div className='single-connection-profile-img'>
+        <img src={currentUser.profile.profileImageUrl} alt="Profile Img" />
+      </div>
       <div className='single-connection-details'>
         <div className='single-connection-name'>
           {user.firstName} {user.lastName}

@@ -106,6 +106,11 @@
     width: 70px;
 }
 
+.single-connection-profile-img>img {
+    max-height: 75%;
+    max-width: 75%;
+}
+
 .single-connection-user-description {
     color: var(--global-faded-text-color);
     display: block;

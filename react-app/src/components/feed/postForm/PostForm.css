@@ -163,10 +163,18 @@
 }
 
 .post-form-profile-img {
-    background-color: rgba(128, 128, 128, .25);
+    align-items: center;
+    background-color: var(--global-button-hover-color);
     border-radius: 50%;
+    display: flex;
     height: 48px;
+    justify-content: center;
     width: 48px;
+}
+
+.post-form-profile-img > img {
+    max-height: 75%;
+    max-width: 75%;
 }
 
 .post-form-submit-btn-blue,

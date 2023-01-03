@@ -18,14 +18,17 @@ const Post = ({ post, currentUser }) => {
   return (
     <div className='single-post-container'>
       <div className='single-post-header'>
-        <div className='single-post-user-profile-img'></div>
+        <div className='single-post-user-profile-img'>
+          <img
+            src={post.owner.profile.profileImageUrl}
+            alt='Profile Img'
+          />
+        </div>
         <div className='single-post-user-details'>
           <div className='single-post-user-name'>
             {post.owner.firstName} {post.owner.lastName}
           </div>
-          <div className='single-post-user-description'>
-            Professor of Radiology/Head R & D - Digitization / Chief Responsibility Officer
-          </div>
+          <div className='single-post-user-description'>{post.owner.profile.bio}</div>
           <div className='single-post-time-and-private'>
             <div className='single-post-time-since'>
               <TimeAgo date={post.createdAt} />

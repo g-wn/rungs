@@ -62,9 +62,17 @@
 }
 
 .post-form-opener-profile-img {
+    align-items: center;
     background-color: var(--global-button-hover-color);
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
     height: 48px;
+    justify-content: center;
     width: 48px;
+}
+
+.post-form-opener-profile-img > img {
+    max-height: 75%;
+    max-width: 75%;
 }
