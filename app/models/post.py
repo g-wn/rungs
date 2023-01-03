@@ -24,11 +24,6 @@ class Post(db.Model):
     #     "User", back_populates="user_likes", secondary=likes, lazy="joined"
     # )
 
-    # # post_images <---> image_post
-    # post_images = db.relationship(
-    #     "PostImage", back_populates="image_post", cascade="all, delete"
-    # )
-
     # post_owner <---> owner_posts
     post_owner = db.relationship("User", back_populates="user_posts")
 

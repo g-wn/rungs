@@ -49,7 +49,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
 
   return (
     <form
-      className='post-form-container'
+      className={showIsPrivateModal || showUploadImgModal ? 'post-form-container-hidden' : 'post-form-container'}
       onSubmit={formType === 'edit' ? handleEdit : handlePost}
     >
       <div className='post-form-header-container'>
@@ -131,7 +131,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
         </div>
       </div>
 
-      <div className='post-form-btns-container'>
+      <div className={showIsPrivateModal || showUploadImgModal ? 'post-form-btns-container-hidden' : 'post-form-btns-container'}>
         <button
           className='post-form-photo-btn'
           onClick={() => setShowUploadImgModal(true)}
