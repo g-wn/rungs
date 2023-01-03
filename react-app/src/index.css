@@ -32,6 +32,7 @@ body {
     --global-saturated-border-color-hover: #848181;
     --global-button-hover-color: #EBEBEB;
     --global-card-background-color: #FFFFFF;
+    --global-error-red: #D11124;
 }
 
 /* GLOBAL FONTS VARIABLES */

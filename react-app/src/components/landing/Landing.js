@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import LoginForm from '../auth/LoginForm';
 import './Landing.css';
 
 const Landing = () => {
-  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
 
   if (currentUser) {
