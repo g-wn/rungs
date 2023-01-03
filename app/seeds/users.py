@@ -1,15 +1,8 @@
-from app.models import db, User, environment
+from app.models import db, User, Profile, environment
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        first_name="Demo",
-        last_name="User",
-        username="d_user",
-        email="demo@rungs.io",
-        password="password",
-    )
 
     gray = User(
         first_name="Gray",
@@ -18,6 +11,7 @@ def seed_users():
         email="gray@rungs.io",
         password="password",
     )
+
     chris = User(
         first_name="Christopher",
         last_name="Cohen",
@@ -25,6 +19,7 @@ def seed_users():
         email="chris@rungs.io",
         password="password",
     )
+
     mike = User(
         first_name="Mike",
         last_name="Miller",
@@ -32,11 +27,20 @@ def seed_users():
         email="mike@rungs.io",
         password="password",
     )
+
     sara = User(
         first_name="Sara",
         last_name="Dunlop",
         username="s_dunlop",
         email="sara@rungs.io",
+        password="password",
+    )
+
+    demo = User(
+        first_name="Demo",
+        last_name="User",
+        username="d_user",
+        email="demo@rungs.io",
         password="password",
     )
 

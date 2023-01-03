@@ -1,6 +1,7 @@
 from .db import db
 from .network import connections
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import jsonify
 from flask_login import UserMixin
 
 
@@ -65,7 +66,7 @@ class User(db.Model, UserMixin):
             "lastName": self.last_name,
             "username": self.username,
             "email": self.email,
-            "profile": {"hello": "hello"},
+            "profile": self.user_profile[0].to_dict(),
             "followers": {
                 user.id: {"firstName": user.first_name, "lastName": user.last_name}
                 for user in self.followers

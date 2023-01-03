@@ -31,3 +31,6 @@ class Profile(db.Model):
             "bannerImageUrl": self.banner_image_url,
             "bio": self.bio,
         }
+
+    def __repr__(self):
+        return f"Profile {self.id}: {self.profile_user.first_name} {self.profile_user.last_name}"
