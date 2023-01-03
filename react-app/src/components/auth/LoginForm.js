@@ -45,7 +45,7 @@ const LoginForm = () => {
       className='login-form'
       onSubmit={onLogin}
     >
-      <div className='login-form-errors'>
+      <div className='form-errors'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
@@ -54,8 +54,8 @@ const LoginForm = () => {
         <input
           className={
             errors.length > 0 && errors[0].toLowerCase().includes('email')
-              ? 'login-form-input-field-errors'
-              : 'login-form-input-field'
+              ? 'form-input-field-errors'
+              : 'form-input-field'
           }
           type='text'
           placeholder='Email'
@@ -67,8 +67,8 @@ const LoginForm = () => {
         <input
           className={
             errors.length > 0 && errors[1].toLowerCase().includes('password')
-              ? 'login-form-input-field-errors'
-              : 'login-form-input-field'
+              ? 'form-input-field-errors'
+              : 'form-input-field'
           }
           type={showPassword ? 'text' : 'password'}
           placeholder='Password'
