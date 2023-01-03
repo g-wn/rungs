@@ -6,6 +6,7 @@ import './ImgUploadForm.css';
 const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) => {
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const uploadImage = async e => {
     e.preventDefault();
@@ -13,7 +14,6 @@ const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) 
     formData.append('image', image);
 
     setImageLoading(true);
-
 
     const res = await fetch(`/api/posts/images`, {
       method: 'POST',
@@ -27,8 +27,9 @@ const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) 
       setShowUploadImgModal(false);
       return data;
     } else {
+      const data = await res.json();
+      setErrors([data.errors]);
       setImageLoading(false);
-      alert('Please upload a valid file type!');
     }
   };
 
@@ -57,6 +58,11 @@ const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) 
         </div>
       ) : (
         <div className='img-upload-form-body'>
+          <div className='form-errors'>
+            {errors.map((error, idx) => (
+              <div key={idx}>{error}</div>
+            ))}
+          </div>
           <label
             className='post-photo-upload'
             htmlFor='post-photo-upload'

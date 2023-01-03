@@ -1,9 +1,13 @@
 .img-upload-form-body {
     align-items: center;
     display: flex;
+    flex-direction: column;
     height: 63%;
-    width: 100%;
     justify-content: center;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    white-space: pre-line;
 }
 
 .img-upload-form-container {
@@ -26,6 +30,7 @@
     color: var(--global-saturated-blue);
     cursor: pointer;
     font-weight: var(--global-bold);
+    margin-top: 1em;
     padding: 0.25em;
     transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
 }
