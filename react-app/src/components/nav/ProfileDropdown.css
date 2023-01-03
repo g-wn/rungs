@@ -1,0 +1,77 @@
+.main-nav-profile-drop-content {
+    background-color: var(--global-card-background-color);
+    border-radius: 0.8em 0 0.8em 0.8em;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    right: 2em;
+    top: 3.75em;
+    transition: visibility 0s linear 167ms, opacity 167ms cubic-bezier(.4, 0, 1, 1) 0s, z-index 0s linear 167ms;
+    width: 288px;
+}
+
+.nav-bar-drop-down {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.nav-bar-drop-down-icon {
+    background-color: var(--global-button-hover-color);
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+}
+
+.nav-bar-drop-down-text {
+    align-items: center;
+    display: flex;
+}
+
+.profile-drop-btns,
+.profile-drop-header-user-details {
+    margin: 0.75em;
+}
+
+.profile-drop-header {
+    border-bottom: 1px solid var(--global-faded-border-color);
+}
+
+.profile-drop-header-profile-btn {
+    align-items: center;
+    border: 1px solid var(--global-saturated-blue);
+    border-radius: 2em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin: 0 0.75em 0.75em;
+    padding: 0.15em 0;
+    transition: background-color 0.167s cubic-bezier(.4, 0, 1, 1);
+}
+
+.profile-drop-header-profile-btn:hover {
+    background-color: var(--global-faded-blue-hover);
+}
+
+.profile-drop-header-profile-btn>a {
+    color: var(--global-saturated-blue);
+    font-size: 0.8em;
+    font-weight: var(--global-bold);
+    text-decoration: none;
+}
+
+.profile-drop-header-user-details {
+    display: flex;
+}
+
+.profile-drop-header-user-img {
+    background-color: var(--global-button-hover-color);
+    border-radius: 50%;
+    height: 55px;
+    margin-right: 1em;
+    width: 55px;
+}
+
+.profile-drop-header-user-name {
+    font-weight: var(--global-bold);
+}

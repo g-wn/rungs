@@ -9,8 +9,13 @@ import PostFormOpener from './postForm/PostFormOpener';
 const Feed = () => {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const posts = useSelector(state => Object.values(state.posts));
   const currentUser = useSelector(state => state.session.user);
+  const connections = useSelector(state => state.network.connections);
+  const posts = useSelector(state => Object.values(state.posts));
+
+  const filteredPosts = posts.filter(post => {
+    return post.ownerId in connections || !post.private || post.ownerId === currentUser.id;
+  });
 
   useEffect(() => {
     dispatch(getPosts());
@@ -27,7 +32,7 @@ const Feed = () => {
       </div>
       {isLoaded ? (
         <div className='feed-container'>
-          {posts.reverse().map((post, idx) => (
+          {filteredPosts.reverse().map((post, idx) => (
             <Post
               currentUser={currentUser}
               post={post}
