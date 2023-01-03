@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from './store/session';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/users/UsersList';
@@ -12,6 +11,7 @@ import ProfileCard from './components/feed/profileCard/ProfileCard';
 import Network from './components/myNetwork/Network';
 import Landing from './components/landing/Landing';
 import Login from './components/login/Login';
+import Signup from './components/signup/Signup';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,7 +43,7 @@ function App() {
           path='/sign-up'
           exact={true}
         >
-          <SignUpForm />
+          <Signup />
         </Route>
         <ProtectedRoute
           path='/users'

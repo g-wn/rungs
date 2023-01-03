@@ -35,7 +35,7 @@
     margin-top: 0.5em;
 }
 
-.login-page-nav {
+.login-signup-page-nav {
     align-items: center;
     display: flex;
     height: 65px;
@@ -45,11 +45,11 @@
     width: 100%;
 }
 
-.redirect-to-signup-container {
+.redirect-to-signup-or-login-container {
     margin: 2em auto;
 }
 
-.redirect-to-signup-container>a {
+.redirect-to-signup-or-login-container>a {
     border-radius: 2em;
     color: var(--global-saturated-blue);
     font-weight: var(--global-bold);
@@ -57,7 +57,7 @@
     transition: all 0.167s ease-in-out;
 }
 
-.redirect-to-signup-container>a:hover {
+.redirect-to-signup-or-login-container>a:hover {
     background-color: var(--global-faded-blue-hover);
     text-decoration: underline;
 }

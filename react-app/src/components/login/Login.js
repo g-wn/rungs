@@ -5,7 +5,7 @@ import './Login.css';
 const Login = () => {
   return (
     <div className='login-page-container'>
-        <nav className="login-page-nav">
+        <nav className="login-signup-page-nav">
             <NavLink to='/feed'>ICON</NavLink>
         </nav>
       <div className='login-page-form-container'>
@@ -17,7 +17,7 @@ const Login = () => {
             <LoginForm />
         </div>
       </div>
-      <div className='redirect-to-signup-container'>
+      <div className='redirect-to-signup-or-login-container'>
         <span>New to Rungs? </span>
         <NavLink to='/sign-up'>Join now</NavLink>
       </div>
