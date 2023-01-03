@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
 
@@ -45,14 +45,18 @@ const LoginForm = () => {
       className='login-form'
       onSubmit={onLogin}
     >
-      <div>
+      <div className='login-form-errors'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
       <div className='email-input-container'>
         <input
-          className='login-form-input-field'
+          className={
+            errors.length > 0 && errors[0].toLowerCase().includes('email')
+              ? 'login-form-input-field-errors'
+              : 'login-form-input-field'
+          }
           type='text'
           placeholder='Email'
           value={email}
@@ -61,7 +65,11 @@ const LoginForm = () => {
       </div>
       <div className='pwd-input-container'>
         <input
-          className='login-form-input-field'
+          className={
+            errors.length > 0 && errors[1].toLowerCase().includes('password')
+              ? 'login-form-input-field-errors'
+              : 'login-form-input-field'
+          }
           type={showPassword ? 'text' : 'password'}
           placeholder='Password'
           value={password}

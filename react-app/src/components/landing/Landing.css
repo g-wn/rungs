@@ -89,13 +89,13 @@
 }
 
 .landing-section-one-img {
-    height: 97%;
+    height: 560px;
 }
 
 .landing-section-one-left-container,
 .landing-section-one-right-container {
     max-width: 564px;
-    height: 700px;
+    /* height: 700px; */
 }
 
 .landing-section-one-left-container {
@@ -103,7 +103,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-right: 3em;
+    padding-right: 1em;
 }
 
 .landing-section-one-right-container {
@@ -126,20 +126,19 @@
     flex-direction: column;
     margin: 0 auto;
     max-width: 1128px;
-    padding: 1em;
+    padding: 5em 1em;
 }
 
 .landing-section-two-content>p {
     margin-bottom: 1em;
-    font-size: 3.75em;
-    font-weight: 300;
+    font-size: 3.5em;
+    font-weight: 200;
 }
 
 .welcome-message {
     color: #8f5849;
     font-size: 3.5em;
-    font-weight: 300;
+    font-weight: 200;
     padding-left: 16px;
-    line-height: 75px;
     width: 415px;
 }
