@@ -3,6 +3,14 @@ from app.models import db, User, environment
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    demo = User(
+        first_name="Demo",
+        last_name="User",
+        username="d_user",
+        email="demo@rungs.io",
+        password="password",
+    )
+
     gray = User(
         first_name="Gray",
         last_name="Nance",
@@ -36,6 +44,7 @@ def seed_users():
     db.session.add(chris)
     db.session.add(mike)
     db.session.add(sara)
+    db.session.add(demo)
     db.session.commit()
 
 

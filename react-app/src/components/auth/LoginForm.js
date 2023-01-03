@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onLogin = async (e) => {
+  const onLogin = async e => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
@@ -18,11 +20,19 @@ const LoginForm = () => {
     }
   };
 
-  const updateEmail = (e) => {
+  const handleDemoLogin = async e => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@rungs.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
+  const updateEmail = e => {
     setEmail(e.target.value);
   };
 
-  const updatePassword = (e) => {
+  const updatePassword = e => {
     setPassword(e.target.value);
   };
 
@@ -31,33 +41,58 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form
+      className='login-form'
+      onSubmit={onLogin}
+    >
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='email-input-container'>
         <input
-          name='email'
+          className='login-form-input-field'
           type='text'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className='pwd-input-container'>
         <input
-          name='password'
-          type='password'
+          className='login-form-input-field'
+          type={showPassword ? 'text' : 'password'}
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <button
+          className='show-pwd-btn'
+          onClick={() => setShowPassword(!showPassword)}
+          type='button'
+        >
+          {showPassword ? 'Hide' : 'Show'}
+        </button>
       </div>
+      <div className='forgot-password'>
+        <span onClick={() => alert("It's probably password...")}>Forgot password?</span>
+      </div>
+      <button
+        className='login-form-submit-btn'
+        type='submit'
+      >
+        Sign In
+      </button>
+      <div className='login-form-or-divider'>
+        <span>or</span>
+      </div>
+      <button
+        className='demo-user-login-btn'
+        onClick={handleDemoLogin}
+      >
+        Sign in with Demo User
+      </button>
     </form>
   );
 };
