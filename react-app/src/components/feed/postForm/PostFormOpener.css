@@ -69,10 +69,12 @@
     display: flex;
     height: 48px;
     justify-content: center;
+    object-position: center;
+    overflow: hidden;
     width: 48px;
 }
 
-.post-form-opener-profile-img > img {
-    max-height: 75%;
-    max-width: 75%;
+.post-form-opener-profile-img>img {
+    max-height: 100%;
+    max-width: 100%;
 }

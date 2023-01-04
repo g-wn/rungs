@@ -124,12 +124,14 @@
     display: flex;
     height: 50px;
     justify-content: center;
+    object-position: center;
+    overflow: hidden;
     width: 50px;
 }
 
-.single-post-user-profile-img > img {
-    max-height: 75%;
-    max-width: 75%;
+.single-post-user-profile-img>img {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .single-post-private-icon {
