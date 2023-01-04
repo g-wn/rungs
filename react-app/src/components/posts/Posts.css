@@ -87,7 +87,7 @@
 
 .single-post-user-details {
     margin: 0 0.75em 0 0.75em;
-    max-width: 65%;
+    width: 65%;
 }
 
 .single-post-user-description {
@@ -118,10 +118,20 @@
 }
 
 .single-post-user-profile-img {
+    align-items: center;
     background-color: var(--global-button-hover-color);
     border-radius: 50%;
+    display: flex;
     height: 50px;
+    justify-content: center;
+    object-position: center;
+    overflow: hidden;
     width: 50px;
+}
+
+.single-post-user-profile-img>img {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .single-post-private-icon {

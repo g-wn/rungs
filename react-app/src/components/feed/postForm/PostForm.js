@@ -64,7 +64,9 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
 
       <div className='post-form-body-container'>
         <div className='post-form-body-user-details'>
-          <div className='post-form-profile-img'></div>
+          <div className='post-form-profile-img'>
+            <img src={currentUser.profile.profileImageUrl} alt="Profile Img" />
+          </div>
           <div className='post-form-details'>
             <div className='post-form-user-name'>
               {currentUser.firstName} {currentUser.lastName}

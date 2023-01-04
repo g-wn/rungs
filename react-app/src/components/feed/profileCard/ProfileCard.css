@@ -1,3 +1,13 @@
+.connections-link-left>p {
+    color: var(--global-saturated-text-color);
+    font-size: 0.75em;
+}
+
+.connections-link-right {
+    color: var(--global-saturated-blue);
+    font-size: 0.75em;
+}
+
 .profile-card-banner {
     background-color: var(--global-faded-blue-hover);
     border-top-right-radius: 0.6em;
@@ -6,6 +16,7 @@
     display: flex;
     height: 56px;
     justify-content: center;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -21,6 +32,39 @@
     width: 100%;
 }
 
+.profile-card-body-bio {
+    border-bottom: 1px solid var(--global-faded-border-color);
+    color: var(--global-faded-text-color);
+    font-size: 0.8em;
+    margin: 0.25em auto;
+    padding-bottom: 0.5em;
+    text-align: center;
+    width: 100%;
+}
+
+.profile-card-body-name {
+    font-weight: var(--global-bold);
+    text-align: center;
+}
+
+.profile-card-body-text {
+    width: 100%;
+}
+
+.profile-card-connections-link {
+    align-items: flex-start;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    width: 100%;
+}
+
+.profile-card-connections-link:hover {
+    background-color: var(--global-button-hover-color);
+}
+
 .profile-card-container {
     align-items: center;
     background-color: var(--global-card-background-color);
@@ -28,7 +72,7 @@
     border-radius: 0.6em;
     display: flex;
     flex-direction: column;
-    height: 25em;
+    height: fit-content;
     margin: 1em 0.5em 0 2em;
     position: relative;
     min-width: 203px;
@@ -42,8 +86,15 @@
     display: flex;
     height: 75px;
     justify-content: center;
+    object-position: center;
+    overflow: hidden;
     position: absolute;
     top: 18.5px;
     width: 75px;
     text-align: center;
+}
+
+.profile-card-profile-img>img {
+    max-height: 100%;
+    max-width: 100%;
 }

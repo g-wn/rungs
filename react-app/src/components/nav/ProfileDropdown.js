@@ -32,7 +32,9 @@ const ProfileDropdown = () => {
         className='nav-bar-drop-down'
         onClick={openDrop}
       >
-        <div className='nav-bar-drop-down-icon'></div>
+        <div className='nav-bar-drop-down-icon'>
+          <img src={currentUser.profile.profileImageUrl} alt="Profile Img" />
+        </div>
         <div className='nav-bar-drop-down-text'>
           Me <MdOutlineArrowDropDown size={20} />
         </div>
@@ -41,7 +43,9 @@ const ProfileDropdown = () => {
         <div className='main-nav-profile-drop-content'>
           <header className='profile-drop-header'>
             <div className='profile-drop-header-user-details'>
-              <div className='profile-drop-header-user-img'></div>
+              <div className='profile-drop-header-user-img'>
+                <img src={currentUser.profile.profileImageUrl} alt="Profile Img" />
+              </div>
               <div className='profile-drop-header-user'>
                 <div className='profile-drop-header-user-name'>
                   {currentUser.firstName} {currentUser.lastName}
