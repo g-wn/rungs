@@ -1,0 +1,36 @@
+.nav-notifications-container {
+    position: relative;
+}
+
+.no-notis-text {
+    padding: 1em;
+    color: var(-global-faded-text-color);
+    text-align: center;
+}
+
+.notifications-container {
+    background-color: var(--global-card-background-color);
+    border-radius: 0 0.8em 0.8em 0.8em;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 3.6em;
+    left: 0;
+    z-index: 2;
+    width: 552px;
+
+}
+
+.notifications-flag {
+    align-items: flex-end;
+    background-color: var(--global-error-red);
+    border-radius: 50%;
+    color: var(--global-saturated-text-color);
+    display: flex;
+    font-weight: var(--global-bold);
+    height: 15px;
+    justify-content: center;
+    width: 15px;
+    position: absolute;
+    top: 0;
+    right: 2.5em;
+}

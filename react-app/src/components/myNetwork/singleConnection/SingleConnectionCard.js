@@ -1,23 +1,33 @@
+import { useDispatch } from 'react-redux';
+import { postFollow } from '../../../store/network';
 import DeleteDropdown from './DeleteDropdown';
 import './SingleConnectionCard.css';
 
-const SingleConnectionCard = ({ user, displaying }) => {
-
+const SingleConnectionCard = ({ user, displaying, invitation }) => {
+  const dispatch = useDispatch();
   return (
     <div className='single-connection-container'>
-      <div className='single-connection-profile-img'>
-        <img src={user.profile.profileImageUrl} alt="Profile Img" />
-      </div>
-      <div className='single-connection-details'>
-        <div className='single-connection-name'>
-          {user.firstName} {user.lastName}
+      <div className='single-connection-left'>
+        <div className='single-connection-profile-img'>
+          <img
+            src={user.profile.profileImageUrl}
+            alt='Profile Img'
+          />
         </div>
-        <div className='single-connection-user-description'>
-          Professor of Radiology/Head R & D - Digitization / Chief Responsibility Officer
+        <div className='single-connection-details'>
+          <div className='single-connection-name'>
+            {user.firstName} {user.lastName}
+          </div>
+          <div className='single-connection-user-description'>{user.profile.bio}</div>
         </div>
       </div>
       <div className='single-connection-btns'>
-        <div className='single-connection-message-btn'>Message</div>
+        <div
+          className='single-connection-message-btn'
+          onClick={invitation ? () => dispatch(postFollow(user.id)) : () => console.log('MESSAGE')}
+        >
+          {invitation ? 'Accept' : 'Message'}
+        </div>
         {(displaying === 'connections' || displaying === 'following') && (
           <div className='single-connection-options-btn-container'>
             <DeleteDropdown

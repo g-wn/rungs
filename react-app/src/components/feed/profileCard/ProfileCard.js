@@ -4,7 +4,7 @@ import './ProfileCard.css';
 
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);
-  const connections = useSelector(state => state.network.connections);
+  const network = useSelector(state => state.network);
 
   return (
     <div className='profile-card-container'>
@@ -36,7 +36,7 @@ const ProfileCard = () => {
             <p>Connections</p>
             <p className='bold'>Grow your network</p>
           </div>
-          <div className='connections-link-right bold'>{Object.keys(connections).length}</div>
+          <div className='connections-link-right bold'>{Object.keys(network.connections).length}</div>
         </NavLink>
       </div>
     </div>

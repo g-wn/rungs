@@ -1,25 +1,17 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getConnections, getFollowers, getFollowing } from '../../store/network';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './Network.css';
 import NetworkInvitations from './networkInvitations/NetworkInvitations';
 import NetworkMain from './networkMain/NetworkMain';
 import NetworkMenuCard from './networkMenuCard/NetworkMenuCard';
 
 const Network = () => {
-  const dispatch = useDispatch();
   const [connectionsSelected, setConnectionsSelected] = useState(true);
   const [followersSelected, setFollowersSelected] = useState(false);
   const [followingSelected, setFollowingSelected] = useState(false);
-  const user = useSelector(state => state.session.user);
   const network = useSelector(state => state.network);
   const { connections, followers, following } = network;
 
-  useEffect(() => {
-    dispatch(getConnections(user.id));
-    dispatch(getFollowers(user.id));
-    dispatch(getFollowing(user.id));
-  }, [dispatch, user.id]);
 
   return (
     <div className='network-page-container'>

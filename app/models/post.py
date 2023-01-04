@@ -29,7 +29,6 @@ class Post(db.Model):
     post_owner = db.relationship("User", back_populates="user_posts")
 
     def to_dict(self):
-        print(self.users_who_liked)
         return {
             "id": self.id,
             "ownerId": self.owner_id,

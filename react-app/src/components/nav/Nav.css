@@ -1,5 +1,6 @@
 .main-nav-bar {
     background-color: var(--global-card-background-color);
+    border-bottom: 1px solid var(--global-faded-border-color);
     position: sticky;
     top: 0;
     z-index: 1;
@@ -7,7 +8,6 @@
 
 .main-nav-bar-content {
     align-items: center;
-    border-bottom: 1px solid var(--global-faded-border-color);
     display: flex;
     height: 52px;
     justify-content: space-between;
@@ -26,7 +26,8 @@
 .nav-home,
 .nav-network,
 .nav-messaging,
-.nav-bar-drop-down {
+.nav-bar-drop-down,
+.nav-notifications {
     align-items: center;
     color: var(--global-faded-text-color);
     cursor: pointer;
@@ -42,7 +43,9 @@
 .nav-search:hover,
 .nav-home:hover,
 .nav-network:hover,
-.nav-messaging:hover {
+.nav-messaging:hover,
+.nav-bar-drop-down:hover,
+.nav-notifications:hover {
     color: black;
 }
 
