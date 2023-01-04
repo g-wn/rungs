@@ -24,7 +24,7 @@
     align-items: flex-end;
     background-color: var(--global-error-red);
     border-radius: 50%;
-    color: var(--global-saturated-text-color);
+    color: var(--global-card-background-color);
     display: flex;
     font-weight: var(--global-bold);
     height: 15px;
