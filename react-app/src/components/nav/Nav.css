@@ -26,7 +26,8 @@
 .nav-home,
 .nav-network,
 .nav-messaging,
-.nav-bar-drop-down {
+.nav-bar-drop-down,
+.nav-notifications {
     align-items: center;
     color: var(--global-faded-text-color);
     cursor: pointer;
@@ -42,7 +43,9 @@
 .nav-search:hover,
 .nav-home:hover,
 .nav-network:hover,
-.nav-messaging:hover {
+.nav-messaging:hover,
+.nav-bar-drop-down:hover,
+.nav-notifications:hover {
     color: black;
 }
 

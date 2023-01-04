@@ -8,7 +8,7 @@
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15);
     position: absolute;
     right: 1em;
-    top: 3.75em;
+    top: 3.6em;
     transition: visibility 0s linear 167ms, opacity 167ms cubic-bezier(.4, 0, 1, 1) 0s, z-index 0s linear 167ms;
     width: 288px;
 }

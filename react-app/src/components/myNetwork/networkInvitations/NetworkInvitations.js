@@ -10,18 +10,23 @@ const NetworkInvitations = () => {
 
   for (let id of Object.keys(followers)) {
     if (!(id in connections)) {
-      requests.push(followers[id])
+      requests.push(followers[id]);
     }
   }
 
   return (
     <div className='network-invitations-container'>
       <div className='network-invitations-header'>Invitations</div>
-      <div className='network-invitations-body'>{
-        requests.length > 0 ? (requests.map((user, idx) => (
-          <SingleConnectionCard user={user} invitation={true}/>
-        ))) : ("No pending invitations")
-      }</div>
+      <div className='network-invitations-body'>
+        {requests.length > 0
+          ? requests.map((user, idx) => (
+              <SingleConnectionCard
+                user={user}
+                invitation={true}
+              />
+            ))
+          : 'No pending invitations'}
+      </div>
     </div>
   );
 };
