@@ -52,7 +52,13 @@
     flex-direction: column;
     height: 70px;
     justify-content: flex-start;
-    width: 50%;
+    padding-left: 1em;
+    width: 80%;
+}
+
+.single-connection-left {
+    display: flex;
+    width: 75%;
 }
 
 .single-connection-message-btn {

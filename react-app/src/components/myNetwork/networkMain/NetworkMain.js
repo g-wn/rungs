@@ -3,6 +3,7 @@ import './NetworkMain.css';
 
 const NetworkMain = ({ networkCategory, displaying }) => {
   const networkCategoryArray = Object.values(networkCategory);
+  console.log(networkCategoryArray)
 
   return (
     <div className='network-content-container'>

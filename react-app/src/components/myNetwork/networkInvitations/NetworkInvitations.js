@@ -1,17 +1,29 @@
-import './NetworkInvitations.css'
-
+import { useSelector } from 'react-redux';
+import SingleConnectionCard from '../singleConnection/SingleConnectionCard';
+import './NetworkInvitations.css';
 
 const NetworkInvitations = () => {
-    return (
-        <div className="network-invitations-container">
-            <div className="network-invitations-header">
-                Invitations
-            </div>
-            <div className="network-invitations-body">
-                INDIVIDUAL CONNECTION INVITATIONS
-            </div>
-        </div>
-    )
-}
+  const network = useSelector(state => state.network);
+  const { connections, followers } = network;
+
+  let requests = [];
+
+  for (let id of Object.keys(followers)) {
+    if (!(id in connections)) {
+      requests.push(followers[id])
+    }
+  }
+
+  return (
+    <div className='network-invitations-container'>
+      <div className='network-invitations-header'>Invitations</div>
+      <div className='network-invitations-body'>{
+        requests.length > 0 ? (requests.map((user, idx) => (
+          <SingleConnectionCard user={user} invitation={true}/>
+        ))) : ("No pending invitations")
+      }</div>
+    </div>
+  );
+};
 
 export default NetworkInvitations;

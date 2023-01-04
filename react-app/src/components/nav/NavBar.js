@@ -14,12 +14,14 @@ const NavBar = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   const currentUser = useSelector(state => state.session.user);
+  const network = useSelector(state => state.network);
+  // const { connections, followers, following } = network;
 
   useEffect(() => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
     dispatch(getFollowing(currentUser.id));
-  });
+  }, [dispatch, currentUser.id]);
 
   return (
     <nav className='main-nav-bar'>

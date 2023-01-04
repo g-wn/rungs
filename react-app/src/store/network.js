@@ -120,6 +120,9 @@ const networkReducer = (state = initialState, action) => {
     }
     case FOLLOW_USER: {
       newState.following[action.user.id] = action.user;
+      if (action.user.id in state.followers) {
+        newState.connections[action.user.id] = action.user;
+      }
       return newState;
     }
     case UNFOLLOW_USER: {
