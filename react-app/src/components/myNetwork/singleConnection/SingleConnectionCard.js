@@ -13,7 +13,7 @@ const SingleConnectionCard = ({ user, displaying }) => {
           {user.firstName} {user.lastName}
         </div>
         <div className='single-connection-user-description'>
-          Professor of Radiology/Head R & D - Digitization / Chief Responsibility Officer
+          {user.profile.bio}
         </div>
       </div>
       <div className='single-connection-btns'>

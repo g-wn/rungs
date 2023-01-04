@@ -55,6 +55,7 @@
 }
 
 .single-post-like-btn,
+.single-post-like-btn-blue,
 .single-post-edit-btn,
 .single-post-delete-btn {
     align-items: center;
@@ -72,17 +73,24 @@
 }
 
 .single-post-like-btn:hover,
+.single-post-like-btn-blue:hover,
 .single-post-edit-btn:hover,
 .single-post-delete-btn:hover {
     background-color: var(--global-button-hover-color);
 }
 
+.single-post-like-btn-blue {
+    color: var(--global-saturated-blue);
+}
+
 .single-post-like-icon {
-    transform: scaleX(-1)
+    transform: scaleX(-1);
 }
 
 .single-post-likes {
     border-bottom: 1px solid var(--global-faded-border-color);
+    color: var(--global-faded-text-color);
+    font-size: 0.8em;
     padding: 1em;
 }
 

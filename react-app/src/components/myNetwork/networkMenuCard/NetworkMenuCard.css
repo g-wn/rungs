@@ -37,10 +37,12 @@
     background-color: var(--global-card-background-color);
     border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
+    min-width: 220px;
     width: 100%;
 }
 
 .network-menu-card-header {
+    border-bottom: 1px solid var(--global-faded-border-color);
     color: var(--global-saturated-text-color);
     padding: 1em;
 }

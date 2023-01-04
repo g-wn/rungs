@@ -38,7 +38,7 @@ const Post = ({ post, currentUser }) => {
     } else if (keys.length === 1 && +keys[0] === +currentUser.id) {
       return 'You like this post.';
     } else {
-      return `${likes[keys[0]].firstName} likes this post.`;
+      return `${likes[keys[0]].firstName} ${likes[keys[0]].lastName} likes this post.`;
     }
   };
 
@@ -97,11 +97,7 @@ const Post = ({ post, currentUser }) => {
           className={currentUser.id in post.likes ? 'single-post-like-btn-blue' : 'single-post-like-btn'}
           onClick={currentUser.id in post.likes ? handleRemoveLike : handleLike}
         >
-          <SlLike
-            className='single-post-like-icon'
-            size={20}
-          />{' '}
-          Like
+          <SlLike className='single-post-like-icon' size={20}/> Like
         </button>
         {+currentUser.id === +post.ownerId && (
           <PostOptions
