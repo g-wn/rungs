@@ -38,6 +38,15 @@
     display: flex;
 }
 
+.profile-drop-header-user {
+    max-width: 70%;
+}
+
+.profile-drop-header-user-bio {
+    color: var(--global-faded-text-color);
+    font-size: 0.9em;
+}
+
 .profile-drop-btns,
 .profile-drop-header-user-details {
     margin: 0.75em;
@@ -84,7 +93,7 @@
     width: 55px;
 }
 
-.profile-drop-header-user-img > img {
+.profile-drop-header-user-img>img {
     max-height: 100%;
     max-width: 100%;
 }
