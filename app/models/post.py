@@ -1,4 +1,5 @@
 from .db import db
+from .likes import likes
 from sqlalchemy.sql import func
 
 
@@ -19,15 +20,16 @@ class Post(db.Model):
 
     # # RELATIONSHIPS:
 
-    # # users_who_liked <-- likes --> user_likes
-    # users_who_liked = db.relationship(
-    #     "User", back_populates="user_likes", secondary=likes, lazy="joined"
-    # )
+    # users_who_liked <-- likes --> user_likes
+    users_who_liked = db.relationship(
+        "User", back_populates="user_likes", secondary=likes, lazy="joined"
+    )
 
     # post_owner <---> owner_posts
     post_owner = db.relationship("User", back_populates="user_posts")
 
     def to_dict(self):
+        print(self.users_who_liked)
         return {
             "id": self.id,
             "ownerId": self.owner_id,
@@ -35,6 +37,7 @@ class Post(db.Model):
             "body": self.body,
             "imageUrl": self.image_url,
             "private": self.private,
+            "likes": {user.id: user.to_dict() for user in self.users_who_liked},
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }

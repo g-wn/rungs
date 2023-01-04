@@ -1,4 +1,5 @@
 from .db import db
+from .likes import likes
 from .network import connections
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
@@ -17,10 +18,10 @@ class User(db.Model, UserMixin):
 
     # # RELATIONSHIPS:
 
-    # # user_likes <-- likes --> users_who_liked
-    # user_likes = db.relationship(
-    #     "Post", back_populates="users_who_liked", secondary=likes, lazy="joined"
-    # )
+    # user_likes <-- likes --> users_who_liked
+    user_likes = db.relationship(
+        "Post", back_populates="users_who_liked", secondary=likes, lazy="joined"
+    )
 
     # user_profile <---> profile_user
     user_profile = db.relationship(

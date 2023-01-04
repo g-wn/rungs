@@ -9,11 +9,33 @@ import { Modal } from '../../context/Modal';
 import PostOptions from './PostOptions';
 import PostForm from '../feed/postForm/PostForm';
 import './Posts.css';
+import { deleteLike, postLike } from '../../store/posts';
 
 const Post = ({ post, currentUser }) => {
   const dispatch = useDispatch();
   const [showPostForm, setShowPostForm] = useState(false);
   const following = useSelector(state => state.network.following);
+
+  const handleLike = async () => {
+    await dispatch(postLike(post.id));
+  };
+
+  const handleRemoveLike = async () => {
+    await dispatch(deleteLike(post.id));
+  };
+
+  const displayPostLikes = likes => {
+    const keys = Object.keys(likes);
+    if (keys.length > 1) {
+      console.log(likes[keys[Math.floor(Math.random * keys.length)]]);
+      return likes[keys[Math.floor(Math.random * keys.length)]];
+    } else if (keys.length > 1) {
+      return ''
+    } else {
+      console.log(likes[keys[0]]);
+      // return likes[keys[0]]
+    }
+  };
 
   return (
     <div className='single-post-container'>
@@ -64,9 +86,12 @@ const Post = ({ post, currentUser }) => {
           ''
         )}
       </div>
-      <div className='single-post-likes'>This is for like count</div>
+      <div className='single-post-likes'>{displayPostLikes(post.likes)}</div>
       <div className='single-post-footer'>
-        <button className='single-post-like-btn'>
+        <button
+          className={currentUser.id in post.likes ? 'single-post-like-btn-blue' : 'single-post-like-btn'}
+          onClick={currentUser.id in post.likes ? handleRemoveLike : handleLike}
+        >
           <SlLike
             className='single-post-like-icon'
             size={20}
