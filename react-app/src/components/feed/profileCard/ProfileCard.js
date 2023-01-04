@@ -12,13 +12,13 @@ const ProfileCard = () => {
         src={currentUser.profile.bannerImageUrl}
         alt='Banner Img'
         className='profile-card-banner'
-      ></img>
-      <div className='profile-card-profile-img'>
+      />
+      <NavLink to={`/users/${currentUser.id}`} className='profile-card-profile-img'>
         <img
           src={currentUser.profile.profileImageUrl}
           alt='Profile Img'
         />
-      </div>
+      </NavLink>
       <div className='profile-card-body'>
         <div className='profile-card-body-text'>
           <div className='profile-card-body-name'>
