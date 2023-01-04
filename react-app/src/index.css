@@ -4,9 +4,6 @@
     font-family: var(--global-font-family);
     padding: 0;
 }
-html {
-    scrollbar-gutter: stable both-edges;
-}
 
 body {
     background-color: #f3f2ef;
