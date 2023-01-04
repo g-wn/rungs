@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsSearch } from 'react-icons/bs';
 import { HiChatBubbleLeftEllipsis } from 'react-icons/hi2';
 import { IoHomeSharp } from 'react-icons/io5';
-import { IoMdNotifications } from 'react-icons/io'
 import { MdPeopleAlt } from 'react-icons/md';
-import './Nav.css';
 import ProfileDropdown from './ProfileDropdown';
-import { useDispatch, useSelector } from 'react-redux';
-import { getConnections, getFollowers, getFollowing } from '../../store/network';
 import NotiDropdown from './NotiDropdown';
+import { getConnections, getFollowers, getFollowing } from '../../store/network';
+import { ReactComponent as Logo } from '../../assets/rungs_icon.svg'
+import './Nav.css';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const NavBar = () => {
               to='/feed'
               activeClassName='rungs-main-icon-link'
             >
-              ICON
+              <Logo className='main-nav-icon'/>
             </NavLink>
           </div>
           <div className='nav-search'>
