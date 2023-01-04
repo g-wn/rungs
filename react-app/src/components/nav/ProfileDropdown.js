@@ -50,7 +50,9 @@ const ProfileDropdown = () => {
                 <div className='profile-drop-header-user-name'>
                   {currentUser.firstName} {currentUser.lastName}
                 </div>
-                <div className='profile-drop-header-user-bio'>bio</div>
+                <div className='profile-drop-header-user-bio'>
+                  {currentUser.profile.bio}
+                </div>
               </div>
             </div>
             <div className='profile-drop-header-profile-btn'>
