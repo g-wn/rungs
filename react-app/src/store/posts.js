@@ -5,6 +5,8 @@ const LOAD_USER_POSTS = 'posts/LOAD_USER_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
 const UPDATE_POST = 'posts/UPDATE_POST';
 const REMOVE_POST = 'posts/REMOVE_POST';
+const LIKE_POST = 'posts/LIKE_POST';
+const REMOVE_LIKE = 'posts/REMOVE_LIKE';
 
 const loadPosts = posts => ({
   type: LOAD_POSTS,
@@ -29,6 +31,16 @@ const updatePost = post => ({
 const removePost = postId => ({
   type: REMOVE_POST,
   postId
+});
+
+const likePost = post => ({
+  type: LIKE_POST,
+  post
+});
+
+const removeLike = post => ({
+  type: REMOVE_LIKE,
+  post
 });
 
 /* ---------------------- THUNK CREATORS ----------------------- */
@@ -104,6 +116,36 @@ export const deletePost = postId => async dispatch => {
   return res;
 };
 
+// LIKE A POST:
+export const postLike = postId => async dispatch => {
+  const res = await fetch(`/api/likes/${postId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(likePost(data));
+    return data;
+  }
+  return await res.json();
+};
+
+// DELETE A LIKE:
+export const deleteLike = postId => async dispatch => {
+  const res = await fetch(`/api/likes/${postId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(removeLike(data));
+    return data;
+  }
+  return await res.json();
+};
+
 /* -------------------------- REDUCER -------------------------- */
 
 const initialState = {};
@@ -126,6 +168,12 @@ const postsReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.postId];
       return newState;
+    }
+    case LIKE_POST: {
+      return { ...state, [action.post.id]: action.post };
+    }
+    case REMOVE_LIKE: {
+      return { ...state, [action.post.id]: action.post };
     }
     default:
       return state;

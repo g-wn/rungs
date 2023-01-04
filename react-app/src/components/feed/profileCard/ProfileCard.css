@@ -76,6 +76,7 @@
     margin: 1em 0.5em 0 2em;
     position: relative;
     min-width: 203px;
+    max-width: 500px;
 }
 
 .profile-card-profile-img {

@@ -82,6 +82,7 @@
 }
 
 .single-post-likes {
+    border-bottom: 1px solid var(--global-faded-border-color);
     padding: 1em;
 }
 

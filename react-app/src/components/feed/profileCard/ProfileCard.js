@@ -8,12 +8,11 @@ const ProfileCard = () => {
 
   return (
     <div className='profile-card-container'>
-      <div className='profile-card-banner'>
-        <img
-          src={currentUser.profile.bannerImageUrl}
-          alt='Banner Img'
-        />
-      </div>
+      <img
+        src={currentUser.profile.bannerImageUrl}
+        alt='Banner Img'
+        className='profile-card-banner'
+      ></img>
       <div className='profile-card-profile-img'>
         <img
           src={currentUser.profile.profileImageUrl}

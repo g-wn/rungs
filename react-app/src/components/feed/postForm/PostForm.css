@@ -1,5 +1,7 @@
 .post-form-body-container {
     padding: 1em;
+    max-width: 552px;
+    margin: 0 auto;
 }
 
 .post-form-body-container-hidden {
@@ -60,7 +62,7 @@
 }
 
 .post-form-errors {
-    color: red;
+    color: var(--global-error-red);
     list-style: none;
     text-align: center;
 }
@@ -105,6 +107,8 @@
     border-bottom: 1px solid var(--global-faded-border-color);
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
+    max-width: 552px;
     padding: 0.6em 1em;
 }
 
