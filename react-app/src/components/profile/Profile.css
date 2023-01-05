@@ -49,6 +49,7 @@
     border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
     margin: 1em auto;
+    max-width: 552px;
 }
 
 .contact-modal-header,
