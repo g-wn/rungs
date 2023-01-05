@@ -1,0 +1,50 @@
+.background-svg {
+    /* max-width: 100%; */
+}
+
+.not-found-container {
+    align-items: center;
+    background-color: var(--global-card-background-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    height: 94vh;
+    justify-content: center;
+}
+
+.not-found-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding-top: 5em; */
+}
+
+.not-found-header {
+    font-weight: 300;
+    font-size: 2.5em;
+    padding-bottom: 0.5em;
+    margin: 1em auto 0.5em;
+}
+
+.not-found-message {
+    color: var(--global-faded-text-color);
+    font-size: 1.2em;
+    margin: 0 auto;
+    text-align: center;
+    width: 55%;
+}
+
+.return-to-feed {
+    border: 1px solid var(--global-saturated-blue);
+    color: var(--global-saturated-blue);
+    margin-top: 1em;
+    padding: 0.25em;
+    text-decoration: none;
+    transition: background-color 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.return-to-feed:hover {
+    background-color: var(--global-faded-blue-hover);
+}
