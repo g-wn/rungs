@@ -125,6 +125,9 @@
 
 .single-post-user-name {
     font-weight: var(--global-bold);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .single-post-user-profile-img {
