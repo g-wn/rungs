@@ -44,7 +44,11 @@
 
 .profile-card-body-name {
     font-weight: var(--global-bold);
+    overflow: hidden;
+    padding: 0 0.5em;
     text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .profile-card-body-text {
@@ -77,6 +81,15 @@
     position: relative;
     min-width: 203px;
     max-width: 500px;
+}
+
+@media screen and (max-width: 844px) {
+    .profile-card-container {
+        margin: 0 auto;
+        margin-top: 1em;
+        max-width: 552px;
+        width: 100%;
+    }
 }
 
 .profile-card-profile-img {

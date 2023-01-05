@@ -9,6 +9,14 @@
     min-width: 550px;
 }
 
+@media screen and (max-width: 844px) {
+    .feed-right {
+        margin: 0 auto;
+        max-width: 552px;
+        min-width: 203px;
+    }
+}
+
 .post-form-opener {
     border-bottom: 1px solid var(--global-saturated-border-color);
 }

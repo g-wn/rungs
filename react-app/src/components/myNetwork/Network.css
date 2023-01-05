@@ -12,6 +12,7 @@
     display: flex;
     min-height: fit-content;
     justify-content: center;
+    max-width: 1128px;
     padding: 1.5em;
     width: 100%;
 }
@@ -32,4 +33,29 @@
 .network-right-container {
     margin-left: 0.5em;
     width: 636px;
+}
+
+@media screen and (max-width: 1024px) {
+    .network-page-container {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .network-left-container {
+        margin: 0 auto;
+        max-width: 636px;
+        width: 100%;
+    }
+
+    .menu-card-container {
+        padding-bottom: 1em;
+        max-width: 636px;
+        width: 100%;
+    }
+
+    .network-right-container {
+        margin: 0 auto;
+        max-width: 636px;
+        width: 100%;
+    }
 }

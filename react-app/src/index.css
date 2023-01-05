@@ -16,6 +16,12 @@ body {
     max-width: max-content;
 }
 
+@media screen and (max-width: 844px) {
+    .outer-container {
+        flex-direction: column;
+    }
+}
+
 /* GLOBAL COLOR VARIABLES */
 :root {
     --global-faded-text-color: #797979;
