@@ -23,3 +23,14 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route("/search/<query>")
+@login_required
+def search(query):
+    """
+    Query to search for users by first and last name and return them in a list of dictionaries.
+    """
+    users = User.query.all()
+    filtered_users = [user for user in users if query.lower() in user.first_name.lower() + " " + user.last_name.lower()]
+    return {user.id: user.to_dict() for user in filtered_users}

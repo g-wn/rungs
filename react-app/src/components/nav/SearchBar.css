@@ -1,0 +1,23 @@
+.nav-search-input {
+    background-color: var(--global-card-background-color);
+    border-radius: 0.6em;
+    padding: 0 1em;
+    position: absolute;
+    height: 77%;
+    left: 10.5em;
+    top: 6px;
+    width: 75%;
+    z-index: 1;
+}
+
+.search-results {
+    background-color: var(--global-card-background-color);
+    border-radius: 0 0 0.6em 0.6em;
+    display: flex;
+    flex-direction: column;
+    left: 8.75em;
+    padding: 0.6em;
+    position: absolute;
+    top: 110%;
+    width: 75%;
+}
