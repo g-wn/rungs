@@ -67,7 +67,19 @@ const NavBar = () => {
             <SearchBar
               onSearchSubmit={onSearchSubmit}
               clearResults={clearResults}
-            />
+            ></SearchBar>
+          )}
+          {searchResults.length > 0 && showSearchBar && (
+            <div className='search-results'>
+              {searchResults.map((user, idx) => (
+                <FollowerFollowing
+                  key={idx}
+                  user={user}
+                  setModal={setShowSearchBar}
+                  search={true}
+                />
+              ))}
+            </div>
           )}
           {!showSearchBar && (
             <>
@@ -110,18 +122,6 @@ const NavBar = () => {
           <ProfileDropdown />
         </div>
       </div>
-      {searchResults.length > 0 && showSearchBar && (
-        <div className='search-results'>
-          {searchResults.map((user, idx) => (
-            <FollowerFollowing
-              key={idx}
-              user={user}
-              setModal={setShowSearchBar}
-              search={true}
-            />
-          ))}
-        </div>
-      )}
     </nav>
   );
 };

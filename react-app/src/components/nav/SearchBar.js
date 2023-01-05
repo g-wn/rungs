@@ -13,7 +13,6 @@ const SearchBar = ({ onSearchSubmit, clearResults }) => {
   }, [searchQuery]);
 
   return (
-    <div className='search-bar-container'>
       <input
         className='nav-search-input'
         onChange={e => setSearchQuery(e.target.value)}
@@ -21,7 +20,6 @@ const SearchBar = ({ onSearchSubmit, clearResults }) => {
         type='search'
         value={searchQuery}
       />
-    </div>
   );
 };
 
