@@ -1,20 +1,17 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Profile.css';
 import { postFollow } from '../../store/network';
-import { getUsers } from '../../store/users';
+import Post from '../posts/Post';
 
 function Profile() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { userId } = useParams();
   const currentUser = useSelector(state => state.session.user);
-  const users = useSelector(state => state.users)
-  const user = users[userId]
-
-  useEffect(() => {
-    dispatch(getUsers())
-  }, [dispatch])
+  const users = useSelector(state => state.users);
+  const user = users[userId];
+  const posts = useSelector(state => Object.values(state.posts))
+  const userPosts = posts.filter(post => +post.ownerId === +userId)
 
   if (!user) {
     return null;
@@ -47,12 +44,23 @@ function Profile() {
               <button className='following bold'>{Object.keys(user.following).length} following</button>
             </div>
             {+currentUser.id !== +userId && !(+userId in currentUser.following) && (
-              <button className='user-profile-follow-btn'onClick={() => dispatch(postFollow(user.id))}>Follow</button>
+              <button
+                className='user-profile-follow-btn bold'
+                onClick={() => dispatch(postFollow(user.id))}
+              >
+                Connect
+              </button>
             )}
           </div>
         </div>
       </div>
-      <div className='user-profile-activity'>ACTIVITY SECTION</div>
+      <div className='user-profile-activity'>
+        {userPosts.length > 0 ? (userPosts.map((post, idx) => (
+          <Post key={idx} post={post} currentUser={currentUser} />
+        ))) : (
+          <div className='user-profile-no-posts'>{user.firstName} hasn't posted anything, yet.</div>
+        )}
+      </div>
     </div>
   );
 }

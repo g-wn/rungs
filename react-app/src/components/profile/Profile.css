@@ -27,7 +27,7 @@
 .user-profile-bio {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .user-profile-container {
@@ -48,13 +48,9 @@
     width: 100%;
 }
 
-.user-profile-activity {
-    border: 1px solid green;
-}
-
 .user-profile-details {
     background-color: var(--global-card-background-color);
-    min-height: 200px;
+    border: 1px solid var(--global-faded-border-color);
     overflow: hidden;
     position: relative;
 }
@@ -63,10 +59,25 @@
     height: 144px;
 }
 
+.user-profile-follow-btn {
+    background-color: var(--global-saturated-blue);
+    border: none;
+    border-radius: 2em;
+    color: var(--global-card-background-color);
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
+}
+
+.user-profile-follow-btn:hover {
+    background-color: var(--global-dark-blue);
+}
+
 .user-profile-followers-following {
     display: flex;
     gap: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     width: fit-content;
 }
 
@@ -74,8 +85,11 @@
     font-size: 1.5em;
 }
 
-.user-profile-network {
-
+.user-profile-no-posts {
+    background-color: var(--global-card-background-color);
+    border: 1px solid var(--global-faded-border-color);
+    border-radius: 0.6em;
+    padding: 1em;
 }
 
 .user-profile-profile-img {
@@ -85,16 +99,16 @@
     height: 160px;
     overflow: hidden;
     position: absolute;
-    top: 2em;
+    top: 3em;
     left: 2em;
     width: 160px;
 }
 
-.user-profile-profile-img > img {
+.user-profile-profile-img>img {
     height: 160px;
     width: 160px;
 }
 
 .user-profile-user-details {
-    padding: 3.5em 2em;
+    padding: 4.5em 2em 1em;
 }
