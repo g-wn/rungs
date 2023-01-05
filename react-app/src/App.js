@@ -12,6 +12,7 @@ import Network from './components/myNetwork/Network';
 import Landing from './components/landing/Landing';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
+import NotFound from './components/404/404';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -77,6 +78,9 @@ function App() {
           exact={true}
         >
           <Landing />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>
