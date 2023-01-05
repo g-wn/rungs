@@ -6,11 +6,10 @@ import { Modal } from '../../context/Modal';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BsLinkedin } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
+import FollowerFollowing from './FollowerFollowing';
 import MailTo from './MailTo';
 import Post from '../posts/Post';
 import './Profile.css';
-import SingleConnectionCard from '../myNetwork/singleConnection/SingleConnectionCard';
-import FollowerFollowing from './FollowerFollowing';
 
 function Profile() {
   const dispatch = useDispatch();
