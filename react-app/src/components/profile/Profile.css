@@ -20,6 +20,13 @@
     padding: 1em;
 }
 
+.follower-following-modal-body {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(2, auto);
+    padding: 1em;
+}
+
 .contact-modal-body > h2{
     font-weight: 400;
 }
@@ -36,19 +43,25 @@
     text-decoration: underline;
 }
 
-.contact-modal-container {
+.contact-modal-container,
+.follower-following-modal {
     background-color: var(--global-card-background-color);
     border: 1px solid var(--global-faded-border-color);
     border-radius: 0.6em;
     margin: 1em auto;
 }
 
-.contact-modal-header {
+.contact-modal-header,
+.follower-following-modal-header {
     align-items: center;
     border-bottom: 1px solid var(--global-faded-border-color);
     display: flex;
     font-size: 1.25em;
     justify-content: space-between;
+    padding: 1em;
+}
+
+.follower-following-no-users {
     padding: 1em;
 }
 

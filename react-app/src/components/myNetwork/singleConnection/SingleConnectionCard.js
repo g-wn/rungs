@@ -24,7 +24,7 @@ const SingleConnectionCard = ({ user, displaying, invitation }) => {
       </div>
       <div className='single-connection-btns'>
         <div
-          className='single-connection-message-btn'
+          className={invitation ? 'single-connection-accept-btn' : 'single-connection-message-btn'}
           onClick={invitation ? () => dispatch(postFollow(user.id)) : () => console.log('MESSAGE')}
         >
           {invitation ? 'Accept' : 'Message'}

@@ -11,6 +11,7 @@ import { getConnections, getFollowers, getFollowing } from '../../store/network'
 import { ReactComponent as Logo } from '../../assets/rungs_icon.svg'
 import './Nav.css';
 import { getUsers } from '../../store/users';
+import { getPosts } from '../../store/posts';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -18,12 +19,12 @@ const NavBar = () => {
 
   const currentUser = useSelector(state => state.session.user);
   const network = useSelector(state => state.network);
-  // const { connections, followers, following } = network;
 
   useEffect(() => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
     dispatch(getFollowing(currentUser.id));
+    dispatch(getPosts())
     dispatch(getUsers())
   }, [dispatch, currentUser.id]);
 
@@ -66,7 +67,7 @@ const NavBar = () => {
             <div className='nav-network-text'>My Network</div>
           </NavLink>
           <NotiDropdown />
-          <NavLink
+          <div
             to='/messaging'
             activeClassName='active'
             className='nav-messaging'
@@ -76,7 +77,7 @@ const NavBar = () => {
               <HiChatBubbleLeftEllipsis size={24} />
             </div>
             <div className='nav-messaging-text'>Messaging</div>
-          </NavLink>
+          </div>
         </div>
         <div className='nav-right'>
           <ProfileDropdown />

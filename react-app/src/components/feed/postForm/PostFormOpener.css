@@ -22,7 +22,7 @@
     border: none;
     border-radius: 0.6em;
     color: var(--global-faded-text-color);
-    cursor: pointer;
+    cursor: not-allowed;
     display: flex;
     font-weight: var(--global-bold);
     gap: 1em;

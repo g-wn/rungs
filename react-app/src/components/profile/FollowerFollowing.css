@@ -1,0 +1,39 @@
+.follower-following-ind-bio {
+    color: var(--global-faded-text-color);
+    font-size: 0.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.follower-following-ind-container {
+    align-items: center;
+    border: 1px solid var(--global-faded-border-color);
+    border-radius: 0.6em;
+    display: flex;
+    justify-content: flex-start;
+    min-width: 50%;
+}
+
+.follower-following-ind-details {
+    height: 60px;
+    margin: 0 0.5em;
+    overflow: hidden;
+}
+
+.follower-following-ind-name {
+    font-size: 0.8em;
+}
+
+.follower-following-ind-profile-img {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.25em;
+}
+
+.follower-following-ind-profile-img > img {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}

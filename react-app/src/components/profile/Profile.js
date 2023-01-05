@@ -9,6 +9,8 @@ import { MdOutlineClose } from 'react-icons/md';
 import MailTo from './MailTo';
 import Post from '../posts/Post';
 import './Profile.css';
+import SingleConnectionCard from '../myNetwork/singleConnection/SingleConnectionCard';
+import FollowerFollowing from './FollowerFollowing';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -67,17 +69,29 @@ function Profile() {
                   </div>
                   <div className='contact-modal-body'>
                     <h2>Contact Info</h2>
-                    <p>
-                      <div className='bold linkedin-icon'><BsLinkedin style={{color: "var(--global-faded-text-color)"}} size={20}/> Your Profile</div>
+                    <div>
+                      <p className='bold linkedin-icon'>
+                        <BsLinkedin
+                          style={{ color: 'var(--global-faded-text-color)' }}
+                          size={20}
+                        />{' '}
+                        Your Profile
+                      </p>
                       <a href={`/users/${user.id}`}>{`rungs.herokuapp.com/users/${user.id}`}</a>
-                    </p>
-                    <p>
-                      <div className='bold email-icon'><AiOutlineMail style={{color: "var(--global-faded-text-color)"}} size={20}/> Your Email</div>
+                    </div>
+                    <div>
+                      <p className='bold email-icon'>
+                        <AiOutlineMail
+                          style={{ color: 'var(--global-faded-text-color)' }}
+                          size={20}
+                        />{' '}
+                        Your Email
+                      </p>
                       <MailTo
                         mailTo={`mailto:${user.email}`}
                         label={user.email}
                       />
-                    </p>
+                    </div>
                   </div>
                 </div>
               </Modal>
@@ -85,8 +99,78 @@ function Profile() {
           </div>
           <div className='user-profile-network'>
             <div className='user-profile-followers-following'>
-              <button className='followers bold'>{Object.keys(user.followers).length} followers</button>
-              <button className='following bold'>{Object.keys(user.following).length} following</button>
+              <button
+                className='followers bold'
+                onClick={() => setShowFollowersModal(true)}
+              >
+                {Object.keys(user.followers).length} followers
+              </button>
+              {showFollowersModal && (
+                <Modal onClose={() => setShowFollowersModal(false)}>
+                  <div className='follower-following-modal'>
+                    <div className='follower-following-modal-header'>
+                      <span>Followers</span>
+                      <span
+                        className='post-form-header-close-btn'
+                        onClick={() => setShowFollowersModal(false)}
+                      >
+                        <MdOutlineClose size={28} />
+                      </span>
+                    </div>
+
+                    {Object.values(user.followers).length > 0 ? (
+                      <div className='follower-following-modal-body'>
+                        {Object.keys(user.followers).map((id, idx) => (
+                          <FollowerFollowing
+                            user={users[id]}
+                            setModal={setShowFollowersModal}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className='follower-following-no-users'>
+                        No one is following {user.firstName}, yet.
+                      </div>
+                    )}
+                  </div>
+                </Modal>
+              )}
+
+              <button
+                className='following bold'
+                onClick={() => setShowFollowingModal(true)}
+              >
+                {Object.keys(user.following).length} following
+              </button>
+              {showFollowingModal && (
+                <Modal onClose={() => setShowFollowingModal(false)}>
+                  <div className='follower-following-modal'>
+                    <div className='follower-following-modal-header'>
+                      <span>Following</span>
+                      <span
+                        className='post-form-header-close-btn'
+                        onClick={() => setShowFollowingModal(false)}
+                      >
+                        <MdOutlineClose size={28} />
+                      </span>
+                    </div>
+                    {Object.keys(user.following).length > 0 ? (
+                      <div className='follower-following-modal-body'>
+                        {Object.keys(user.following).map((id, idx) => (
+                          <FollowerFollowing
+                            user={users[id]}
+                            setModal={setShowFollowingModal}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className='follower-following-no-users'>
+                        {user.firstName} isn't following any other users, yet.
+                      </div>
+                    )}
+                  </div>
+                </Modal>
+              )}
             </div>
             {+currentUser.id !== +userId && !(+userId in currentUser.following) && (
               <button
