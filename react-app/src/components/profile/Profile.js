@@ -123,13 +123,12 @@ function Profile() {
                           <FollowerFollowing
                             user={users[id]}
                             setModal={setShowFollowersModal}
+                            key={idx}
                           />
                         ))}
                       </div>
                     ) : (
-                      <div className='follower-following-no-users'>
-                        No one is following {user.firstName}, yet.
-                      </div>
+                      <div className='follower-following-no-users'>No one is following {user.firstName}, yet.</div>
                     )}
                   </div>
                 </Modal>
@@ -159,6 +158,7 @@ function Profile() {
                           <FollowerFollowing
                             user={users[id]}
                             setModal={setShowFollowingModal}
+                            key={idx}
                           />
                         ))}
                       </div>

@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import './FollowerFollowing.css';
 
-const FollowerFollowing = ({ user, setModal }) => {
+const FollowerFollowing = ({ user, setModal, search }) => {
   return (
-    <div className='follower-following-ind-container'>
+    <div className='follower-following-ind-container' style={search && {border: "none"}}>
       <NavLink
         to={`/users/${user.id}`}
         className='follower-following-ind-profile-img'
