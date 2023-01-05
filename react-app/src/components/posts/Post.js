@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import TimeAgo from 'react-timeago';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import TimeAgo from 'react-timeago';
 import { BiWorld, BiPlus } from 'react-icons/bi';
 import { MdPeopleAlt } from 'react-icons/md';
 import { SlLike } from 'react-icons/sl';
@@ -45,12 +46,15 @@ const Post = ({ post, currentUser }) => {
   return (
     <div className='single-post-container'>
       <div className='single-post-header'>
-        <div className='single-post-user-profile-img'>
+        <NavLink
+          to={`/users/${post.owner.id}`}
+          className='single-post-user-profile-img'
+        >
           <img
             src={post.owner.profile.profileImageUrl}
             alt='Profile Img'
           />
-        </div>
+        </NavLink>
         <div className='single-post-user-details'>
           <div className='single-post-user-name'>
             {post.owner.firstName} {post.owner.lastName}
@@ -97,7 +101,11 @@ const Post = ({ post, currentUser }) => {
           className={currentUser.id in post.likes ? 'single-post-like-btn-blue' : 'single-post-like-btn'}
           onClick={currentUser.id in post.likes ? handleRemoveLike : handleLike}
         >
-          <SlLike className='single-post-like-icon' size={20}/> Like
+          <SlLike
+            className='single-post-like-icon'
+            size={20}
+          />{' '}
+          Like
         </button>
         {+currentUser.id === +post.ownerId && (
           <PostOptions

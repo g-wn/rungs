@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../assets/rungs_icon_full.svg';
 import LoginForm from '../auth/LoginForm';
 import './Landing.css';
 
@@ -14,7 +15,9 @@ const Landing = () => {
     <div className='landing-container'>
       <div className='landing-nav-container'>
         <nav className='landing-nav-content'>
-          <div className='landing-nav-icon'>ICON</div>
+          <div className='landing-nav-icon-container'>
+            <Logo className='landing-nav-icon' />
+          </div>
           <div className='landing-nav-btns'>
             <NavLink
               className='landing-nav-signup-btn'
@@ -51,7 +54,12 @@ const Landing = () => {
       <div className='landing-section-two-container'>
         <div className='landing-section-two-content'>
           <p>Join your colleagues, classmates, and friends on Rungs.</p>
-          <NavLink to='/sign-up' className="landing-get-started-btn">Get Started</NavLink>
+          <NavLink
+            to='/sign-up'
+            className='landing-get-started-btn'
+          >
+            Get Started
+          </NavLink>
         </div>
       </div>
       <footer className='landing-footer'>FOOTER</footer>

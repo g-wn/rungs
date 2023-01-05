@@ -12,3 +12,8 @@
     border-radius: 0.6em;
     width: 100%;
 }
+
+.no-connections-message {
+    color: var(--global-faded-text-color);
+    padding: 1em;
+}

@@ -57,6 +57,7 @@ const NotiDropdown = () => {
                 <SingleConnectionCard
                   user={user}
                   invitation={true}
+                  key={idx}
                 />
               ))
             : (

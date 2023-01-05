@@ -43,7 +43,7 @@
     align-items: center;
     border-radius: 50%;
     color: var(--global-faded-text-color);
-    cursor: pointer;
+    cursor: not-allowed;
     display: flex;
     height: 40px;
     justify-content: center;

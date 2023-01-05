@@ -3,7 +3,6 @@ import './NetworkMain.css';
 
 const NetworkMain = ({ networkCategory, displaying }) => {
   const networkCategoryArray = Object.values(networkCategory);
-  console.log(networkCategoryArray)
 
   return (
     <div className='network-content-container'>
@@ -19,8 +18,12 @@ const NetworkMain = ({ networkCategory, displaying }) => {
             />
           </div>
         ))
+      ) : displaying === 'connections' ? (
+        <div className='no-connections-message'>No connections, yet.</div>
+      ) : displaying === 'followers' ? (
+        <div className='no-connections-message'>No followers, yet.</div>
       ) : (
-        <div className='no-connections-message'>YOU DON'T HAVE ANY CONNECTIONS</div>
+        <div className='no-connections-message'>You're not following anyone, yet.</div>
       )}
     </div>
   );

@@ -48,6 +48,10 @@
     justify-content: space-between;
 }
 
+.landing-nav-icon-container {
+    width: 100px;
+}
+
 .landing-nav-login-btn,
 .landing-nav-signup-btn {
     border-radius: 2em;

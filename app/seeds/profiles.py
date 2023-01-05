@@ -6,7 +6,7 @@ def seed_profiles():
     profiles = [
         Profile(
             user_id=1,
-            profile_image_url="https://media.licdn.com/dms/image/C5603AQE4cn2fWweD8g/profile-displayphoto-shrink_100_100/0/1601444442383?e=1678320000&v=beta&t=x75Vg-SF-VjQrv9E0-V5cN-hh1v5DS0X_nIGdmzWNn4",
+            profile_image_url="https://media.licdn.com/dms/image/C5603AQE4cn2fWweD8g/profile-displayphoto-shrink_800_800/0/1601444442383?e=1678320000&v=beta&t=Y95nFzhz9D0N8nul24VnvFOhMKt4DKYCkV8xKeLyqmk",
             bio="Software Engineering Student at App Academy",
         ),
         Profile(

@@ -61,7 +61,8 @@
     width: 75%;
 }
 
-.single-connection-message-btn {
+.single-connection-message-btn,
+.single-connection-accept-btn {
     border: 1px solid var(--global-saturated-blue);
     border-radius: 2em;
     color: var(--global-saturated-blue);
@@ -70,7 +71,12 @@
     transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
 }
 
-.single-connection-message-btn:hover {
+.single-connection-message-btn {
+    cursor: not-allowed;
+}
+
+.single-connection-message-btn:hover,
+.single-connection-accept-btn:hover {
     background-color: var(--global-faded-blue-hover);
 }
 

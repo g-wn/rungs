@@ -40,6 +40,10 @@
     transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
 }
 
+.nav-messaging {
+    cursor: not-allowed;
+}
+
 .nav-search:hover,
 .nav-home:hover,
 .nav-network:hover,
@@ -50,7 +54,16 @@
 }
 
 .rungs-main-icon {
-    margin-right: 1.5em;
+    margin-right: .8em;
+    position: relative;
+    height: 2.25em;
+    width: 2.25em;
+}
+
+.main-nav-icon {
+    bottom: -1.25em;
+    position: absolute;
+    width: 100%;
 }
 
 .active {
