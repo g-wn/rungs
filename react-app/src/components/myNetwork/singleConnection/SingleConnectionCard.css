@@ -85,6 +85,12 @@
     font-weight: var(--global-bold);
 }
 
+.single-connection-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .single-connection-options-btn {
     align-items: center;
     background: none;
