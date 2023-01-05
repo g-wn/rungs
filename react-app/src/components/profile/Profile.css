@@ -11,6 +11,55 @@
     text-decoration: underline;
 }
 
+.contact-modal-body {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    padding: 1em;
+}
+
+.contact-modal-body > h2{
+    font-weight: 400;
+}
+
+.contact-modal-body a {
+    color: var(--global-saturated-blue);
+    font-size: 0.8em;
+    font-weight: var(--global-bold);
+    margin-left: 3em;
+    text-decoration: none;
+}
+
+.contact-modal-body a:hover {
+    text-decoration: underline;
+}
+
+.contact-modal-container {
+    background-color: var(--global-card-background-color);
+    border: 1px solid var(--global-faded-border-color);
+    border-radius: 0.6em;
+    margin: 1em auto;
+}
+
+.contact-modal-header {
+    align-items: center;
+    border-bottom: 1px solid var(--global-faded-border-color);
+    display: flex;
+    font-size: 1.25em;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.email-icon,
+.linkedin-icon {
+    align-items: center;
+    display: flex;
+    gap: 1em;
+    /* justify-content: center; */
+}
+
 .followers,
 .following {
     background: none;

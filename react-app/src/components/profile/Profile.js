@@ -1,17 +1,26 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import './Profile.css';
 import { postFollow } from '../../store/network';
+import { Modal } from '../../context/Modal';
+import { AiOutlineMail } from 'react-icons/ai';
+import { BsLinkedin } from 'react-icons/bs';
+import { MdOutlineClose } from 'react-icons/md';
+import MailTo from './MailTo';
 import Post from '../posts/Post';
+import './Profile.css';
 
 function Profile() {
   const dispatch = useDispatch();
   const { userId } = useParams();
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [showFollowersModal, setShowFollowersModal] = useState(false);
+  const [showFollowingModal, setShowFollowingModal] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.users);
   const user = users[userId];
-  const posts = useSelector(state => Object.values(state.posts))
-  const userPosts = posts.filter(post => +post.ownerId === +userId)
+  const posts = useSelector(state => Object.values(state.posts));
+  const userPosts = posts.filter(post => +post.ownerId === +userId);
 
   if (!user) {
     return null;
@@ -36,7 +45,43 @@ function Profile() {
           </p>
           <div className='user-profile-bio'>
             <span className='bio'>{user.profile.bio}</span>
-            <span className='contact-info'>Contact info</span>
+            <span
+              className='contact-info'
+              onClick={() => setShowContactModal(true)}
+            >
+              Contact info
+            </span>
+            {showContactModal && (
+              <Modal onClose={() => setShowContactModal(false)}>
+                <div className='contact-modal-container'>
+                  <div className='contact-modal-header'>
+                    <span>
+                      {user.firstName} {user.lastName}
+                    </span>
+                    <span
+                      className='post-form-header-close-btn'
+                      onClick={() => setShowContactModal(false)}
+                    >
+                      <MdOutlineClose size={28} />
+                    </span>
+                  </div>
+                  <div className='contact-modal-body'>
+                    <h2>Contact Info</h2>
+                    <p>
+                      <div className='bold linkedin-icon'><BsLinkedin style={{color: "var(--global-faded-text-color)"}} size={20}/> Your Profile</div>
+                      <a href={`/users/${user.id}`}>{`rungs.herokuapp.com/users/${user.id}`}</a>
+                    </p>
+                    <p>
+                      <div className='bold email-icon'><AiOutlineMail style={{color: "var(--global-faded-text-color)"}} size={20}/> Your Email</div>
+                      <MailTo
+                        mailTo={`mailto:${user.email}`}
+                        label={user.email}
+                      />
+                    </p>
+                  </div>
+                </div>
+              </Modal>
+            )}
           </div>
           <div className='user-profile-network'>
             <div className='user-profile-followers-following'>
@@ -55,9 +100,15 @@ function Profile() {
         </div>
       </div>
       <div className='user-profile-activity'>
-        {userPosts.length > 0 ? (userPosts.map((post, idx) => (
-          <Post key={idx} post={post} currentUser={currentUser} />
-        ))) : (
+        {userPosts.length > 0 ? (
+          userPosts.map((post, idx) => (
+            <Post
+              key={idx}
+              post={post}
+              currentUser={currentUser}
+            />
+          ))
+        ) : (
           <div className='user-profile-no-posts'>{user.firstName} hasn't posted anything, yet.</div>
         )}
       </div>
