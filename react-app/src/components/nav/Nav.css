@@ -73,3 +73,27 @@
     text-underline-offset: 0.4em;
     color: black;
 }
+
+@media screen and (max-width: 602px) {
+    .nav-search-text,
+    .nav-home-text,
+    .nav-network-text,
+    .nav-notifications-text,
+    .nav-messaging-text {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 875px) {
+    .search-results,
+    .nav-search-input {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .search-results,
+    .nav-search-input {
+        max-width: 300px;
+    }
+}

@@ -82,6 +82,7 @@
 @media screen and (max-width: 844px) {
     .profile-card-container {
         margin: 0 auto;
+        margin-top: 1em;
         max-width: 552px;
         width: 100%;
     }
