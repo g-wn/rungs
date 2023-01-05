@@ -1,10 +1,10 @@
 /* ---------------------- ACTION CREATORS ---------------------- */
 
-const LOAD_CONNECTIONS = 'network/LOAD_CONNECTIONS';
-const LOAD_FOLLOWERS = 'network/LOAD_FOLLOWERS';
-const LOAD_FOLLOWING = 'network/LOAD_FOLLOWING';
-const FOLLOW_USER = 'network/FOLLOW_USER';
-const UNFOLLOW_USER = 'network/UNFOLLOW_USER';
+export const LOAD_CONNECTIONS = 'network/LOAD_CONNECTIONS';
+export const LOAD_FOLLOWERS = 'network/LOAD_FOLLOWERS';
+export const LOAD_FOLLOWING = 'network/LOAD_FOLLOWING';
+export const FOLLOW_USER = 'network/FOLLOW_USER';
+export const UNFOLLOW_USER = 'network/UNFOLLOW_USER';
 
 const loadConnections = connections => ({
   type: LOAD_CONNECTIONS,
@@ -21,14 +21,16 @@ const loadFollowing = following => ({
   following
 });
 
-const followUser = user => ({
+const followUser = (user, currentUser) => ({
   type: FOLLOW_USER,
-  user
+  user,
+  currentUser
 });
 
-const unfollowUser = userId => ({
+const unfollowUser = (user, currentUser) => ({
   type: UNFOLLOW_USER,
-  userId
+  user,
+  currentUser
 });
 
 /* ---------------------- THUNK CREATORS ----------------------- */
@@ -77,9 +79,9 @@ export const postFollow = userId => async dispatch => {
   });
 
   if (res.ok) {
-    const data = await res.json();
-    dispatch(followUser(data));
-    return data;
+    const {user, currentUser} = await res.json();
+    dispatch(followUser(user, currentUser));
+    return user;
   }
   return await res.json();
 };
@@ -92,9 +94,9 @@ export const deleteFollow = userId => async dispatch => {
   });
 
   if (res.ok) {
-    const data = await res.json();
-    dispatch(unfollowUser(userId));
-    return data;
+    const {user, currentUser} = await res.json();
+    dispatch(unfollowUser(user, currentUser));
+    return user;
   }
   return await res.json();
 };
@@ -126,8 +128,8 @@ const networkReducer = (state = initialState, action) => {
       return newState;
     }
     case UNFOLLOW_USER: {
-      delete newState.following[action.userId];
-      if (newState.connections[action.userId]) delete newState.connections[action.userId];
+      delete newState.following[action.user.id];
+      if (newState.connections[action.user.id]) delete newState.connections[action.user.id];
       return newState;
     }
     default:

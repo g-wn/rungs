@@ -10,6 +10,7 @@ import NotiDropdown from './NotiDropdown';
 import { getConnections, getFollowers, getFollowing } from '../../store/network';
 import { ReactComponent as Logo } from '../../assets/rungs_icon.svg'
 import './Nav.css';
+import { getUsers } from '../../store/users';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const NavBar = () => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
     dispatch(getFollowing(currentUser.id));
+    dispatch(getUsers())
   }, [dispatch, currentUser.id]);
 
   return (

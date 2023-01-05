@@ -23,6 +23,7 @@ const NetworkInvitations = () => {
               <SingleConnectionCard
                 user={user}
                 invitation={true}
+                key={idx}
               />
             ))
           : 'No pending invitations'}

@@ -1,3 +1,6 @@
+import { FOLLOW_USER } from './network';
+import { UNFOLLOW_USER } from './network';
+
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -97,9 +100,16 @@ export const signUp = (first_name, last_name, username, email, password) => asyn
 };
 
 export default function reducer(state = initialState, action) {
+  const newState = { ...state };
   switch (action.type) {
     case SET_USER:
       return { user: action.payload };
+    case FOLLOW_USER:
+      newState.user.following[action.user.id] = { firstName: action.user.firstName, lastName: action.user.lastName };
+      return newState;
+    case UNFOLLOW_USER:
+      delete newState.user.following[action.user.id];
+      return newState;
     case REMOVE_USER:
       return { user: null };
     default:

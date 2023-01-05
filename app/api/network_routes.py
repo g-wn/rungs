@@ -65,7 +65,7 @@ def add_user_to_network(userId):
     user.following.append(user_to_add)
 
     db.session.commit()
-    return user_to_add.to_dict()
+    return {"user": user_to_add.to_dict(), "currentUser": user.to_dict()}
 
 
 # DELETE A CONNECTION BY USER ID:
@@ -84,6 +84,4 @@ def remove_user_from_network(userId):
 
     db.session.commit()
 
-    return jsonify(
-        {"message": f"You are no longer connected with {user_to_remove.first_name}."}
-    )
+    return {"user": user_to_remove.to_dict(), "currentUser": user.to_dict()}

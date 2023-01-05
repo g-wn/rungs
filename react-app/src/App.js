@@ -5,7 +5,7 @@ import { authenticate } from './store/session';
 import NavBar from './components/nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/users/UsersList';
-import User from './components/users/User';
+import Profile from './components/profile/Profile';
 import Feed from './components/feed/Feed';
 import ProfileCard from './components/feed/profileCard/ProfileCard';
 import Network from './components/myNetwork/Network';
@@ -55,7 +55,7 @@ function App() {
           path='/users/:userId'
           exact={true}
         >
-          <User />
+          <Profile />
         </ProtectedRoute>
         <ProtectedRoute
           path='/feed'
