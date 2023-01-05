@@ -24,6 +24,32 @@ const NavBar = () => {
   const network = useSelector(state => state.network);
   const users = useSelector(state => state.users);
 
+  const openSearch = () => {
+    if (showSearchBar) return;
+    setShowSearchBar(true);
+  };
+
+  useEffect(() => {
+    if (!showSearchBar) return;
+
+    const closeSearch = () => {
+      setShowSearchBar(false);
+    };
+
+    document.addEventListener('click', closeSearch, false);
+    document.getElementById('nav-search-input').addEventListener(
+      'click',
+      function (e) {
+        e.stopPropagation();
+      },
+      true
+    );
+
+    return () => {
+      document.removeEventListener('click', closeSearch, false);
+    };
+  });
+
   useEffect(() => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
@@ -54,9 +80,7 @@ const NavBar = () => {
           </div>
           <div
             className='nav-search'
-            onClick={() => {
-              setShowSearchBar(!showSearchBar);
-            }}
+            onClick={openSearch}
           >
             <div className='nav-search-icon'>
               <BsSearch size={20} />
