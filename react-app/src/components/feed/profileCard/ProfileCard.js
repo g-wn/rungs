@@ -24,7 +24,7 @@ const ProfileCard = () => {
           <div className='profile-card-body-name'>
             {currentUser.firstName} {currentUser.lastName}
           </div>
-          <div className='profile-card-body-bio'>
+          <div className='profile-card-body-bio' style={!currentUser.profile.bio && {cursor: "not-allowed"}}>
             {currentUser.profile.bio ? currentUser.profile.bio : 'Click here to add a bio...'}
           </div>
         </div>

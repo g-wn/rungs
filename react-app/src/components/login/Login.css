@@ -35,6 +35,10 @@
     margin-top: 0.5em;
 }
 
+.login-signup-icon {
+    width: 100px;
+}
+
 .login-signup-page-nav {
     align-items: center;
     display: flex;
