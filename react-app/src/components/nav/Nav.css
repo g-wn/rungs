@@ -41,10 +41,6 @@
     transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
 }
 
-.nav-messaging {
-    cursor: not-allowed;
-}
-
 .nav-search:hover,
 .nav-home:hover,
 .nav-network:hover,

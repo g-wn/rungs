@@ -13,29 +13,95 @@ else:
 # Create SocketIO instance:
 socketio = SocketIO(cors_allowed_origins=origins)
 
+
+# Handle connections and users:
+connected_users = {}
+
+
+def connect_user(user, sid):
+    if user in connected_users:
+        connected_user = connected_users[user]
+        connected_user["sid"] = request.sid
+    else:
+        connected_users[user] = {"user": user, "sid": sid}
+
+
+
+def disconnect_user(user):
+    if user in connected_users:
+        del connected_users[user]
+
+
+@socketio.on("connect")
+def on_connect(auth):
+    user = User.query.get(current_user.get_id()).first_name
+    sid = request.sid
+    connect_user(user, sid)
+    print("""
+
+    <-------------- CONNECTED USERS -------------->
+
+    """, connected_users, """
+
+    <-------------- CONNECTED USERS -------------->
+
+    """)
+
+
+@socketio.on("disconnect")
+def on_disconnect():
+    user = User.query.get(current_user.get_id()).first_name
+    disconnect_user(user)
+    print("""
+
+    <-------------- CONNECTED USERS -------------->
+
+    """, connected_users, """
+
+    <-------------- CONNECTED USERS -------------->
+
+    """)
+
+
 # Handle rooms:
 @socketio.on("join")
 def on_join(data):
-    username = data["username"]
+    user = data["user"]
     room = data["room"]
+    print("INSIDE ON_JOIN FUNCTION --------->", data)
     join_room(room)
-    send(username + " has entered the room.", to=room)
+    emit(
+        "join",
+        {"user": room, "msg": user + " has entered the room."},
+        broadcast=True,
+        to=room,
+    )
 
 
 @socketio.on("leave")
 def on_leave(data):
-    username = data["username"]
+    user = data["user"]
     room = data["room"]
+    print("INSIDE ON_LEAVE FUNCTION ------->", data)
     leave_room(room)
-    send(username + " has left the room.", to=room)
+    emit(
+        "join",
+        {"user": room, "msg": user + " has left the room."},
+        broadcast=True,
+        to=room,
+    )
 
 
 # Handle chat messages:
 @socketio.on("chat")
 def handle_chat(data):
-    # if data["room"]:
-    #     room = data["room"]
-    user = User.query.get(current_user.get_id())
-    print("USER FIRST NAME ----->", user.first_name)
-    print("SID ----->", request.sid)
-    emit("chat", data, broadcast=True)
+    if data["room"]:
+        room = data["room"]
+    if data["recipient"]:
+        recipient = connected_users[data["recipient"]]
+    print("""
+
+    MESSAGE DATA -------->
+
+    """, data)
+    emit("chat", data, broadcast=True, to=room)

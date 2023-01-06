@@ -128,17 +128,17 @@ const NavBar = () => {
                 <div className='nav-network-text'>My Network</div>
               </NavLink>
               <NotiDropdown />
-              <div
-                // to='/messaging'
-                // activeClassName='active'
+              <NavLink
+                to='/messaging'
+                activeClassName='active'
                 className='nav-messaging'
-                // exact
+                exact
               >
                 <div className='nav-messaging-icon'>
                   <HiChatBubbleLeftEllipsis size={24} />
                 </div>
                 <div className='nav-messaging-text'>Messaging</div>
-              </div>
+              </NavLink>
             </>
           )}
         </div>

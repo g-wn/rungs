@@ -1,24 +1,33 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { io } from 'socket.io-client'
 import { authenticate } from './store/session';
 import NavBar from './components/nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/users/UsersList';
+import Login from './components/login/Login';
+import Signup from './components/signup/Signup';
 import Profile from './components/profile/Profile';
 import Feed from './components/feed/Feed';
 import ProfileCard from './components/feed/profileCard/ProfileCard';
 import Network from './components/myNetwork/Network';
 import Landing from './components/landing/Landing';
-import Login from './components/login/Login';
-import Signup from './components/signup/Signup';
-import Chat from './components/chat/Chat';
+import Messaging from './components/messaging/Messaging';
 import NotFound from './components/404/404';
+
+let socket;
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket = io()
+    console.log(socket)
+
+    return () => socket.disconnect()
+  }, [])
 
   useEffect(() => {
     (async () => {
@@ -48,12 +57,6 @@ function App() {
           <Signup />
         </Route>
         <ProtectedRoute
-          path='/users'
-          exact={true}
-        >
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute
           path='/users/:userId'
           exact={true}
         >
@@ -81,10 +84,10 @@ function App() {
           <Landing />
         </Route>
         <ProtectedRoute
-          path='/chat'
+          path='/messaging'
           exact={true}
         >
-          <Chat />
+          <Messaging socket={socket} />
         </ProtectedRoute>
         <Route>
           <NotFound />

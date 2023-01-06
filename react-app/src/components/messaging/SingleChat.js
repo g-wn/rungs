@@ -1,28 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { io } from 'socket.io-client';
-import './Chat.css';
+// import { io } from 'socket.io-client';
+import './SingleChat.css';
 
-let socket;
+// let socket;
 
-const Chat = () => {
+const SingleChat = ({ room, socket }) => {
   const currentUser = useSelector(state => state.session.user);
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
 
   useEffect(() => {
-    socket = io();
+    // socket = io();
 
-    socket.on('chat', chat => {
-      setMessages(messages => [...messages, chat]);
+    socket.on('chat', message => {
+      setMessages(messages => [...messages, message]);
     });
 
-    socket.emit('join', { username: currentUser.firstName, room: 1 });
+    socket.on('join', message => {
+      setMessages(messages => [...messages, message]);
+    });
+
+    socket.on('leave', message => {
+      setMessages(messages => [...messages, message]);
+    });
+
+    socket.emit('join', { user: currentUser.firstName, room: room });
 
     return () => {
-      socket.disconnect();
+      socket.emit('leave', { user: currentUser.firstName, room: room });
+      // socket.disconnect();
     };
-  }, []);
+  }, [socket, setMessages, room, currentUser.firstName]);
 
   const updateChatInput = e => {
     setChatInput(e.target.value);
@@ -31,7 +40,7 @@ const Chat = () => {
   const sendChat = e => {
     e.preventDefault();
 
-    socket.emit('chat', { user: `${currentUser.firstName} ${currentUser.lastName}`, msg: chatInput });
+    socket.emit('chat', { user: `${currentUser.firstName} ${currentUser.lastName}`, msg: chatInput, room: room, recipient: "Christopher" });
 
     setChatInput('');
   };
@@ -60,4 +69,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default SingleChat;
