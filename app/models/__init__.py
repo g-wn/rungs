@@ -4,3 +4,5 @@ from .profile import Profile
 from .post import Post
 from .network import connections
 from .likes import likes
+from .message import Message
+from .chat import Chat

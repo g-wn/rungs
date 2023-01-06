@@ -12,6 +12,7 @@ import Network from './components/myNetwork/Network';
 import Landing from './components/landing/Landing';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
+import Chat from './components/chat/Chat';
 import NotFound from './components/404/404';
 
 function App() {
@@ -79,6 +80,12 @@ function App() {
         >
           <Landing />
         </Route>
+        <ProtectedRoute
+          path='/chat'
+          exact={true}
+        >
+          <Chat />
+        </ProtectedRoute>
         <Route>
           <NotFound />
         </Route>
