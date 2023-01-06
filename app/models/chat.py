@@ -1,4 +1,5 @@
 from .db import db
+from .user_chats import user_chats
 
 
 class Chat(db.Model):
@@ -13,7 +14,7 @@ class Chat(db.Model):
     messages = db.relationship("Message", back_populates="chat", cascade="all, delete")
 
     # users <---> chats
-    users = db.relationship("User", back_populates="chats", secondary=user_chats)
+    users = db.relationship("User", back_populates="chats", secondary=user_chats, lazy="joined")
 
     def to_dict(self):
         return {
