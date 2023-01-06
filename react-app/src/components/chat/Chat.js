@@ -17,9 +17,11 @@ const Chat = () => {
       setMessages(messages => [...messages, chat]);
     });
 
-    return (() => {
+    socket.emit('join', { username: currentUser.firstName, room: 1 });
+
+    return () => {
       socket.disconnect();
-    });
+    };
   }, []);
 
   const updateChatInput = e => {

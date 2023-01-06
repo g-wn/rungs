@@ -8,7 +8,7 @@ from .auth_routes import validation_errors_to_error_messages
 chat_routes = Blueprint("chat", __name__)
 
 # GET A SINGLE CHAT BY ID:
-@chat_routes.route("/<chatId:int>")
+@chat_routes.route("/<int:chatId>")
 @login_required
 def get_single_chat(chatId):
     """
