@@ -4,12 +4,14 @@ import session from './session';
 import users from './users';
 import posts from './posts';
 import network from './network';
+import chats from './chats'
 
 const rootReducer = combineReducers({
   session,
   users,
   posts,
-  network
+  network,
+  chats
 });
 
 let enhancer;

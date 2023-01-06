@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     socket = io()
-    console.log(socket)
 
     return () => socket.disconnect()
   }, [])

@@ -1,52 +1,51 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { io } from 'socket.io-client';
 import './SingleChat.css';
-
-// let socket;
 
 const SingleChat = ({ room, socket }) => {
   const currentUser = useSelector(state => state.session.user);
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
 
+  // HANDLE JOIN AND LEAVE ROOM:
   useEffect(() => {
-    // socket = io();
-
-    socket.on('chat', message => {
-      setMessages(messages => [...messages, message]);
-    });
-
-    socket.on('join', message => {
-      setMessages(messages => [...messages, message]);
-    });
+    socket.emit('join', { user: currentUser.firstName, room: room });
 
     socket.on('leave', message => {
       setMessages(messages => [...messages, message]);
     });
 
-    socket.emit('join', { user: currentUser.firstName, room: room });
-
     return () => {
       socket.emit('leave', { user: currentUser.firstName, room: room });
-      // socket.disconnect();
     };
-  }, [socket, setMessages, room, currentUser.firstName]);
+  }, [socket, room, currentUser.firstName]);
 
-  const updateChatInput = e => {
-    setChatInput(e.target.value);
-  };
+  // HANDLE DISPLAYED MESSAGES:
+  useEffect(() => {
+    socket.on('join', message => {
+      setMessages(messages => [...messages, message]);
+    });
+
+    socket.on('chat', message => {
+      setMessages(messages => [...messages, message]);
+    });
+  }, [socket, setMessages, currentUser.firstName]);
 
   const sendChat = e => {
     e.preventDefault();
 
-    socket.emit('chat', { user: `${currentUser.firstName} ${currentUser.lastName}`, msg: chatInput, room: room, recipient: "Christopher" });
+    socket.emit('chat', {
+      user: `${currentUser.firstName} ${currentUser.lastName}`,
+      msg: chatInput,
+      room: room,
+      recipient: 'Christopher'
+    });
 
     setChatInput('');
   };
 
   return (
-    <>
+    <div className='chat-display'>
       <div className='chat-msg-display'>
         {messages.map((message, idx) => (
           <div
@@ -59,13 +58,15 @@ const SingleChat = ({ room, socket }) => {
         onSubmit={sendChat}
         className='chat-form'
       >
-        <input
-          value={chatInput}
-          onChange={updateChatInput}
-        />
-        <button type='submit'>Send</button>
+        <div className='chat-input'>
+          <input
+            onChange={e => setChatInput(e.target.value)}
+            value={chatInput}
+          />
+          <button type='submit'>Send</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

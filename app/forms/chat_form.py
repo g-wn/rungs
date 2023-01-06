@@ -9,7 +9,9 @@ class ChatForm(FlaskForm):
         validators=[
             DataRequired(),
             Length(
-                max=1500, message="Please limit your message to under 1500 characters"
+                min=1,
+                max=1500,
+                message="Please limit your message to under 1500 characters",
             ),
         ],
     )

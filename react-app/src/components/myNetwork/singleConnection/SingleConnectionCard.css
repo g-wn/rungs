@@ -71,9 +71,9 @@
     transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
 }
 
-.single-connection-message-btn {
+/* .single-connection-message-btn {
     cursor: not-allowed;
-}
+} */
 
 .single-connection-message-btn:hover,
 .single-connection-accept-btn:hover {
