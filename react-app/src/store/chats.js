@@ -68,6 +68,23 @@ export const putChat = payload => async dispatch => {
   return await res.json();
 };
 
+// SEND A MESSAGE:
+export const putMessage = (chatId, payload) => async dispatch => {
+  const res = await fetch(`/api/chat/${chatId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    console.log("MESSAGE ---------->",data)
+    dispatch(sendMessage(payload));
+    return data;
+  }
+  return await res.json();
+};
+
 /* -------------------------- REDUCER -------------------------- */
 
 const initialState = {};
@@ -80,6 +97,9 @@ const chatsReducer = (state = initialState, action) => {
     case CREATE_CHAT: {
       return { ...state, [action.chat.id]: action.chat };
     }
+    // case SEND_MESSAGE: {
+    //   return { ...state, [action.message.chatId]}
+    // }
     default:
       return state;
   }

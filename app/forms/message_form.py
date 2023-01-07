@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 
-class ChatForm(FlaskForm):
+class MessageForm(FlaskForm):
     body = StringField(
         "Body",
         validators=[

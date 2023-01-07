@@ -26,7 +26,6 @@ def connect_user(user, sid):
         connected_users[user] = {"user": user, "sid": sid}
 
 
-
 def disconnect_user(user):
     if user in connected_users:
         del connected_users[user]
@@ -37,30 +36,38 @@ def on_connect(auth):
     user = User.query.get(current_user.get_id()).first_name
     sid = request.sid
     connect_user(user, sid)
-    print("""
+    print(
+        """
 
     <-------------- CONNECTED USERS -------------->
 
-    """, connected_users, """
+    """,
+        connected_users,
+        """
 
     <-------------- CONNECTED USERS -------------->
 
-    """)
+    """,
+    )
 
 
 @socketio.on("disconnect")
 def on_disconnect():
     user = User.query.get(current_user.get_id()).first_name
     disconnect_user(user)
-    print("""
+    print(
+        """
 
     <-------------- CONNECTED USERS -------------->
 
-    """, connected_users, """
+    """,
+        connected_users,
+        """
 
     <-------------- CONNECTED USERS -------------->
 
-    """)
+    """,
+    )
 
 
 # Handle rooms:
@@ -72,7 +79,7 @@ def on_join(data):
     join_room(room)
     emit(
         "join",
-        {"user": room, "msg": user + " has entered the room."},
+        {"sender": room, "body": user + " has entered the room."},
         broadcast=True,
         to=room,
     )
@@ -86,7 +93,7 @@ def on_leave(data):
     leave_room(room)
     emit(
         "join",
-        {"user": room, "msg": user + " has left the room."},
+        {"sender": room, "body": user + " has left the room."},
         broadcast=True,
         to=room,
     )
@@ -97,11 +104,12 @@ def on_leave(data):
 def handle_chat(data):
     if data["room"]:
         room = data["room"]
-    if data["recipient"]:
-        recipient = connected_users[data["recipient"]]
-    print("""
+    print(
+        """
 
     MESSAGE DATA -------->
 
-    """, data)
+    """,
+        data,
+    )
     emit("chat", data, broadcast=True, to=room)

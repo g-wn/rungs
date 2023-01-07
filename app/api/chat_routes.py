@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Message, Chat
-from app.forms import ChatForm
+from app.forms import MessageForm
 from .auth_routes import validation_errors_to_error_messages
 
 
@@ -57,21 +57,23 @@ def create_chat():
 
 
 # SEND A MESSAGE:
-@chat_routes.route("/message/new", methods=["POST"])
+@chat_routes.route("/<int:chat_id>", methods=["POST"])
 @login_required
-def send_message():
+def send_message(chat_id):
     """
     Query to send a new message and store it in a specific chat session.
     """
-    chat = Chat.query.get(request.json["chatId"])
-    form = ChatForm()
+    chat = Chat.query.get(chat_id)
+    form = MessageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
 
-        new_message = Message(body=data["body"])
-
-        chat.messages.append(new_message)
+        new_message = Message(
+            user_id=current_user.get_id(),
+            body=data["body"],
+            chat_id=chat_id,
+        )
 
         db.session.add(new_message)
         db.session.commit()

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { putMessage } from '../../store/chats';
 import './SingleChat.css';
 
 const SingleChat = ({ chat, socket }) => {
   const currentUser = useSelector(state => state.session.user);
-  const room = chat.id
-  const [messages, setMessages] = useState([]);
+  const room = chat.id;
+  const dispatch = useDispatch();
+  const [messages, setMessages] = useState(chat.messages);
   const [chatInput, setChatInput] = useState('');
 
   // HANDLE JOIN AND LEAVE ROOM:
@@ -32,17 +34,24 @@ const SingleChat = ({ chat, socket }) => {
     });
   }, [socket, setMessages, currentUser.firstName]);
 
-  const sendChat = e => {
+  const sendChat = async e => {
     e.preventDefault();
 
-    socket.emit('chat', {
-      user: `${currentUser.firstName} ${currentUser.lastName}`,
-      msg: chatInput,
-      room: room,
-      recipient: 'Christopher'
-    });
+    const newMessage = await dispatch(
+      putMessage(chat.id, {
+        body: chatInput
+      })
+    );
 
-    setChatInput('');
+    if (newMessage) {
+      socket.emit('chat', {
+        sender: currentUser,
+        body: chatInput,
+        room: room
+      });
+
+      setChatInput('');
+    }
   };
 
   return (
@@ -52,7 +61,7 @@ const SingleChat = ({ chat, socket }) => {
           <div
             key={idx}
             className='chat-msg'
-          >{`${message.user}: ${message.msg}`}</div>
+          >{`${message.sender}: ${message.body}`}</div>
         ))}
       </div>
       <form

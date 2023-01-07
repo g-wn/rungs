@@ -17,7 +17,20 @@
     flex-grow: 1;
 }
 
+.chat-msg {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1em;
+}
+
 .chat-msg-display {
     overflow: auto;
     height: 100%;
+}
+
+.chat-msg-img {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 1em;
+    width: 40px;
 }
