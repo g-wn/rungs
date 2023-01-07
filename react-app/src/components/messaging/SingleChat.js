@@ -9,7 +9,6 @@ const SingleChat = ({ chat, socket }) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState(chat.messages);
   const [chatInput, setChatInput] = useState('');
-  console.log(chat.messages[0])
 
   useEffect(() => {
     setMessages(chat.messages);
@@ -44,6 +43,7 @@ const SingleChat = ({ chat, socket }) => {
       socket.emit('chat', {
         sender: currentUser,
         body: chatInput,
+        createdAt: newMessage.createdAt,
         room: room
       });
 
@@ -54,7 +54,7 @@ const SingleChat = ({ chat, socket }) => {
   return (
     <div className='chat-display'>
       <div className='chat-msg-display'>
-        {messages.map((message, idx) => (
+        {messages.length > 0 ? (messages.map((message, idx) => (
           <div
             key={idx}
             className='chat-msg-container'
@@ -65,14 +65,17 @@ const SingleChat = ({ chat, socket }) => {
               className='chat-msg-img'
             />
             <div className='chat-msg'>
-              <div className='chat-msg-sender-name'>
+              <span className='chat-msg-sender-name bold'>
                 {message.sender.firstName} {message.sender.lastName}
-              </div>
+              </span>
+                <span className='chat-msg-timestamp'> &bull; {message.createdAt}</span>
               <div className='chat-msg-body'>{message.body}</div>
             </div>
           </div>
-        ))}
-        <div className="hello"></div>
+        ))) : (
+          <div className="chat-msg-container">No messages, yet.</div>
+        )}
+        <div className='hello'></div>
       </div>
       <form
         onSubmit={sendChat}

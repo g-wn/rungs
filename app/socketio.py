@@ -89,7 +89,6 @@ def on_join(data):
 def on_leave(data):
     user = data["user"]
     room = data["room"]
-    print("INSIDE ON_LEAVE FUNCTION ------->", data)
     leave_room(room)
     print(f"{user} has left room {room}")
     # emit(

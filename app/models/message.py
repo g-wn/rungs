@@ -22,6 +22,7 @@ class Message(db.Model):
         return {
             "id": self.id,
             "body": self.body,
+            "chatId": self.chat_id,
             "sender": self.sender.to_dict(),
             "createdAt": self.created_at,
         }

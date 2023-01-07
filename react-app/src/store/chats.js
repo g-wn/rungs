@@ -20,10 +20,12 @@ const createChat = chat => ({
   chat
 });
 
-const sendMessage = message => ({
-  type: SEND_MESSAGE,
-  message
-});
+const sendMessage = message => {
+  return {
+    type: SEND_MESSAGE,
+    message
+  };
+};
 
 /* ---------------------- THUNK CREATORS ----------------------- */
 
@@ -78,8 +80,7 @@ export const putMessage = (chatId, payload) => async dispatch => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log("MESSAGE ---------->",data)
-    dispatch(sendMessage(payload));
+    dispatch(sendMessage(data));
     return data;
   }
   return await res.json();
@@ -97,9 +98,12 @@ const chatsReducer = (state = initialState, action) => {
     case CREATE_CHAT: {
       return { ...state, [action.chat.id]: action.chat };
     }
-    // case SEND_MESSAGE: {
-    //   return { ...state, [action.message.chatId]}
-    // }
+    case SEND_MESSAGE: {
+      const newState = { ...state };
+      const chat = newState[action.message.chatId];
+      chat.messages.push(action.message);
+      return newState;
+    }
     default:
       return state;
   }

@@ -18,6 +18,10 @@
     flex-grow: 1;
 }
 
+.chat-msg-body {
+    color: var(--global-faded-text-color);
+}
+
 .chat-msg-container {
     align-items: center;
     display: flex;
@@ -44,4 +48,9 @@
     height: 40px;
     margin-right: 1em;
     width: 40px;
+}
+
+.chat-msg-timestamp {
+    color: var(--global-faded-text-color);
+    font-size: 0.85em;
 }
