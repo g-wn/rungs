@@ -2,10 +2,23 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import './ProfileCard.css';
+import { useState } from 'react';
+import UpdateImgForm from './UpdateImgForm';
 
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);
   const network = useSelector(state => state.network);
+
+  const [showBannerImgForm, setShowBannerImgForm] = useState(false);
+  const [bannerImage, setBannerImage] = useState(null);
+  const [bannerImageLoading, setBannerImageLoading] = useState(false);
+  // const [errors, setErrors] = useState([]);
+
+  const updateBannerImage = e => {
+    const file = e.target.files[0];
+    console.log(file);
+    setBannerImage(file);
+  };
 
   return (
     <div className='profile-card-container'>
@@ -22,22 +35,15 @@ const ProfileCard = () => {
           <MdOutlinePhotoCamera size={18} />
         </label>
         <input
-          type='file'
+          accept='image/*'
           id='update-banner-img-btn-hidden'
+          onChange={updateBannerImage}
+          type='file'
         />
       </div>
       <div className='profile-card-profile-img-container'>
         <div className='update-profile-img-btn-container'>
-          <label
-            id='update-profile-img-btn'
-            htmlFor='update-profile-img-btn-hidden'
-          >
-            <MdOutlinePhotoCamera size={18} />
-          </label>
-          <input
-            type='file'
-            id='update-profile-img-btn-hidden'
-          />
+          <UpdateImgForm formType={'profileImg'}/>
           <NavLink
             to={`/users/${currentUser.id}`}
             className='profile-card-profile-img'
