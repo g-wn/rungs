@@ -9,11 +9,23 @@ const ProfileCard = () => {
 
   return (
     <div className='profile-card-container'>
-      <img
-        src={currentUser.profile.bannerImageUrl}
-        alt='Banner Img'
-        className='profile-card-banner'
-      />
+      <div className='profile-card-banner-container'>
+        <img
+          src={currentUser.profile.bannerImageUrl}
+          alt='Banner Img'
+          className='profile-card-banner'
+        />
+        <label
+          id='update-banner-img-btn'
+          htmlFor='update-banner-img-btn-hidden'
+        >
+          <MdOutlinePhotoCamera size={18} />
+        </label>
+        <input
+          type='file'
+          id='update-banner-img-btn-hidden'
+        />
+      </div>
       <div className='profile-card-profile-img-container'>
         <div className='update-profile-img-btn-container'>
           <label
