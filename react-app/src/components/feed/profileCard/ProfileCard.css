@@ -101,14 +101,55 @@
     height: 75px;
     justify-content: center;
     object-position: center;
-    overflow: hidden;
     position: absolute;
-    top: 18.5px;
+    /* top: -2em; */
     width: 75px;
     text-align: center;
+    overflow: hidden;
 }
 
 .profile-card-profile-img>img {
     max-height: 100%;
     max-width: 100%;
+}
+
+.profile-card-profile-img-container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+#update-profile-img-btn {
+    align-items: center;
+    border-radius: 50%;
+    color: var(--global-card-background-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    transition: all 0.167s ease-in-out;
+}
+
+#update-profile-img-btn:hover {
+    background-color: var(--global-button-hover-color);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    color: var(--global-saturated-text-color);
+}
+
+.update-profile-img-btn-container {
+    height: 75px;
+    position: absolute;
+    width: 75px;
+}
+
+#update-profile-img-btn-hidden {
+    display: none;
+    position: absolute;
+    z-index: -1;
 }

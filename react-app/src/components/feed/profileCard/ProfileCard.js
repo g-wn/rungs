@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { MdOutlinePhotoCamera } from 'react-icons/md';
 import './ProfileCard.css';
 
 const ProfileCard = () => {
@@ -13,12 +14,29 @@ const ProfileCard = () => {
         alt='Banner Img'
         className='profile-card-banner'
       />
-      <NavLink to={`/users/${currentUser.id}`} className='profile-card-profile-img'>
-        <img
-          src={currentUser.profile.profileImageUrl}
-          alt='Profile Img'
-        />
-      </NavLink>
+      <div className='profile-card-profile-img-container'>
+        <div className='update-profile-img-btn-container'>
+          <label
+            id='update-profile-img-btn'
+            htmlFor='update-profile-img-btn-hidden'
+          >
+            <MdOutlinePhotoCamera size={18} />
+          </label>
+          <input
+            type='file'
+            id='update-profile-img-btn-hidden'
+          />
+          <NavLink
+            to={`/users/${currentUser.id}`}
+            className='profile-card-profile-img'
+          >
+            <img
+              src={currentUser.profile.profileImageUrl}
+              alt='Profile Img'
+            />
+          </NavLink>
+        </div>
+      </div>
       <div className='profile-card-body'>
         <div className='profile-card-body-text'>
           <div className='profile-card-body-name'>
