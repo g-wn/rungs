@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import './ProfileCard.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UpdateImgForm from './UpdateImgForm';
 
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);
   const network = useSelector(state => state.network);
-
+  const [showProfileImgForm, setShowProfileImgForm] = useState(false);
   const [showBannerImgForm, setShowBannerImgForm] = useState(false);
   const [bannerImage, setBannerImage] = useState(null);
   const [bannerImageLoading, setBannerImageLoading] = useState(false);
@@ -43,7 +43,11 @@ const ProfileCard = () => {
       </div>
       <div className='profile-card-profile-img-container'>
         <div className='update-profile-img-btn-container'>
-          <UpdateImgForm formType={'profileImg'}/>
+          <UpdateImgForm
+            formType={'profileImg'}
+            setShowProfileImgForm={setShowProfileImgForm}
+            showProfileImgForm={showProfileImgForm}
+          />
           <NavLink
             to={`/users/${currentUser.id}`}
             className='profile-card-profile-img'

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { putProfile, setUser } from '../../../store/session';
+import { putProfile } from '../../../store/session';
 import { Modal } from '../../../context/Modal';
 import { MdOutlinePhotoCamera, MdOutlineClose } from 'react-icons/md';
 import LoadingWheel from '../../loadingWheel/LoadingWheel';
 
-const UpdateImgForm = ({ formType }) => {
+const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const [showProfileImgForm, setShowProfileImgForm] = useState(false);
+
   const [profileImage, setProfileImage] = useState(null);
   const [profileImageLoading, setProfileImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -27,7 +27,7 @@ const UpdateImgForm = ({ formType }) => {
 
     if (res.ok) {
       const data = await res.json();
-      dispatch(
+      await dispatch(
         putProfile(currentUser.profile.id, {
           bio: currentUser.profile.bio,
           profile_image_url: data.url,
