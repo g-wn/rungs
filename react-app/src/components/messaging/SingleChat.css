@@ -17,7 +17,7 @@
     flex-grow: 1;
 }
 
-.chat-msg {
+.chat-msg-container {
     align-items: center;
     display: flex;
     margin-bottom: 1em;

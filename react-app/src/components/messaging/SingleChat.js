@@ -9,14 +9,15 @@ const SingleChat = ({ chat, socket }) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState(chat.messages);
   const [chatInput, setChatInput] = useState('');
+  console.log(chat.messages[0])
+
+  useEffect(() => {
+    setMessages(chat.messages);
+  }, [chat]);
 
   // HANDLE JOIN AND LEAVE ROOM:
   useEffect(() => {
     socket.emit('join', { user: currentUser.firstName, room: room });
-
-    socket.on('leave', message => {
-      setMessages(messages => [...messages, message]);
-    });
 
     return () => {
       socket.emit('leave', { user: currentUser.firstName, room: room });
@@ -25,10 +26,6 @@ const SingleChat = ({ chat, socket }) => {
 
   // HANDLE DISPLAYED MESSAGES:
   useEffect(() => {
-    socket.on('join', message => {
-      setMessages(messages => [...messages, message]);
-    });
-
     socket.on('chat', message => {
       setMessages(messages => [...messages, message]);
     });
@@ -60,8 +57,20 @@ const SingleChat = ({ chat, socket }) => {
         {messages.map((message, idx) => (
           <div
             key={idx}
-            className='chat-msg'
-          >{`${message.sender}: ${message.body}`}</div>
+            className='chat-msg-container'
+          >
+            <img
+              src={message.sender.profile.profileImageUrl}
+              alt='Profile Img'
+              className='chat-msg-img'
+            />
+            <div className='chat-msg'>
+              <div className='chat-msg-sender-name'>
+                {message.sender.firstName} {message.sender.lastName}
+              </div>
+              <div className='chat-msg-body'>{message.body}</div>
+            </div>
+          </div>
         ))}
       </div>
       <form

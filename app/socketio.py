@@ -75,14 +75,14 @@ def on_disconnect():
 def on_join(data):
     user = data["user"]
     room = data["room"]
-    print("INSIDE ON_JOIN FUNCTION --------->", data)
     join_room(room)
-    emit(
-        "join",
-        {"sender": room, "body": user + " has entered the room."},
-        broadcast=True,
-        to=room,
-    )
+    print(f"{user} has joined room {room}")
+    # emit(
+    #     "join",
+    #     {"sender": room, "body": user + " has entered the room."},
+    #     broadcast=True,
+    #     to=room,
+    # )
 
 
 @socketio.on("leave")
@@ -91,12 +91,13 @@ def on_leave(data):
     room = data["room"]
     print("INSIDE ON_LEAVE FUNCTION ------->", data)
     leave_room(room)
-    emit(
-        "join",
-        {"sender": room, "body": user + " has left the room."},
-        broadcast=True,
-        to=room,
-    )
+    print(f"{user} has left room {room}")
+    # emit(
+    #     "join",
+    #     {"sender": room, "body": user + " has left the room."},
+    #     broadcast=True,
+    #     to=room,
+    # )
 
 
 # Handle chat messages:
