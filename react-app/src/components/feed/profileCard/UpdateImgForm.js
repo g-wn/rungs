@@ -5,12 +5,15 @@ import { Modal } from '../../../context/Modal';
 import { MdOutlinePhotoCamera, MdOutlineClose } from 'react-icons/md';
 import LoadingWheel from '../../loadingWheel/LoadingWheel';
 
-const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) => {
+const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
 
+  console.log(formType)
+
   const [profileImage, setProfileImage] = useState(null);
-  const [profileImageLoading, setProfileImageLoading] = useState(false);
+  const [bannerImage, setBannerImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handleProfileImage = async e => {
@@ -18,7 +21,7 @@ const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) 
     const formData = new FormData();
     formData.append('image', profileImage);
 
-    setProfileImageLoading(true);
+    setImageLoading(true);
 
     const res = await fetch(`/api/posts/images`, {
       method: 'POST',
@@ -34,14 +37,46 @@ const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) 
           banner_image_url: currentUser.profile.bannerImageUrl
         })
       );
-      setProfileImageLoading(false);
-      setShowProfileImgForm(false);
+      setImageLoading(false);
+      setShowImgForm(false);
       setProfileImage(null);
       return data;
     } else {
       const data = await res.json();
       setErrors([data.errors]);
-      setProfileImageLoading(false);
+      setImageLoading(false);
+    }
+  };
+
+  const handleBannerImage = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', profileImage);
+
+    setImageLoading(true);
+
+    const res = await fetch(`/api/posts/images`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      await dispatch(
+        putProfile(currentUser.profile.id, {
+          bio: currentUser.profile.bio,
+          profile_image_url: currentUser.profile.profileImageUrl,
+          banner_image_url: data.url
+        })
+      );
+      setImageLoading(false);
+      setShowImgForm(false);
+      setProfileImage(null);
+      return data;
+    } else {
+      const data = await res.json();
+      setErrors([data.errors]);
+      setImageLoading(false);
     }
   };
 
@@ -50,32 +85,38 @@ const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) 
     setProfileImage(file);
   };
 
+  const updateBannerImage = e => {
+    const file = e.target.files[0];
+    console.log(file);
+    setBannerImage(file);
+  };
+
   return (
     <div className='update-img-form-opener'>
       <div
-        className='update-profile-img-btn'
-        onClick={() => setShowProfileImgForm(true)}
+        id='update-profile-img-btn'
+        onClick={() => setShowImgForm(true)}
       >
         <MdOutlinePhotoCamera size={18} />
       </div>
-      {showProfileImgForm && (
-        <Modal onClose={() => setShowProfileImgForm(false)}>
+      {showImgForm && (
+        <Modal onClose={() => setShowImgForm(false)}>
           <form
-            onSubmit={handleProfileImage}
+            onSubmit={formType === 'profileImg' ? handleProfileImage : handleBannerImage}
             id='update-profile-img-form'
             className='img-upload-form-container'
           >
             <div className='post-form-header-container'>
-              <div className='post-form-header-text'>Edit your photo</div>
+              <div className='post-form-header-text'>Edit your {formType === "profileImg" ? 'profile' : 'banner'} photo</div>
               <div
                 className='post-form-header-close-btn'
-                onClick={() => setShowProfileImgForm(false)}
+                onClick={() => setShowImgForm(false)}
               >
                 <MdOutlineClose size={28} />
               </div>
             </div>
 
-            {profileImageLoading ? (
+            {imageLoading ? (
               <div className='img-upload-form-body'>
                 <LoadingWheel />
               </div>
@@ -96,14 +137,14 @@ const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) 
                   id='post-photo-upload'
                   type='file'
                   accept='image/*'
-                  onChange={updateProfileImage}
+                  onChange={formType === 'profileImg' ? updateProfileImage : updateBannerImage}
                 />
               </div>
             )}
             <div className='upload-img-form-btns'>
               <button
                 className='is-private-back-btn'
-                onClick={() => setShowProfileImgForm(false)}
+                onClick={() => setShowImgForm(false)}
                 type='button'
               >
                 Back
@@ -111,7 +152,7 @@ const UpdateImgForm = ({ formType, showProfileImgForm, setShowProfileImgForm }) 
               {profileImage ? (
                 <button
                   className='is-private-save-btn-blue'
-                  onClick={handleProfileImage}
+                  onClick={formType === 'profileImg' ? handleProfileImage : handleBannerImage}
                 >
                   Done
                 </button>

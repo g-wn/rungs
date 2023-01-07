@@ -8,17 +8,8 @@ import UpdateImgForm from './UpdateImgForm';
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);
   const network = useSelector(state => state.network);
-  const [showProfileImgForm, setShowProfileImgForm] = useState(false);
-  const [showBannerImgForm, setShowBannerImgForm] = useState(false);
-  const [bannerImage, setBannerImage] = useState(null);
-  const [bannerImageLoading, setBannerImageLoading] = useState(false);
+  const [showImgForm, setShowImgForm] = useState(false);
   // const [errors, setErrors] = useState([]);
-
-  const updateBannerImage = e => {
-    const file = e.target.files[0];
-    console.log(file);
-    setBannerImage(file);
-  };
 
   return (
     <div className='profile-card-container'>
@@ -28,25 +19,18 @@ const ProfileCard = () => {
           alt='Banner Img'
           className='profile-card-banner'
         />
-        <label
-          id='update-banner-img-btn'
-          htmlFor='update-banner-img-btn-hidden'
-        >
-          <MdOutlinePhotoCamera size={18} />
-        </label>
-        <input
-          accept='image/*'
-          id='update-banner-img-btn-hidden'
-          onChange={updateBannerImage}
-          type='file'
+        <UpdateImgForm
+          formType={'bannerImg'}
+          setShowImgForm={setShowImgForm}
+          showImgForm={showImgForm}
         />
       </div>
       <div className='profile-card-profile-img-container'>
         <div className='update-profile-img-btn-container'>
           <UpdateImgForm
             formType={'profileImg'}
-            setShowProfileImgForm={setShowProfileImgForm}
-            showProfileImgForm={showProfileImgForm}
+            setShowImgForm={setShowImgForm}
+            showImgForm={showImgForm}
           />
           <NavLink
             to={`/users/${currentUser.id}`}
