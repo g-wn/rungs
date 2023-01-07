@@ -41,9 +41,9 @@ class SignUpForm(FlaskForm):
         validators=[
             DataRequired("Please enter a first name."),
             Length(
-                min=3,
+                min=2,
                 max=50,
-                message="Please enter a first name between 3 and 50 characters.",
+                message="Please enter a first name between 2 and 50 characters.",
             ),
         ],
     )
@@ -52,13 +52,21 @@ class SignUpForm(FlaskForm):
         validators=[
             DataRequired("Please enter a last name."),
             Length(
-                min=3,
+                min=2,
                 max=50,
-                message="Please enter a last name between 3 and 50 characters.",
+                message="Please enter a last name between 2 and 50 characters.",
             ),
         ],
     )
     username = StringField(
         "username",
-        validators=[DataRequired("Please enter a username."), username_exists],
+        validators=[
+            DataRequired("Please enter a username."),
+            Length(
+                min=3,
+                max=10,
+                message="Please choose a username between 3 and 10 characters",
+            ),
+            username_exists,
+        ],
     )
