@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './SingleChat.css';
 
-const SingleChat = ({ room, socket }) => {
+const SingleChat = ({ chat, socket }) => {
   const currentUser = useSelector(state => state.session.user);
+  const room = chat.id
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
 

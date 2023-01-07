@@ -9,6 +9,7 @@ import { ReactComponent as Logo } from '../../assets/rungs_icon.svg';
 import { getConnections, getFollowers, getFollowing } from '../../store/network';
 import { getUsers } from '../../store/users';
 import { getPosts } from '../../store/posts';
+import { getChats } from '../../store/chats';
 import ProfileDropdown from './ProfileDropdown';
 import NotiDropdown from './NotiDropdown';
 import SearchBar from './SearchBar';
@@ -56,6 +57,7 @@ const NavBar = () => {
     dispatch(getFollowing(currentUser.id));
     dispatch(getPosts());
     dispatch(getUsers());
+    dispatch(getChats())
   }, [dispatch, currentUser.id]);
 
   const onSearchSubmit = async searchQuery => {
