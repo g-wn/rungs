@@ -27,6 +27,7 @@
 .messaging-chat-conversations {
     border-bottom-left-radius: 0.6em;
     border-top-left-radius: 0.6em;
+    overflow: auto;
     width: 40%;
 }
 

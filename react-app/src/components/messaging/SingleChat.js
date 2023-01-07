@@ -72,6 +72,7 @@ const SingleChat = ({ chat, socket }) => {
             </div>
           </div>
         ))}
+        <div className="hello"></div>
       </div>
       <form
         onSubmit={sendChat}

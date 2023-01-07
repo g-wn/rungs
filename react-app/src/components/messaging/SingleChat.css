@@ -10,10 +10,11 @@
     width: 100%;
 }
 
-.chat-input > input {
+.chat-input>input {
     flex-grow: 4;
 }
-.chat-input > button {
+
+.chat-input>button {
     flex-grow: 1;
 }
 
@@ -26,6 +27,16 @@
 .chat-msg-display {
     overflow: auto;
     height: 100%;
+}
+
+.chat-msg-display * {
+    overflow-anchor: none;
+}
+
+.hello {
+    overflow-anchor: auto;
+    height: 1px;
+    width: 100%;
 }
 
 .chat-msg-img {
