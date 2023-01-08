@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import TimeAgo from 'react-timeago';
 import { BiWorld, BiPlus } from 'react-icons/bi';
 import { MdPeopleAlt } from 'react-icons/md';
 import { SlLike } from 'react-icons/sl';
-import { postFollow } from '../../store/network';
 import { Modal } from '../../context/Modal';
+import { postFollow } from '../../store/network';
+import { deleteLike, postLike } from '../../store/posts';
+import TimeAgo from 'react-timeago';
 import PostOptions from './PostOptions';
 import PostForm from '../feed/postForm/PostForm';
 import './Posts.css';
-import { deleteLike, postLike } from '../../store/posts';
 
 const Post = ({ post, currentUser }) => {
   const dispatch = useDispatch();

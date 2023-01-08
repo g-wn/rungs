@@ -1,3 +1,4 @@
+import { UPDATE_PROFILE } from './session';
 /* ---------------------- ACTION CREATORS ---------------------- */
 
 const LOAD_POSTS = 'posts/LOAD_POSTS';
@@ -151,6 +152,7 @@ export const deleteLike = postId => async dispatch => {
 const initialState = {};
 
 const postsReducer = (state = initialState, action) => {
+  const newState = { ...state };
   switch (action.type) {
     case LOAD_POSTS: {
       return { ...action.posts };
@@ -165,7 +167,6 @@ const postsReducer = (state = initialState, action) => {
       return { ...state, [action.post.id]: action.post };
     }
     case REMOVE_POST: {
-      const newState = { ...state };
       delete newState[action.postId];
       return newState;
     }
@@ -174,6 +175,12 @@ const postsReducer = (state = initialState, action) => {
     }
     case REMOVE_LIKE: {
       return { ...state, [action.post.id]: action.post };
+    }
+    case UPDATE_PROFILE: {
+      for (let post of Object.values(newState).filter(post => post.ownerId === action.profile.userId)) {
+        post.owner.profile = action.profile;
+      }
+      return newState;
     }
     default:
       return state;
