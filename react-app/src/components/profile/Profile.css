@@ -23,8 +23,21 @@
 .follower-following-modal-body {
     display: grid;
     gap: 1em;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
     padding: 1em;
+    width: 100%;
+}
+
+.follower-following-modal-body > a {
+    border-radius: 0.6em;
+    color: var(--global-saturateds-text-color);
+    text-decoration: none;
+    min-width: 50%;
+    transition: background-color 0.167s ease-in-out;
+}
+
+.follower-following-modal-body>a:hover {
+    background-color: var(--global-button-hover-color);
 }
 
 .contact-modal-body > h2{

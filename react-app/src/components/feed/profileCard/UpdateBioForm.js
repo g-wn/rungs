@@ -11,7 +11,6 @@ const UpdateBioForm = ({ showBioForm, setShowBioForm, profileBio }) => {
   const [bio, setBio] = useState(profileBio ? profileBio : '');
   const [errors, setErrors] = useState([]);
 
-  console.log('BIO!!', bio.length);
 
   const handleBioUpdate = async e => {
     e.preventDefault();
