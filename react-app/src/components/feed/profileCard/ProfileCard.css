@@ -130,6 +130,47 @@
     position: relative;
 }
 
+.update-bio-btn {
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    padding: 3px;
+    transition: background-color 0.167s ease-in-out;
+    width: 20px;
+}
+
+.update-bio-btn:hover {
+    background-color: var(--global-button-hover-color);
+}
+
+.bio-spacer {
+    width: 2em;
+}
+
+.update-bio-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.no-current-bio {
+    cursor: pointer;
+}
+
+.update-bio-input {
+    border: none;
+    height: 100%;
+    padding: 1em;
+    resize: none;
+    width: 100%;
+}
+
+.update-bio-input:focus {
+    outline: none;
+}
+
 #update-profile-img-btn,
 #update-banner-img-btn {
     align-items: center;

@@ -119,6 +119,9 @@
 }
 
 .user-profile-details-header {
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
     height: 144px;
 }
 
