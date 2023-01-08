@@ -2,19 +2,20 @@ import { useState, useEffect } from 'react';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearchSubmit, clearResults }) => {
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  // const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    if (!searchQuery == '') {
+    if (searchQuery !== '') {
       onSearchSubmit(searchQuery);
     } else {
       clearResults();
     }
-  }, [searchQuery]);
+  }, [searchQuery]); // eslint-disable-line
 
   return (
     <input
+      autoComplete='off'
       className='nav-search-input'
       id='nav-search-input'
       onChange={e => setSearchQuery(e.target.value)}

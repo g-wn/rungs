@@ -21,8 +21,8 @@ const NavBar = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const currentUser = useSelector(state => state.session.user);
-  const network = useSelector(state => state.network);
-  const users = useSelector(state => state.users);
+  const network = useSelector(state => state.network); // eslint-disable-line
+  const users = useSelector(state => state.users); // eslint-disable-line
 
   const openSearch = () => {
     if (showSearchBar) return;
@@ -96,12 +96,19 @@ const NavBar = () => {
           {searchResults.length > 0 && showSearchBar && (
             <div className='search-results'>
               {searchResults.map((user, idx) => (
-                <FollowerFollowing
+                <NavLink
+                  activeClassName=''
+                  className='individual-search-result'
                   key={idx}
-                  user={user}
-                  setModal={setShowSearchBar}
-                  search={true}
-                />
+                  onClick={() => setSearchResults([])}
+                  to={`/users/${user.id}`}
+                >
+                  <FollowerFollowing
+                    user={user}
+                    setModal={setShowSearchBar}
+                    search={true}
+                  />
+                </NavLink>
               ))}
             </div>
           )}
