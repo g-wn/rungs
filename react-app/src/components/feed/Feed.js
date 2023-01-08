@@ -21,7 +21,7 @@ const Feed = () => {
     dispatch(getPosts());
 
     // Set a 0.75s timer to give time for the fetch while displaying a loading dial.
-    const loadingTimer = setTimeout(() => setIsLoaded(true), 750);
+    const loadingTimer = setTimeout(() => setIsLoaded(true), 500);
     return () => clearTimeout(loadingTimer);
   }, [dispatch]);
 
@@ -41,7 +41,7 @@ const Feed = () => {
           ))}
         </div>
       ) : (
-        <LoadingWheel />
+        <LoadingWheel className='feed-right' />
       )}
     </div>
   );

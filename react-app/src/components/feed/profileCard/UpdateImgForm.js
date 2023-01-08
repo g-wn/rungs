@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { putProfile } from '../../../store/session';
 import { Modal } from '../../../context/Modal';
-import { MdOutlinePhotoCamera, MdOutlineClose } from 'react-icons/md';
+import { MdOutlineClose } from 'react-icons/md';
 import LoadingWheel from '../../loadingWheel/LoadingWheel';
 
 const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-
-  console.log(formType)
 
   const [profileImage, setProfileImage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
@@ -51,7 +49,7 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
   const handleBannerImage = async e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', profileImage);
+    formData.append('image', bannerImage);
 
     setImageLoading(true);
 
@@ -87,18 +85,11 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
 
   const updateBannerImage = e => {
     const file = e.target.files[0];
-    console.log(file);
     setBannerImage(file);
   };
 
   return (
-    <div className='update-img-form-opener'>
-      <div
-        id='update-profile-img-btn'
-        onClick={() => setShowImgForm(true)}
-      >
-        <MdOutlinePhotoCamera size={18} />
-      </div>
+    <>
       {showImgForm && (
         <Modal onClose={() => setShowImgForm(false)}>
           <form
@@ -107,7 +98,9 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
             className='img-upload-form-container'
           >
             <div className='post-form-header-container'>
-              <div className='post-form-header-text'>Edit your {formType === "profileImg" ? 'profile' : 'banner'} photo</div>
+              <div className='post-form-header-text'>
+                Edit your {formType === 'profileImg' ? 'profile' : 'banner'} photo
+              </div>
               <div
                 className='post-form-header-close-btn'
                 onClick={() => setShowImgForm(false)}
@@ -131,7 +124,7 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
                   className='post-photo-upload'
                   htmlFor='post-photo-upload'
                 >
-                  Select images to share
+                  Select image to share
                 </label>
                 <input
                   id='post-photo-upload'
@@ -149,7 +142,7 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
               >
                 Back
               </button>
-              {profileImage ? (
+              {profileImage || bannerImage ? (
                 <button
                   className='is-private-save-btn-blue'
                   onClick={formType === 'profileImg' ? handleProfileImage : handleBannerImage}
@@ -168,7 +161,7 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
           </form>
         </Modal>
       )}
-    </div>
+    </>
   );
 };
 

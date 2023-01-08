@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
-import './ProfileCard.css';
-import { useEffect, useState } from 'react';
 import UpdateImgForm from './UpdateImgForm';
+import './ProfileCard.css';
 
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);
   const network = useSelector(state => state.network);
-  const [showImgForm, setShowImgForm] = useState(false);
-  // const [errors, setErrors] = useState([]);
+  const [showProfileImgForm, setShowProfileImgForm] = useState(false);
+  const [showBannerImgForm, setShowBannerImgForm] = useState(false);
 
   return (
     <div className='profile-card-container'>
@@ -19,19 +19,27 @@ const ProfileCard = () => {
           alt='Banner Img'
           className='profile-card-banner'
         />
-        <UpdateImgForm
-          formType={'bannerImg'}
-          setShowImgForm={setShowImgForm}
-          showImgForm={showImgForm}
-        />
+        <div className='update-img-form-opener'>
+          <div
+            id='update-banner-img-btn'
+            onClick={() => setShowBannerImgForm(true)}
+          >
+            <MdOutlinePhotoCamera size={18} />
+          </div>
+          {showBannerImgForm && (
+            <UpdateImgForm
+              formType='bannerImg'
+              showImgForm={showBannerImgForm}
+              setShowImgForm={setShowBannerImgForm}
+            />
+          )}
+        </div>
       </div>
+
       <div className='profile-card-profile-img-container'>
         <div className='update-profile-img-btn-container'>
-          <UpdateImgForm
-            formType={'profileImg'}
-            setShowImgForm={setShowImgForm}
-            showImgForm={showImgForm}
-          />
+          <div className='update-img-form-opener'>
+          </div>
           <NavLink
             to={`/users/${currentUser.id}`}
             className='profile-card-profile-img'
@@ -41,6 +49,19 @@ const ProfileCard = () => {
               alt='Profile Img'
             />
           </NavLink>
+            <div
+              id='update-profile-img-btn'
+              onClick={() => setShowProfileImgForm(true)}
+            >
+              <MdOutlinePhotoCamera size={18} />
+            </div>
+            {showProfileImgForm && (
+              <UpdateImgForm
+                formType='profileImg'
+                showImgForm={showProfileImgForm}
+                setShowImgForm={setShowProfileImgForm}
+              />
+            )}
         </div>
       </div>
       <div className='profile-card-body'>

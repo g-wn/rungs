@@ -15,9 +15,8 @@
     position: absolute;
     top: 3.6em;
     left: 0;
-    z-index: 2;
     width: 552px;
-
+    z-index: 2;
 }
 
 .notifications-flag {
@@ -33,4 +32,12 @@
     position: absolute;
     top: 0;
     right: 2.5em;
+}
+
+@media screen and (max-width: 844px) {
+    .notifications-container {
+        margin: 0 auto;
+        max-width: 450px;
+        min-width: 203px;
+    }
 }

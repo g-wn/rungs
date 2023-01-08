@@ -28,13 +28,16 @@
     height: 25px;
     justify-content: center;
     object-position: center;
-    overflow: hidden;
     width: 25px;
 }
 
 .nav-bar-drop-down-icon>img {
-    max-height: 100%;
-    max-width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    width: 100%;
 }
 
 .nav-bar-drop-down-text {
@@ -93,13 +96,16 @@
     height: 55px;
     margin-right: 1em;
     object-position: center;
-    overflow: hidden;
     width: 55px;
 }
 
 .profile-drop-header-user-img>img {
-    max-height: 100%;
-    max-width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    width: 100%;
 }
 
 .profile-drop-header-user-name {

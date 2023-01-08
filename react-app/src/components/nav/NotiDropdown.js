@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { IoMdNotifications } from 'react-icons/io';
 
-import './NotiDropdown.css';
 import SingleConnectionCard from '../myNetwork/singleConnection/SingleConnectionCard';
+import './NotiDropdown.css';
 
 const NotiDropdown = () => {
   const [showNotiDrop, setShowNotiDrop] = useState(false);
