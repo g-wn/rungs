@@ -10,7 +10,6 @@ profile_routes = Blueprint("profiles", __name__)
 
 # UPDATE USER PROFILE BY PROFILE ID:
 @profile_routes.route("/<int:profile_id>", methods=["PUT"])
-@login_required
 def update_profile(profile_id):
     """
     Query to update information in a user's profile.
