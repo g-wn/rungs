@@ -37,7 +37,6 @@ def upgrade():
         sa.Column(
             "bio",
             sa.String(),
-            server_default="Click here to add a bio...",
             nullable=True,
         ),
         sa.ForeignKeyConstraint(

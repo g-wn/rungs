@@ -179,7 +179,7 @@
 #update-banner-img-btn {
     align-items: center;
     border-radius: 50%;
-    color: var(--global-card-background-color);
+    color: var(--global-faded-text-color);
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -194,7 +194,7 @@
 #update-banner-img-btn:hover {
     background-color: var(--global-button-hover-color);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
-    color: var(--global-saturated-text-color);
+    color: var(--global-saturated-blue);
 }
 
 .update-profile-img-btn-container {

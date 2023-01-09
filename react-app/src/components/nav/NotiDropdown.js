@@ -30,7 +30,7 @@ const NotiDropdown = () => {
       setShowNotiDrop(false);
     };
 
-    document.addEventListener('click', closeDrop);
+    document.addEventListener('click', closeDrop, false);
 
     return () => document.removeEventListener('click', closeDrop);
   }, [showNotiDrop]);
@@ -51,20 +51,20 @@ const NotiDropdown = () => {
         <div className='nav-notifications-text'>Notifications</div>
       </div>
       {showNotiDrop && (
-        <div className='notifications-container'>
-          {requests.length > 0
-            ? requests.map((user, idx) => (
-                <SingleConnectionCard
-                  user={user}
-                  invitation={true}
-                  key={idx}
-                />
-              ))
-            : (
-              <div className="no-notis-text">
-                No notifications, you're all caught up!
-              </div>
-            )}
+        <div
+          className='notifications-container'
+        >
+          {requests.length > 0 ? (
+            requests.map((user, idx) => (
+              <SingleConnectionCard
+                user={user}
+                invitation={true}
+                key={idx}
+              />
+            ))
+          ) : (
+            <div className='no-notis-text'>No notifications, you're all caught up!</div>
+          )}
         </div>
       )}
     </div>
