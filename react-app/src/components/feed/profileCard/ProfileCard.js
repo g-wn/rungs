@@ -76,7 +76,7 @@ const ProfileCard = () => {
             {currentUser.profile.bio ? (
               <div className='update-bio-btn-container'>
                 <div className='bio-spacer'></div>
-                <div>{currentUser.profile.bio}</div>
+                <div className='profile-card-bio'>{currentUser.profile.bio}</div>
                 <CiEdit
                   className='update-bio-btn'
                   onClick={() => setShowEditBioForm(true)}
