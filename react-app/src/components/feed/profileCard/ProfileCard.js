@@ -96,12 +96,14 @@ const ProfileCard = () => {
             <UpdateBioForm
               showBioForm={showAddBioForm}
               setShowBioForm={setShowAddBioForm}
+              user={currentUser}
             />
           ) : (
             <UpdateBioForm
               showBioForm={showEditBioForm}
               setShowBioForm={setShowEditBioForm}
               profileBio={currentUser.profile.bio}
+              user={currentUser}
             />
           )}
         </div>
