@@ -102,7 +102,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
             onChange={e => setBody(e.target.value)}
           ></textarea>
         </div>
-        {imageUrl && (
+        {!showIsPrivateModal && imageUrl && (
           <div className='uploaded-image-container'>
             <img
               src={imageUrl}
