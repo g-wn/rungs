@@ -16,7 +16,7 @@ class Profile(db.Model):
         nullable=True,
         server_default="https://static.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq",
     )
-    bio = db.Column(db.String(), server_default="Click here to add a bio...")
+    bio = db.Column(db.String())
 
     # RELATIONSHIPS:
 

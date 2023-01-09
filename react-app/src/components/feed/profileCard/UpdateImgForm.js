@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { putProfile } from '../../../store/session';
+import { putProfileImages } from '../../../store/session';
 import { Modal } from '../../../context/Modal';
 import { MdOutlineClose } from 'react-icons/md';
 import LoadingWheel from '../../loadingWheel/LoadingWheel';
@@ -29,8 +29,7 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
     if (res.ok) {
       const data = await res.json();
       await dispatch(
-        putProfile(currentUser.profile.id, {
-          bio: currentUser.profile.bio,
+        putProfileImages(currentUser.profile.id, {
           profile_image_url: data.url,
           banner_image_url: currentUser.profile.bannerImageUrl
         })
@@ -61,8 +60,7 @@ const UpdateImgForm = ({ formType, showImgForm, setShowImgForm }) => {
     if (res.ok) {
       const data = await res.json();
       await dispatch(
-        putProfile(currentUser.profile.id, {
-          bio: currentUser.profile.bio,
+        putProfileImages(currentUser.profile.id, {
           profile_image_url: currentUser.profile.profileImageUrl,
           banner_image_url: data.url
         })

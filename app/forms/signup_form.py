@@ -33,7 +33,7 @@ class SignUpForm(FlaskForm):
         "password",
         validators=[
             DataRequired("Please enter a password."),
-            Length(min=6, message="Please enter a password greater than 6 characters."),
+            Length(min=7, message="Please enter a password greater than 6 characters."),
         ],
     )
     first_name = StringField(

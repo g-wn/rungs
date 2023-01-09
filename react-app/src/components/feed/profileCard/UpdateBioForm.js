@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import { MdOutlineClose } from 'react-icons/md';
-import { putProfile } from '../../../store/session';
+import { putProfileBio } from '../../../store/session';
 
 const UpdateBioForm = ({ showBioForm, setShowBioForm, profileBio }) => {
   const dispatch = useDispatch();
@@ -16,10 +16,8 @@ const UpdateBioForm = ({ showBioForm, setShowBioForm, profileBio }) => {
     e.preventDefault();
 
     const updatedProfile = await dispatch(
-      putProfile(currentUser.profile.id, {
+      putProfileBio(currentUser.profile.id, {
         bio: bio.trim(),
-        profile_image_url: currentUser.profile.profileImageUrl,
-        banner_image_url: currentUser.profile.bannerImageUrl
       })
     );
 

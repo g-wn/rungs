@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import UpdateImgForm from './UpdateImgForm';
-import './ProfileCard.css';
 import UpdateBioForm from './UpdateBioForm';
+import './ProfileCard.css';
 
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);

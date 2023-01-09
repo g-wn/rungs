@@ -5,7 +5,8 @@ import { UNFOLLOW_USER } from './network';
 
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-export const UPDATE_PROFILE = 'session/UPDATE_USER_PROFILE';
+export const UPDATE_PROFILE_IMAGES = 'session/UPDATE_PROFILE_IMG/BANNER';
+export const UPDATE_PROFILE__BIO = 'session/UPDATE_PROFILE_BIO';
 
 export const setUser = user => ({
   type: SET_USER,
@@ -16,8 +17,13 @@ const removeUser = () => ({
   type: REMOVE_USER
 });
 
-const updateProfile = profile => ({
-  type: UPDATE_PROFILE,
+const updateProfileImages = profile => ({
+  type: UPDATE_PROFILE_IMAGES,
+  profile
+});
+
+const updateProfileBio = profile => ({
+  type: UPDATE_PROFILE__BIO,
   profile
 });
 
@@ -108,9 +114,9 @@ export const signUp = (first_name, last_name, username, email, password) => asyn
   }
 };
 
-// UPDATE A USER'S PROFILE:
-export const putProfile = (profileId, payload) => async dispatch => {
-  const res = await fetch(`/api/profiles/${profileId}`, {
+// UPDATE A USER'S PROFILE/BANNER IMAGE:
+export const putProfileImages = (profileId, payload) => async dispatch => {
+  const res = await fetch(`/api/profiles/${profileId}/image`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -118,7 +124,23 @@ export const putProfile = (profileId, payload) => async dispatch => {
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(updateProfile(data));
+    dispatch(updateProfileImages(data));
+    return data;
+  }
+  return await res.json();
+};
+
+// UPDATE A USER'S PROFILE BIO:
+export const putProfileBio = (profileId, payload) => async dispatch => {
+  const res = await fetch(`/api/profiles/${profileId}/bio`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(updateProfileBio(data));
     return data;
   }
   return await res.json();
@@ -134,7 +156,11 @@ export default function reducer(state = initialState, action) {
     case SET_USER: {
       return { user: action.payload };
     }
-    case UPDATE_PROFILE: {
+    case UPDATE_PROFILE_IMAGES: {
+      newState.user.profile = action.profile;
+      return newState;
+    }
+    case UPDATE_PROFILE__BIO: {
       newState.user.profile = action.profile;
       return newState;
     }
