@@ -43,12 +43,14 @@ const Profile = () => {
           className='user-profile-details-header'
           style={{ backgroundImage: `url("${user.profile.bannerImageUrl}")` }}
         >
-          <div
-            id='update-banner-img-btn-profile-page'
-            onClick={() => setShowBannerImgForm(true)}
-          >
-            <MdOutlinePhotoCamera size={25} />
-          </div>
+          {+currentUser.id === +userId && (
+            <div
+              id='update-banner-img-btn-profile-page'
+              onClick={() => setShowBannerImgForm(true)}
+            >
+              <MdOutlinePhotoCamera size={25} />
+            </div>
+          )}
           {showBannerImgForm && (
             <UpdateImgForm
               formType='bannerImg'
@@ -83,37 +85,43 @@ const Profile = () => {
             {user.firstName} {user.lastName}
           </p>
           <div className='user-profile-bio'>
-            <div className='bio'>
-              {currentUser.profile.bio ? (
-                <div className='update-bio-btn-container-profile-page'>
-                  <div className='profile-card-bio-profile-page'>{currentUser.profile.bio}</div>
-                  <CiEdit
-                    className='update-bio-btn-profile-page'
-                    onClick={() => setShowEditBioForm(true)}
-                    size={18}
+            {+currentUser.id === +userId ? (
+              <div className='bio'>
+                {user.profile.bio ? (
+                  <div className='update-bio-btn-container-profile-page'>
+                    <div className='profile-card-bio-profile-page'>{user.profile.bio}</div>
+                    <CiEdit
+                      className='update-bio-btn-profile-page'
+                      onClick={() => setShowEditBioForm(true)}
+                      size={18}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => setShowAddBioForm(true)}
+                    className='no-current-bio'
+                  >
+                    Click here to add a bio...
+                  </div>
+                )}
+                {showAddBioForm ? (
+                  <UpdateBioForm
+                    showBioForm={showAddBioForm}
+                    setShowBioForm={setShowAddBioForm}
+                    user={user}
                   />
-                </div>
-              ) : (
-                <div
-                  onClick={() => setShowAddBioForm(true)}
-                  className='no-current-bio'
-                >
-                  Click here to add a bio...
-                </div>
-              )}
-              {showAddBioForm ? (
-                <UpdateBioForm
-                  showBioForm={showAddBioForm}
-                  setShowBioForm={setShowAddBioForm}
-                />
-              ) : (
-                <UpdateBioForm
-                  showBioForm={showEditBioForm}
-                  setShowBioForm={setShowEditBioForm}
-                  profileBio={currentUser.profile.bio}
-                />
-              )}
-            </div>
+                ) : (
+                  <UpdateBioForm
+                    showBioForm={showEditBioForm}
+                    setShowBioForm={setShowEditBioForm}
+                    profileBio={user.profile.bio}
+                    user={user}
+                  />
+                )}
+              </div>
+            ) : (
+              <div className='profile-card-bio-profile-page'>{user.profile.bio}</div>
+            )}
             <span
               className='contact-info'
               onClick={() => setShowContactModal(true)}
