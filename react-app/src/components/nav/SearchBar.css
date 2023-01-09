@@ -6,8 +6,14 @@
     height: 77%;
     left: 10.5em;
     top: 6px;
-    width: 75%;
+    width: 60%;
     z-index: 1;
+}
+
+@media screen and (max-width: 844px) {
+    .nav-search-input {
+        width: 50%;
+    }
 }
 
 .search-results {
