@@ -67,7 +67,7 @@ const ImgUploadForm = ({ setImageUrl, setShowPostForm, setShowUploadImgModal }) 
             className='post-photo-upload'
             htmlFor='post-photo-upload'
           >
-            Select images to share
+            Select image to share
           </label>
           <input
             id='post-photo-upload'

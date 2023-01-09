@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/rungs_icon_full.svg';
+import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import LoginForm from '../auth/LoginForm';
 import './Landing.css';
 
@@ -19,6 +20,22 @@ const Landing = () => {
             <Logo className='landing-nav-icon' />
           </div>
           <div className='landing-nav-btns'>
+            <div className='landing-nav-links'>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://www.linkedin.com/in/gray-nance/'
+              >
+                <AiFillLinkedin size={25} />
+              </a>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://github.com/g-wn'
+              >
+                <AiFillGithub size={25} />
+              </a>
+            </div>
             <NavLink
               className='landing-nav-signup-btn'
               to='/sign-up'
@@ -34,6 +51,7 @@ const Landing = () => {
           </div>
         </nav>
       </div>
+
       <div className='landing-section-one-container'>
         <div className='landing-section-one-content'>
           <div className='landing-section-one-left-container'>
@@ -51,6 +69,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
+
       <div className='landing-section-two-container'>
         <div className='landing-section-two-content'>
           <p>Join your colleagues, classmates, and friends on Rungs.</p>
@@ -62,7 +81,32 @@ const Landing = () => {
           </NavLink>
         </div>
       </div>
-      <footer className='landing-footer'>FOOTER</footer>
+
+      <footer className='landing-footer'>
+        <div className='footer-logo'>
+          <Logo />
+        </div>
+        <div className='footer-copywrite'>&copy; 2023</div>
+        <div className='footer-about'>
+          <div>This clone of Linkedin was created by Gray Nance:</div>
+          <div className='footer-links'>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              href='https://www.linkedin.com/in/gray-nance/'
+            >
+              <AiFillLinkedin size={15} />
+            </a>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              href='https://github.com/g-wn'
+            >
+              <AiFillGithub size={15} />
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

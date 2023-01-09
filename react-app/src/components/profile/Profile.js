@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postFollow } from '../../store/network';
 import { Modal } from '../../context/Modal';
@@ -120,11 +120,16 @@ function Profile() {
                     {Object.values(user.followers).length > 0 ? (
                       <div className='follower-following-modal-body'>
                         {Object.keys(user.followers).map((id, idx) => (
-                          <FollowerFollowing
-                            user={users[id]}
-                            setModal={setShowFollowersModal}
+                          <NavLink
+                            className='follower-following-link'
                             key={idx}
-                          />
+                            to={`/users/${users[id].id}`}
+                          >
+                            <FollowerFollowing
+                              user={users[id]}
+                              setModal={setShowFollowersModal}
+                            />
+                          </NavLink>
                         ))}
                       </div>
                     ) : (
@@ -155,11 +160,16 @@ function Profile() {
                     {Object.keys(user.following).length > 0 ? (
                       <div className='follower-following-modal-body'>
                         {Object.keys(user.following).map((id, idx) => (
-                          <FollowerFollowing
-                            user={users[id]}
-                            setModal={setShowFollowingModal}
+                          <NavLink
+                          activeClassName=''
                             key={idx}
-                          />
+                            to={`/users/${users[id].id}`}
+                          >
+                            <FollowerFollowing
+                              user={users[id]}
+                              setModal={setShowFollowingModal}
+                            />
+                          </NavLink>
                         ))}
                       </div>
                     ) : (

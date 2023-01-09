@@ -1,3 +1,14 @@
+.individual-search-result {
+    border-radius: 0.6em;
+    color: var(--global-saturated-text-color);
+    text-decoration: none;
+    transition: background-color 0.167s ease-in-out;
+}
+
+.individual-search-result:hover {
+    background-color: var(--global-button-hover-color)
+}
+
 .main-nav-bar {
     background-color: var(--global-card-background-color);
     border-bottom: 1px solid var(--global-faded-border-color);
@@ -20,6 +31,13 @@
 .nav-left {
     align-items: center;
     display: flex;
+    justify-content: center;
+}
+
+.nav-right {
+    align-items: center;
+    display: flex;
+    height: 100%;
     justify-content: center;
 }
 

@@ -12,6 +12,7 @@ from .api.post_routes import post_routes
 from .api.like_routes import like_routes
 from .api.network_routes import network_routes
 from .api.chat_routes import chat_routes
+from .api.profile_routes import profile_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -37,6 +38,7 @@ app.register_blueprint(post_routes, url_prefix="/api/posts")
 app.register_blueprint(like_routes, url_prefix="/api/likes")
 app.register_blueprint(network_routes, url_prefix="/api/network")
 app.register_blueprint(chat_routes, url_prefix="/api/chat")
+app.register_blueprint(profile_routes, url_prefix="/api/profiles")
 db.init_app(app)
 Migrate(app, db)
 socketio.init_app(app)

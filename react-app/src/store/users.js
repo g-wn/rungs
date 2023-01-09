@@ -1,5 +1,6 @@
 import { FOLLOW_USER } from './network';
 import { UNFOLLOW_USER } from './network';
+import { UPDATE_PROFILE } from './session';
 
 /* ---------------------- ACTION CREATORS ---------------------- */
 const LOAD_USERS = 'users/LOAD_USERS';
@@ -42,6 +43,9 @@ const usersReducer = (state = initialState, action) => {
       return newState;
     case UNFOLLOW_USER:
       delete newState[action.user.id].followers[action.currentUser.id];
+      return newState;
+    case UPDATE_PROFILE:
+      newState[action.profile.userId].profile = action.profile;
       return newState;
     default:
       return state;

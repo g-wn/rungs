@@ -65,9 +65,24 @@ def upload_image():
     """
     Query to upload an image for a post.
     """
+    print("""
+
+
+
+    <----------------- REQUEST.FILES --------------->
+
+
+    """, request.files)
     if "image" in request.files:
 
         image = request.files["image"]
+        print("""
+
+
+        <----------------- IMAGE --------------->
+
+
+        """, image)
 
         if not allowed_file(image.filename):
             return {
