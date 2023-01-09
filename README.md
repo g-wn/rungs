@@ -1,3 +1,7 @@
+  <a href="https://rungs.herokuapp.com" target="_blank">![rungs_icon_full](https://user-images.githubusercontent.com/98988710/211232988-60176a62-9326-4ee5-ae1a-8f367365cc95.png)</a>
+
+
+  
   <p align="center">
     <a href="https://rungs.herokuapp.com" target="_blank">- Check out the live site -</a>
   </p>
@@ -81,6 +85,8 @@ Upcoming features include:
 ## Site Preview:
 
 <br />
+
+  <a href="https://rungs.herokuapp.com" target="_blank">![rungs herokuapp com_](https://user-images.githubusercontent.com/98988710/211233061-587a65bf-21b0-46a2-a92d-79039ffc886c.png)</a>
 
 
 <br/>
