@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HiOutlinePhoto } from 'react-icons/hi2';
+import { HiOutlinePhoto } from 'react-icons/hi2'; // eslint-disable-line
 import { useSelector } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import PostForm from './PostForm';
