@@ -14,6 +14,7 @@ import NotiDropdown from './NotiDropdown';
 import SearchBar from './SearchBar';
 import './Nav.css';
 import FollowerFollowing from '../profile/FollowerFollowing';
+import AboutDropdown from './AboutDropdown';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -151,6 +152,7 @@ const NavBar = () => {
         </div>
         <div className='nav-right'>
           <ProfileDropdown />
+          <AboutDropdown />
         </div>
       </div>
     </nav>
