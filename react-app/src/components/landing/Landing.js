@@ -20,6 +20,22 @@ const Landing = () => {
             <Logo className='landing-nav-icon' />
           </div>
           <div className='landing-nav-btns'>
+            <div className='landing-nav-links'>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://www.linkedin.com/in/gray-nance/'
+              >
+                <AiFillLinkedin size={25} />
+              </a>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://github.com/g-wn'
+              >
+                <AiFillGithub size={25} />
+              </a>
+            </div>
             <NavLink
               className='landing-nav-signup-btn'
               to='/sign-up'
