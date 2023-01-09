@@ -2,7 +2,7 @@ from .db import db
 
 
 class Profile(db.Model):
-    __tablename__= "profiles"
+    __tablename__ = "profiles"
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
@@ -16,7 +16,7 @@ class Profile(db.Model):
         nullable=True,
         server_default="https://static.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq",
     )
-    bio = db.Column(db.String())
+    bio = db.Column(db.String(), server_default="Click here to add a bio...")
 
     # RELATIONSHIPS:
 
