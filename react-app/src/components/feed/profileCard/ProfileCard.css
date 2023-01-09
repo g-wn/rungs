@@ -28,6 +28,10 @@
     position: relative;
 }
 
+.profile-card-bio {
+    max-width: 75%;
+}
+
 .profile-card-body {
     align-items: center;
     border-bottom-right-radius: 0.6em;
