@@ -15,10 +15,21 @@ def update_profile(profile_id):
     Query to update information in a user's profile.
     """
     profile = Profile.query.get(profile_id)
+    print("""
+
+    INSIDE OF THE UPDATE_PROFILE FUNCTION, BEFORE VALIDATION!
+
+    """)
 
     form = ProfileForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+
+        print("""
+
+        INSIDE OF THE UPDATE_PROFILE FUNCTION, AFTER VALIDATION!
+
+        """)
         data = form.data
 
         setattr(profile, "profile_image_url", data["profile_image_url"])
@@ -27,4 +38,5 @@ def update_profile(profile_id):
 
         db.session.commit()
         return profile.to_dict()
+    print("errors", validation_errors_to_error_messages(form.errors))
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
