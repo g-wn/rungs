@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import UpdateImgForm from './UpdateImgForm';
-import './ProfileCard.css';
 import UpdateBioForm from './UpdateBioForm';
+import './ProfileCard.css';
 
 const ProfileCard = () => {
   const currentUser = useSelector(state => state.session.user);
@@ -96,12 +96,14 @@ const ProfileCard = () => {
             <UpdateBioForm
               showBioForm={showAddBioForm}
               setShowBioForm={setShowAddBioForm}
+              user={currentUser}
             />
           ) : (
             <UpdateBioForm
               showBioForm={showEditBioForm}
               setShowBioForm={setShowEditBioForm}
               profileBio={currentUser.profile.bio}
+              user={currentUser}
             />
           )}
         </div>

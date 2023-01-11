@@ -5,18 +5,27 @@ import { postFollow } from '../../store/network';
 import { Modal } from '../../context/Modal';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BsLinkedin } from 'react-icons/bs';
-import { MdOutlineClose } from 'react-icons/md';
+import { CiEdit } from 'react-icons/ci';
+import { MdOutlineClose, MdOutlinePhotoCamera } from 'react-icons/md';
 import FollowerFollowing from './FollowerFollowing';
+import UpdateImgForm from '../feed/profileCard/UpdateImgForm';
+import UpdateBioForm from '../feed/profileCard/UpdateBioForm';
 import MailTo from './MailTo';
 import Post from '../posts/Post';
 import './Profile.css';
 
-function Profile() {
+const Profile = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
+
   const [showContactModal, setShowContactModal] = useState(false);
   const [showFollowersModal, setShowFollowersModal] = useState(false);
   const [showFollowingModal, setShowFollowingModal] = useState(false);
+  const [showProfileImgForm, setShowProfileImgForm] = useState(false);
+  const [showBannerImgForm, setShowBannerImgForm] = useState(false);
+  const [showAddBioForm, setShowAddBioForm] = useState(false);
+  const [showEditBioForm, setShowEditBioForm] = useState(false);
+
   const currentUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.users);
   const user = users[userId];
@@ -33,19 +42,86 @@ function Profile() {
         <div
           className='user-profile-details-header'
           style={{ backgroundImage: `url("${user.profile.bannerImageUrl}")` }}
-        />
+        >
+          {+currentUser.id === +userId && (
+            <div
+              id='update-banner-img-btn-profile-page'
+              onClick={() => setShowBannerImgForm(true)}
+            >
+              <MdOutlinePhotoCamera size={25} />
+            </div>
+          )}
+          {showBannerImgForm && (
+            <UpdateImgForm
+              formType='bannerImg'
+              showImgForm={showBannerImgForm}
+              setShowImgForm={setShowBannerImgForm}
+            />
+          )}
+        </div>
         <div className='user-profile-profile-img'>
           <img
             src={user.profile?.profileImageUrl}
             alt='Profile Img'
           />
+          {+currentUser.id === +userId && (
+            <div
+              id='update-profile-img-btn-profile-page'
+              onClick={() => setShowProfileImgForm(true)}
+            >
+              <MdOutlinePhotoCamera size={25} />
+            </div>
+          )}
+          {showProfileImgForm && (
+            <UpdateImgForm
+              formType='profileImg'
+              showImgForm={showProfileImgForm}
+              setShowImgForm={setShowProfileImgForm}
+            />
+          )}
         </div>
         <div className='user-profile-user-details'>
           <p className='user-profile-names bold'>
             {user.firstName} {user.lastName}
           </p>
           <div className='user-profile-bio'>
-            <span className='bio'>{user.profile.bio}</span>
+            {+currentUser.id === +userId ? (
+              <div className='bio'>
+                {user.profile.bio ? (
+                  <div className='update-bio-btn-container-profile-page'>
+                    <div className='profile-card-bio-profile-page'>{user.profile.bio}</div>
+                    <CiEdit
+                      className='update-bio-btn-profile-page'
+                      onClick={() => setShowEditBioForm(true)}
+                      size={18}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => setShowAddBioForm(true)}
+                    className='no-current-bio'
+                  >
+                    Click here to add a bio...
+                  </div>
+                )}
+                {showAddBioForm ? (
+                  <UpdateBioForm
+                    showBioForm={showAddBioForm}
+                    setShowBioForm={setShowAddBioForm}
+                    user={user}
+                  />
+                ) : (
+                  <UpdateBioForm
+                    showBioForm={showEditBioForm}
+                    setShowBioForm={setShowEditBioForm}
+                    profileBio={user.profile.bio}
+                    user={user}
+                  />
+                )}
+              </div>
+            ) : (
+              <div className='profile-card-bio-profile-page'>{user.profile.bio}</div>
+            )}
             <span
               className='contact-info'
               onClick={() => setShowContactModal(true)}
@@ -161,7 +237,7 @@ function Profile() {
                       <div className='follower-following-modal-body'>
                         {Object.keys(user.following).map((id, idx) => (
                           <NavLink
-                          activeClassName=''
+                            activeClassName=''
                             key={idx}
                             to={`/users/${users[id].id}`}
                           >
@@ -207,5 +283,5 @@ function Profile() {
       </div>
     </div>
   );
-}
+};
 export default Profile;

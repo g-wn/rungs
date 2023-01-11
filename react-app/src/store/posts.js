@@ -1,4 +1,6 @@
-import { UPDATE_PROFILE } from './session';
+import { UPDATE_PROFILE_IMAGES } from './session';
+import { UPDATE_PROFILE__BIO } from './session';
+
 /* ---------------------- ACTION CREATORS ---------------------- */
 
 const LOAD_POSTS = 'posts/LOAD_POSTS';
@@ -176,7 +178,13 @@ const postsReducer = (state = initialState, action) => {
     case REMOVE_LIKE: {
       return { ...state, [action.post.id]: action.post };
     }
-    case UPDATE_PROFILE: {
+    case UPDATE_PROFILE_IMAGES: {
+      for (let post of Object.values(newState).filter(post => post.ownerId === action.profile.userId)) {
+        post.owner.profile = action.profile;
+      }
+      return newState;
+    }
+    case UPDATE_PROFILE__BIO: {
       for (let post of Object.values(newState).filter(post => post.ownerId === action.profile.userId)) {
         post.owner.profile = action.profile;
       }

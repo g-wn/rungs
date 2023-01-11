@@ -1,5 +1,5 @@
 .bio {
-    max-width: 50%;
+    width: 60%;
 }
 
 .contact-info {
@@ -28,7 +28,7 @@
     width: 100%;
 }
 
-.follower-following-modal-body > a {
+.follower-following-modal-body>a {
     border-radius: 0.6em;
     color: var(--global-saturateds-text-color);
     text-decoration: none;
@@ -40,7 +40,7 @@
     background-color: var(--global-button-hover-color);
 }
 
-.contact-modal-body > h2{
+.contact-modal-body>h2 {
     font-weight: 400;
 }
 
@@ -100,6 +100,30 @@
     text-decoration: underline;
 }
 
+.profile-card-bio-profile-page {
+    color: var(--global-faded-text-color);
+}
+
+.update-bio-btn-profile-page {
+    border-radius: 50%;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    height: 25px;
+    padding: 0.15em;
+    width: 25px;
+}
+
+.update-bio-btn-profile-page:hover {
+    background-color: var(--global-button-hover-color);
+    color: var(--global-saturated-blue);
+}
+
+.update-bio-btn-container-profile-page {
+    align-items: center;
+    display: flex;
+    gap: 1em;
+}
+
 .user-profile-bio {
     display: flex;
     justify-content: space-between;
@@ -134,8 +158,9 @@
 .user-profile-details-header {
     background-size: cover;
     background-position: center;
-    overflow: hidden;
     height: 144px;
+    overflow: hidden;
+    position: relative;
 }
 
 .user-profile-follow-btn {
@@ -173,10 +198,8 @@
 
 .user-profile-profile-img {
     background-color: var(--global-card-background-color);
-    border: 4px solid var(--global-card-background-color);
     border-radius: 50%;
     height: 160px;
-    overflow: hidden;
     position: absolute;
     top: 3em;
     left: 2em;
@@ -184,8 +207,35 @@
 }
 
 .user-profile-profile-img>img {
+    border: 4px solid var(--global-card-background-color);
+    border-radius: 50%;
+    overflow: hidden;
     height: 160px;
+    object-fit: cover;
+    object-position: center;
     width: 160px;
+}
+
+#update-profile-img-btn-profile-page,
+#update-banner-img-btn-profile-page {
+    align-items: center;
+    border-radius: 50%;
+    color: var(--global-faded-text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    transition: all 0.167s ease-in-out;
+}
+
+#update-profile-img-btn-profile-page:hover,
+#update-banner-img-btn-profile-page:hover {
+    background-color: var(--global-button-hover-color);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    color: var(--global-saturated-blue);
 }
 
 .user-profile-user-details {

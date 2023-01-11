@@ -53,6 +53,7 @@
     padding: 0.75em 1em;
     width: 150px;
     text-decoration: none;
+    text-align: center;
     transition: all 0.167s cubic-bezier(.4, 0, .2, 1);
 }
 

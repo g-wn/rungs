@@ -24,7 +24,7 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
     e.preventDefault();
     const newPost = await dispatch(
       postPost({
-        body,
+        body: body.trim(),
         image_url: imageUrl,
         private: isPrivate
       })
@@ -65,7 +65,10 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
       <div className='post-form-body-container'>
         <div className='post-form-body-user-details'>
           <div className='post-form-profile-img'>
-            <img src={currentUser.profile.profileImageUrl} alt="Profile Img" />
+            <img
+              src={currentUser.profile.profileImageUrl}
+              alt='Profile Img'
+            />
           </div>
           <div className='post-form-details'>
             <div className='post-form-user-name'>
@@ -93,12 +96,13 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
         </div>
         <div className={errors.length > 0 ? 'post-form-text-area-errors' : 'post-form-text-area'}>
           <textarea
+            id='post-text-area'
             placeholder='What do you want to talk about?'
             value={body}
             onChange={e => setBody(e.target.value)}
           ></textarea>
         </div>
-        {imageUrl && (
+        {!showIsPrivateModal && imageUrl && (
           <div className='uploaded-image-container'>
             <img
               src={imageUrl}
@@ -126,14 +130,21 @@ const PostForm = ({ setShowPostForm, formType, post }) => {
           </div>
           <div
             className='post-form-hashtag'
-            onClick={() => setBody(oldBody => oldBody + '#')}
+            onClick={() => {
+              setBody(oldBody => oldBody + ' #')
+              document.getElementById('post-text-area').focus()
+            }}
           >
             Add hashtag
           </div>
         </div>
       </div>
 
-      <div className={showIsPrivateModal || showUploadImgModal ? 'post-form-btns-container-hidden' : 'post-form-btns-container'}>
+      <div
+        className={
+          showIsPrivateModal || showUploadImgModal ? 'post-form-btns-container-hidden' : 'post-form-btns-container'
+        }
+      >
         <button
           className='post-form-photo-btn'
           onClick={() => setShowUploadImgModal(true)}
