@@ -56,9 +56,9 @@ const NavBar = () => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
     dispatch(getFollowing(currentUser.id));
+    dispatch(getChats())
     dispatch(getPosts());
     dispatch(getUsers());
-    dispatch(getChats())
   }, [dispatch, currentUser.id]);
 
   const onSearchSubmit = async searchQuery => {

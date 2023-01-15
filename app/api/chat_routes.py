@@ -16,7 +16,7 @@ def get_single_chat(chatId):
     """
     queried_chat = Chat.query.get(chatId)
 
-    return chat.to_dict()
+    return queried_chat.to_dict()
 
 
 # GET ALL CHATS OF CURRENT USER:

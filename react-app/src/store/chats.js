@@ -98,6 +98,9 @@ const chatsReducer = (state = initialState, action) => {
     case CREATE_CHAT: {
       return { ...state, [action.chat.id]: action.chat };
     }
+    case LOAD_CHAT: {
+      return { ...state, [action.chat.id]: action.chat };
+    }
     case SEND_MESSAGE: {
       const newState = { ...state };
       const chat = newState[action.message.chatId];

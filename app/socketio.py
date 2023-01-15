@@ -104,17 +104,16 @@ def on_leave(data):
 def handle_chat(data):
     if data["room"]:
         room = data["room"]
-    print(
-        """
-
-    MESSAGE DATA -------->
-
-    """,
-        data,
-    )
     emit("chat", data, broadcast=True, to=room)
+
 
 # Handle notifications:
 @socketio.on("notification")
 def notification(data):
-    print(data)
+    recipient = data["recipient"]
+    recipientSid = connected_users[recipient["firstName"]]["sid "]
+    print("""
+
+    RECIPIENT SID ----------->
+
+    """, recipientSid)

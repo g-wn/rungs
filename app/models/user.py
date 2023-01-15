@@ -43,6 +43,7 @@ class User(db.Model, UserMixin):
         secondary=connections,
         primaryjoin=id == connections.c.user_id_1,
         secondaryjoin=id == connections.c.user_id_2,
+        overlaps="followers",
     )
 
     # user_posts <---> post_owner

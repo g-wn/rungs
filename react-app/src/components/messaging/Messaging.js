@@ -1,18 +1,38 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getChats } from '../../store/chats';
+import { getChat, getChats } from '../../store/chats';
 import ChatSelector from './ChatSelector';
 import SingleChat from './SingleChat';
 import './Messaging.css';
 
 const Messaging = ({ socket }) => {
   const dispatch = useDispatch();
-  const chats = useSelector(state => Object.values(state.chats).reverse());
-  const [selectedChat, setSelectedChat] = useState(chats.length > 0 ? chats[0] : null);
+  const currentUser = useSelector(state => state.session.user);
+  const chats = useSelector(state => Object.values(state.chats));
+
+  chats.sort((a, b) => {
+    return (
+      a.messages.length && b.messages.length ? (
+        new Date(b.messages[b.messages.length - 1].createdAt) - new Date(a.messages[a.messages.length - 1].createdAt)
+      ) : (
+        new Date(b.createdAt) - new Date(a.createdAt)
+      )
+    );
+  });
+
+  const [selectedChat, setSelectedChat] = useState(null);
 
   useEffect(() => {
-    dispatch(getChats())
-  }, [dispatch])
+    dispatch(getChats());
+
+    const refreshChats = setInterval(() => dispatch(getChats()), 2000);
+    return () => clearInterval(refreshChats);
+  }, [dispatch]);
+
+  const setAndLoadChat = async chat => {
+    await dispatch(getChat(chat.id));
+    setSelectedChat(chat);
+  };
 
   return (
     <div className='messaging-page-container'>
@@ -23,7 +43,7 @@ const Messaging = ({ socket }) => {
             chats.map((chat, idx) => (
               <div
                 key={idx}
-                onClick={() => {setSelectedChat(chat)}}
+                onClick={() => setAndLoadChat(chat)}
               >
                 <ChatSelector chat={chat} />
               </div>
@@ -36,7 +56,10 @@ const Messaging = ({ socket }) => {
 
       <div className='messaging-chat-display'>
         <div className='chat-display-header bold'>
-          {selectedChat ? `${selectedChat.users[1].firstName} ${selectedChat.users[1].lastName}` : 'Select a Chat...'}
+          {selectedChat
+            ? `${selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].firstName}
+            ${selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].lastName}`
+            : 'Select a Chat...'}
         </div>
         <div className='chat-display-body'>
           {selectedChat && (

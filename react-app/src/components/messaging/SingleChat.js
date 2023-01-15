@@ -6,6 +6,7 @@ import './SingleChat.css';
 const SingleChat = ({ chat, socket }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const chatRecipient = chat.users.filter(user => user.id !== currentUser.id)[0];
   const chats = useSelector(state => state.chats);
   const [messages, setMessages] = useState(chats[chat.id].messages);
   const [chatInput, setChatInput] = useState('');
@@ -13,7 +14,7 @@ const SingleChat = ({ chat, socket }) => {
   useEffect(() => {
     dispatch(getChats());
     setMessages(chats[chat.id].messages);
-  }, [dispatch, chat.id]);  // eslint-disable-line
+  }, [dispatch, chat.id]); // eslint-disable-line
 
   // HANDLE JOIN AND LEAVE ROOM:
   useEffect(() => {
@@ -46,6 +47,10 @@ const SingleChat = ({ chat, socket }) => {
         body: chatInput,
         createdAt: newMessage.createdAt,
         room: chat.id
+      });
+
+      socket.emit('notification', {
+        recipient: chatRecipient
       });
 
       setChatInput('');
@@ -84,7 +89,10 @@ const SingleChat = ({ chat, socket }) => {
         onSubmit={sendChat}
         className='chat-form'
       >
-        <div id='chat-input' className='chat-input'>
+        <div
+          id='chat-input'
+          className='chat-input'
+        >
           <input
             onChange={e => setChatInput(e.target.value)}
             value={chatInput}
