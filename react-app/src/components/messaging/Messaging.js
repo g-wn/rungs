@@ -1,12 +1,18 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getChats } from '../../store/chats';
 import ChatSelector from './ChatSelector';
-import './Messaging.css';
 import SingleChat from './SingleChat';
+import './Messaging.css';
 
 const Messaging = ({ socket }) => {
+  const dispatch = useDispatch();
   const chats = useSelector(state => Object.values(state.chats).reverse());
-  const [selectedChat, setSelectedChat] = useState(null);
+  const [selectedChat, setSelectedChat] = useState(chats.length > 0 ? chats[0] : null);
+
+  useEffect(() => {
+    dispatch(getChats())
+  }, [dispatch])
 
   return (
     <div className='messaging-page-container'>
@@ -17,7 +23,7 @@ const Messaging = ({ socket }) => {
             chats.map((chat, idx) => (
               <div
                 key={idx}
-                onClick={() => setSelectedChat(chat)}
+                onClick={() => {setSelectedChat(chat)}}
               >
                 <ChatSelector chat={chat} />
               </div>

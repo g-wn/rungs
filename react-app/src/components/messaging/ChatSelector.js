@@ -17,7 +17,7 @@ const ChatSelector = ({ chat }) => {
           {chatRecipient.firstName} {chatRecipient.lastName}
         </div>
         <div className='chat-selector-preview'>
-          {chat.messages.length > 0 ? chat.messages[chat.messages.length -1].body : <div>No messages, yet</div>}
+          {chat.messages.length > 0 ? chat.messages[chat.messages.length - 1].body : <div>No messages, yet</div>}
         </div>
       </div>
     </div>

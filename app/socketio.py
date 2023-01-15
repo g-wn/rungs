@@ -113,3 +113,8 @@ def handle_chat(data):
         data,
     )
     emit("chat", data, broadcast=True, to=room)
+
+# Handle notifications:
+@socketio.on("notification")
+def notification(data):
+    print(data)
