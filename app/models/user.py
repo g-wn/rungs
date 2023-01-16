@@ -1,6 +1,7 @@
 from .db import db
 from .likes import likes
 from .network import connections
+from .user_chats import user_chats
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
 from flask_login import UserMixin
@@ -42,11 +43,22 @@ class User(db.Model, UserMixin):
         secondary=connections,
         primaryjoin=id == connections.c.user_id_1,
         secondaryjoin=id == connections.c.user_id_2,
+        overlaps="followers",
     )
 
     # user_posts <---> post_owner
     user_posts = db.relationship(
         "Post", back_populates="post_owner", cascade="all, delete"
+    )
+
+    # messages <---> sender
+    messages = db.relationship(
+        "Message", back_populates="sender", cascade="all, delete"
+    )
+
+    # chats <---> users
+    chats = db.relationship(
+        "Chat", back_populates="users", secondary=user_chats, lazy="joined"
     )
 
     @property

@@ -9,6 +9,7 @@ import { ReactComponent as Logo } from '../../assets/rungs_icon.svg';
 import { getConnections, getFollowers, getFollowing } from '../../store/network';
 import { getUsers } from '../../store/users';
 import { getPosts } from '../../store/posts';
+import { getChats } from '../../store/chats';
 import ProfileDropdown from './ProfileDropdown';
 import NotiDropdown from './NotiDropdown';
 import SearchBar from './SearchBar';
@@ -55,6 +56,7 @@ const NavBar = () => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
     dispatch(getFollowing(currentUser.id));
+    dispatch(getChats())
     dispatch(getPosts());
     dispatch(getUsers());
   }, [dispatch, currentUser.id]);
@@ -136,17 +138,17 @@ const NavBar = () => {
                 <div className='nav-network-text'>My Network</div>
               </NavLink>
               <NotiDropdown />
-              <div
-                // to='/messaging'
-                // activeClassName='active'
+              <NavLink
+                to='/messaging'
+                activeClassName='active'
                 className='nav-messaging'
-                // exact
+                exact
               >
                 <div className='nav-messaging-icon'>
                   <HiChatBubbleLeftEllipsis size={24} />
                 </div>
                 <div className='nav-messaging-text'>Messaging</div>
-              </div>
+              </NavLink>
             </>
           )}
         </div>
