@@ -6,7 +6,7 @@ class Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    body = db.Column(db.Text(1500), nullable=False)
+    body = db.Column(db.String(1500), nullable=False)
     chat_id = db.Column(db.Integer, db.ForeignKey("chats.id"), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 

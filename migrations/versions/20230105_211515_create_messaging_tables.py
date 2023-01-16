@@ -26,7 +26,7 @@ def upgrade():
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('body', sa.Text(length=1500), nullable=False),
+    sa.Column('body', sa.String(length=1500), nullable=False),
     sa.Column('chat_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['chat_id'], ['chats.id'], ),

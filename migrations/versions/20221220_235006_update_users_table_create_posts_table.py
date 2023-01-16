@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('body', sa.Text(length=1500), nullable=False),
+    sa.Column('body', sa.String(length=1500), nullable=False),
     sa.Column('image_url', sa.String(length=1500), nullable=True),
     sa.Column('private', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
