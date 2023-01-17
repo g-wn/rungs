@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+let socket;
 
 /* ---------------------- ACTION CREATORS ---------------------- */
 const SOCKET_CONNECT = 'socket/SOCKET_CONNECT';
@@ -15,16 +16,16 @@ const disconnectSocket = socket => ({
 
 /* ---------------------- THUNK CREATORS ----------------------- */
 export const createSocket = () => async dispatch => {
-  const socket = io();
+  socket = io();
 
   dispatch(socketConnect(socket));
 };
 
-// export const removeSocket = () => async dispatch => {
-//   socket.disconnect();
+export const removeSocket = () => async dispatch => {
+  socket.disconnect();
 
-//   dispatch(disconnectSocket(socket));
-// };
+  dispatch(disconnectSocket(socket));
+};
 
 /* -------------------------- REDUCER -------------------------- */
 

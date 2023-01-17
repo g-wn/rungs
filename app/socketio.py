@@ -33,41 +33,57 @@ def disconnect_user(user):
 
 @socketio.on("connect")
 def on_connect(auth):
-    user = User.query.get(current_user.get_id()).first_name
-    sid = request.sid
-    connect_user(user, sid)
-    print(
-        """
+    # user = User.query.get(current_user.get_id()).first_name
+    # sid = request.sid
+    # connect_user(user, sid)
+    # print(
+    #     """
 
-    <-------------- CONNECTED USERS -------------->
+    # <-------------- CONNECTED USERS -------------->
 
-    """,
-        connected_users,
-        """
+    # """,
+    #     connected_users,
+    #     """
 
-    <-------------- CONNECTED USERS -------------->
+    # <-------------- CONNECTED USERS -------------->
 
-    """,
-    )
+    # """,
+    # )
+    print("""
+
+
+    SOMEONE CONNECTED!
+
+
+
+    """)
 
 
 @socketio.on("disconnect")
 def on_disconnect():
     user = User.query.get(current_user.get_id()).first_name
     disconnect_user(user)
-    print(
-        """
+    # print(
+    #     """
 
-    <-------------- CONNECTED USERS -------------->
+    # <-------------- CONNECTED USERS -------------->
 
-    """,
-        connected_users,
-        """
+    # """,
+    #     connected_users,
+    #     """
 
-    <-------------- CONNECTED USERS -------------->
+    # <-------------- CONNECTED USERS -------------->
 
-    """,
-    )
+    # """,
+    # )
+    print("""
+
+
+    SOMEONE CONNECTED!
+
+
+
+    """)
 
 
 # Handle rooms:
@@ -111,10 +127,22 @@ def handle_chat(data):
 @socketio.on("notification")
 def notification(data):
     recipient = data["recipient"]
-    recipientSid = connected_users[recipient["firstName"]]["sid"]
+    # recipientSid = connected_users[recipient["firstName"]]["sid"]
+    # print("""
+
+    # RECIPIENT SID ----------->
+
+    # """, recipientSid)
+    # emit("notification", data, broadcast=True, to=recipientSid)
     print("""
 
-    RECIPIENT SID ----------->
+    THIS IS THE RECIPIENT ----->
 
-    """, recipientSid)
-    emit("notification", data, broadcast=True, to=recipientSid)
+
+    """, recipient,
+    """
+
+
+
+
+    """)

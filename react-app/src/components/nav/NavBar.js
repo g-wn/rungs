@@ -27,7 +27,7 @@ const NavBar = ({ socket }) => {
   const network = useSelector(state => state.network); // eslint-disable-line
   const users = useSelector(state => state.users); // eslint-disable-line
   const chats = useSelector(state => state.users.chats); //eslint-disable-line
-  console.log(socket);
+  console.log("SOCKET IN NAV -------->", socket)
 
   // HANDLE INITIAL LOAD AND SOCKET NOTIFICATIONS:
   useEffect(() => {

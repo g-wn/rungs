@@ -22,6 +22,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  console.log("SOCKET IN APP -------->", socket);
 
   useEffect(() => {
     socket = io()
