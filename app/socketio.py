@@ -111,9 +111,10 @@ def handle_chat(data):
 @socketio.on("notification")
 def notification(data):
     recipient = data["recipient"]
-    recipientSid = connected_users[recipient["firstName"]]["sid "]
+    recipientSid = connected_users[recipient["firstName"]]["sid"]
     print("""
 
     RECIPIENT SID ----------->
 
     """, recipientSid)
+    emit("notification", data, broadcast=True, to=recipientSid)

@@ -42,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {currentUser && <NavBar />}
+      {currentUser && <NavBar socket={socket} />}
       {/* {currentUser && <MessagingModal />} */}
       <Switch>
         <Route

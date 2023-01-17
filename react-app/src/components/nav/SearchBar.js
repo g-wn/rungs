@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearchSubmit, clearResults }) => {
-  // const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    document.getElementById('nav-search-input').focus()
+  }, [])
 
   useEffect(() => {
     if (searchQuery !== '') {

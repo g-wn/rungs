@@ -14,6 +14,8 @@ const SingleChat = ({ chat, socket }) => {
   useEffect(() => {
     dispatch(getChats());
     setMessages(chats[chat.id].messages);
+    document.getElementById('chat-msg-display').scrollTo(0, document.getElementById('chat-msg-display').scrollHeight);
+    document.getElementById('chat-input').focus();
   }, [dispatch, chat.id]); // eslint-disable-line
 
   // HANDLE JOIN AND LEAVE ROOM:
@@ -30,6 +32,8 @@ const SingleChat = ({ chat, socket }) => {
     socket.on('chat', message => {
       setMessages(messages => [...messages, message]);
     });
+
+    return () => socket.off('chat')
   }, [socket, setMessages]);
 
   const sendChat = async e => {
@@ -59,7 +63,10 @@ const SingleChat = ({ chat, socket }) => {
 
   return (
     <div className='chat-display'>
-      <div className='chat-msg-display'>
+      <div
+        id='chat-msg-display'
+        className='chat-msg-display'
+      >
         {messages.length > 0 ? (
           messages.map((message, idx) => (
             <div
@@ -89,11 +96,9 @@ const SingleChat = ({ chat, socket }) => {
         onSubmit={sendChat}
         className='chat-form'
       >
-        <div
-          id='chat-input'
-          className='chat-input'
-        >
+        <div className='chat-input'>
           <input
+            id='chat-input'
             onChange={e => setChatInput(e.target.value)}
             value={chatInput}
           />
