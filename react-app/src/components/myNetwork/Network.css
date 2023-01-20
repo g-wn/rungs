@@ -12,6 +12,7 @@
     display: flex;
     min-height: fit-content;
     justify-content: center;
+    margin: 0 auto;
     max-width: 1128px;
     padding: 1.5em;
     width: 100%;
