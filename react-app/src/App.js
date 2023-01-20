@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { io } from 'socket.io-client'
+// import { io } from 'socket.io-client'
 import { authenticate } from './store/session';
 import NavBar from './components/nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -15,6 +15,7 @@ import Landing from './components/landing/Landing';
 import Messaging from './components/messaging/Messaging';
 // import MessagingModal from './components/messaging/MessagingModal';
 import NotFound from './components/404/404';
+import { createSocket } from './store/socket';
 
 let socket;
 
@@ -22,12 +23,20 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  // console.log("SOCKET IN APP -------->", socket);
 
   useEffect(() => {
-    socket = io()
+    // socket = io()
 
-    return () => socket.disconnect()
-  }, [])
+    // return () => socket.disconnect()
+    // dispatch(createSocket());
+    if (currentUser) {
+      (async () => {
+        socket = await dispatch(createSocket());
+        console.log('SOCKET IN APP --------->', socket);
+      })();
+    }
+  }, [currentUser, dispatch]);
 
   useEffect(() => {
     (async () => {
@@ -42,7 +51,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {currentUser && <NavBar />}
+      {currentUser && <NavBar socket={socket} />}
       {/* {currentUser && <MessagingModal />} */}
       <Switch>
         <Route
@@ -88,7 +97,7 @@ function App() {
           path='/messaging'
           exact={true}
         >
-          <Messaging socket={socket} />
+          <Messaging />
         </ProtectedRoute>
         <Route>
           <NotFound />

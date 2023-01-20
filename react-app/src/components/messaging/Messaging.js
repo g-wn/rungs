@@ -5,19 +5,16 @@ import ChatSelector from './ChatSelector';
 import SingleChat from './SingleChat';
 import './Messaging.css';
 
-const Messaging = ({ socket }) => {
+const Messaging = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const socket = useSelector(state => state.socket);
   const chats = useSelector(state => Object.values(state.chats));
 
   chats.sort((a, b) => {
-    return (
-      a.messages.length && b.messages.length ? (
-        new Date(b.messages[b.messages.length - 1].createdAt) - new Date(a.messages[a.messages.length - 1].createdAt)
-      ) : (
-        new Date(b.createdAt) - new Date(a.createdAt)
-      )
-    );
+    return a.messages.length && b.messages.length
+      ? new Date(b.messages[b.messages.length - 1].createdAt) - new Date(a.messages[a.messages.length - 1].createdAt)
+      : new Date(b.createdAt) - new Date(a.createdAt);
   });
 
   const [selectedChat, setSelectedChat] = useState(null);
@@ -45,7 +42,10 @@ const Messaging = ({ socket }) => {
                 key={idx}
                 onClick={() => setAndLoadChat(chat)}
               >
-                <ChatSelector chat={chat} />
+                <ChatSelector
+                  chat={chat}
+                  socket={socket}
+                />
               </div>
             ))
           ) : (

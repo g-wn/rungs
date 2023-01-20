@@ -68,6 +68,10 @@
     color: black;
 }
 
+.nav-messaging-icon {
+    position: relative;
+}
+
 .rungs-main-icon {
     margin-right: .8em;
     position: relative;
@@ -81,6 +85,21 @@
     width: 100%;
 }
 
+.messages-flag {
+    align-items: flex-end;
+    background-color: var(--global-error-red);
+    border-radius: 50%;
+    color: var(--global-card-background-color);
+    display: flex;
+    font-weight: var(--global-bold);
+    height: 15px;
+    justify-content: center;
+    width: 15px;
+    position: absolute;
+    top: 0;
+    left: 1.5em;
+}
+
 .active {
     text-decoration: underline;
     text-decoration-thickness: 1.75px;
@@ -89,6 +108,7 @@
 }
 
 @media screen and (max-width: 602px) {
+
     .nav-search-text,
     .nav-home-text,
     .nav-network-text,
@@ -99,6 +119,7 @@
 }
 
 @media screen and (max-width: 875px) {
+
     .search-results,
     .nav-search-input {
         max-width: 500px;
@@ -106,6 +127,7 @@
 }
 
 @media screen and (max-width: 746px) {
+
     .search-results,
     .nav-search-input {
         max-width: 300px;

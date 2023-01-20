@@ -13,24 +13,43 @@ import { getChats } from '../../store/chats';
 import ProfileDropdown from './ProfileDropdown';
 import NotiDropdown from './NotiDropdown';
 import SearchBar from './SearchBar';
-import './Nav.css';
 import FollowerFollowing from '../profile/FollowerFollowing';
 import AboutDropdown from './AboutDropdown';
+import './Nav.css';
 
-const NavBar = () => {
+const NavBar = ({ socket }) => {
   const dispatch = useDispatch();
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [unreadMessages, setUnreadMessages] = useState([]);
 
   const currentUser = useSelector(state => state.session.user);
   const network = useSelector(state => state.network); // eslint-disable-line
   const users = useSelector(state => state.users); // eslint-disable-line
+  const chats = useSelector(state => state.users.chats); //eslint-disable-line
+  console.log('SOCKET IN NAV -------->', socket);
+
+  // HANDLE INITIAL LOAD AND SOCKET NOTIFICATIONS:
+  useEffect(() => {
+    dispatch(getConnections(currentUser.id));
+    dispatch(getFollowers(currentUser.id));
+    dispatch(getChats());
+    dispatch(getPosts());
+    dispatch(getUsers());
+  }, [dispatch, currentUser.id]);
+
+  // useEffect(() => {
+  //   socket.on('notification', notification => {
+  //     setUnreadMessages(notifications => [...notifications, notification]);
+  //   });
+  // }, [socket, setUnreadMessages]);
 
   const openSearch = () => {
     if (showSearchBar) return;
     setShowSearchBar(true);
   };
 
+  // HANDLE SEARCH BAR/FUNCTION:
   useEffect(() => {
     if (!showSearchBar) return;
 
@@ -51,15 +70,6 @@ const NavBar = () => {
       document.removeEventListener('click', closeSearch, false);
     };
   });
-
-  useEffect(() => {
-    dispatch(getConnections(currentUser.id));
-    dispatch(getFollowers(currentUser.id));
-    dispatch(getFollowing(currentUser.id));
-    dispatch(getChats())
-    dispatch(getPosts());
-    dispatch(getUsers());
-  }, [dispatch, currentUser.id]);
 
   const onSearchSubmit = async searchQuery => {
     const res = await fetch(`/api/users/search/${searchQuery}`);
@@ -143,9 +153,11 @@ const NavBar = () => {
                 activeClassName='active'
                 className='nav-messaging'
                 exact
+                onClick={() => setUnreadMessages([])}
               >
                 <div className='nav-messaging-icon'>
                   <HiChatBubbleLeftEllipsis size={24} />
+                  {unreadMessages.length > 0 && <div className='messages-flag'>{unreadMessages.length}</div>}
                 </div>
                 <div className='nav-messaging-text'>Messaging</div>
               </NavLink>
