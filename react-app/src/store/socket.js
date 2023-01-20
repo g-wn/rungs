@@ -17,14 +17,17 @@ const disconnectSocket = socket => ({
 /* ---------------------- THUNK CREATORS ----------------------- */
 export const createSocket = () => async dispatch => {
   socket = io();
+  console.log("SOCKET IN THUNK----->", socket);
 
   dispatch(socketConnect(socket));
+  return socket
 };
 
 export const removeSocket = () => async dispatch => {
   socket.disconnect();
 
   dispatch(disconnectSocket(socket));
+  return socket
 };
 
 /* -------------------------- REDUCER -------------------------- */
@@ -34,7 +37,7 @@ const initialState = {};
 const socketReducer = (state = initialState, action) => {
   switch (action.type) {
     case SOCKET_CONNECT: {
-      return { ...action.socket };
+      return action.socket;
     }
     case SOCKET_DISCONNECT: {
       return {};

@@ -27,23 +27,22 @@ const NavBar = ({ socket }) => {
   const network = useSelector(state => state.network); // eslint-disable-line
   const users = useSelector(state => state.users); // eslint-disable-line
   const chats = useSelector(state => state.users.chats); //eslint-disable-line
-  console.log("SOCKET IN NAV -------->", socket)
+  console.log('SOCKET IN NAV -------->', socket);
 
   // HANDLE INITIAL LOAD AND SOCKET NOTIFICATIONS:
   useEffect(() => {
     dispatch(getConnections(currentUser.id));
     dispatch(getFollowers(currentUser.id));
-    dispatch(getFollowing(currentUser.id));
     dispatch(getChats());
     dispatch(getPosts());
     dispatch(getUsers());
   }, [dispatch, currentUser.id]);
 
-  useEffect(() => {
-    socket.on('notification', notification => {
-      setUnreadMessages(notifications => [...notifications, notification]);
-    });
-  }, [socket, setUnreadMessages]);
+  // useEffect(() => {
+  //   socket.on('notification', notification => {
+  //     setUnreadMessages(notifications => [...notifications, notification]);
+  //   });
+  // }, [socket, setUnreadMessages]);
 
   const openSearch = () => {
     if (showSearchBar) return;

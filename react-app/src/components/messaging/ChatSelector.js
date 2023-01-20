@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './ChatSelector.css';
 
-const ChatSelector = ({ chat, socket }) => {
+const ChatSelector = ({ chat }) => {
   const currentUser = useSelector(state => state.session.user);
+  const socket = useSelector(state => state.socket);
   const chatRecipient = chat.users.filter(user => user.id !== currentUser.id)[0];
   const [mostRecentMessage, setMostRecentMessage] = useState(chat.messages[chat.messages.length - 1].body);
 

@@ -5,9 +5,10 @@ import ChatSelector from './ChatSelector';
 import SingleChat from './SingleChat';
 import './Messaging.css';
 
-const Messaging = ({ socket }) => {
+const Messaging = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const socket = useSelector(state => state.socket);
   const chats = useSelector(state => Object.values(state.chats));
 
   chats.sort((a, b) => {

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getChats, putMessage } from '../../store/chats';
 import './SingleChat.css';
 
-const SingleChat = ({ chat, socket }) => {
+const SingleChat = ({ chat }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const socket = useSelector(state => state.socket)
   const chatRecipient = chat.users.filter(user => user.id !== currentUser.id)[0];
   const chats = useSelector(state => state.chats);
   const [messages, setMessages] = useState(chats[chat.id].messages);
