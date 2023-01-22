@@ -42,10 +42,7 @@ const Messaging = () => {
                 key={idx}
                 onClick={() => setAndLoadChat(chat)}
               >
-                <ChatSelector
-                  chat={chat}
-                  socket={socket}
-                />
+                <ChatSelector chat={chat} />
               </div>
             ))
           ) : (
