@@ -6,11 +6,11 @@ const ChatSelector = ({ chat }) => {
   const currentUser = useSelector(state => state.session.user);
   const socket = useSelector(state => state.socket);
   const chatRecipient = chat.users.filter(user => user.id !== currentUser.id)[0];
-  const [mostRecentMessage, setMostRecentMessage] = useState(chat.messages[chat.messages.length - 1].body);
+  const [mostRecentMessage, setMostRecentMessage] = useState(chat.messages[chat.messages.length - 1]?.body);
 
   useEffect(() => {
     socket.on('chat', message => {
-      setMostRecentMessage(message.body);
+      setMostRecentMessage(chat.messages[chat.messages.length - 1]?.body);
     });
   });
 
