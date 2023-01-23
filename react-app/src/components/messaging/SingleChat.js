@@ -72,9 +72,10 @@ const SingleChat = ({ chat }) => {
         {messages.length > 0 ? (
           messages.map((message, idx) => (
             <div key={idx}>
-              {new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() && (
+
+              {new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() && (  // TODO: CHANGE TO DATE STRING.
                 <div className='new-send-date light-text'>
-                  {new Date(message.createdAt).getDay() !== new Date().getDay() ? (
+                  {new Date(message.createdAt).toDateString() !== new Date().toDateString() ? (
                     <>
                       <span>
                         {new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(message.createdAt))}{' '}
@@ -86,9 +87,8 @@ const SingleChat = ({ chat }) => {
                   )}
                 </div>
               )}
-              <div
-                className='chat-msg-container'
-              >
+
+              <div className='chat-msg-container'>
                 {message.sender.id !== messages[idx - 1]?.sender.id ||
                 new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() ? (
                   <SingleMessage message={message} />
@@ -96,6 +96,7 @@ const SingleChat = ({ chat }) => {
                   <div className='chat-msg-body same-sender'>{message.body}</div>
                 )}
               </div>
+
             </div>
           ))
         ) : (
@@ -115,7 +116,25 @@ const SingleChat = ({ chat }) => {
             value={chatInput}
           />
         </div>
-        <button type='submit'>Send</button>
+        <div className='chat-btns'>
+          <span>
+            {chatInput.length > 0 ? (
+              <button
+                className='post-form-submit-btn-blue chat-submit'
+                type='submit'
+              >
+                Send
+              </button>
+            ) : (
+              <button
+                className='post-form-submit-btn-gray chat-submit'
+                disabled
+              >
+                Send
+              </button>
+            )}
+          </span>
+        </div>
       </form>
     </div>
   );

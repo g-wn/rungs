@@ -1,3 +1,11 @@
+.chat-btns {
+    align-items: center;
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+    padding: 0.75em;
+}
+
 .chat-display {
     display: flex;
     flex-direction: column;
@@ -39,7 +47,6 @@
     border-top: 2px solid var(--global-button-hover-color);
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.75em;
     padding: 0.75em;
     position: relative;
     width: 100%;
@@ -90,21 +97,29 @@
     text-transform: uppercase;
 }
 
+.new-send-date::before,
 .new-send-date::after {
     border-bottom: 1px solid var(--global-faded-text-color);
     content: '';
-    left: 0;
     position: absolute;
+}
+
+.new-send-date::after {
     top: 50%;
-    width: 100%;
-    z-index: 1;
+    width: 40%;
+
+}
+
+.new-send-date::before {
+    left: 0%;
+    top: 50%;
+    width: 50%;
 }
 
 .new-send-date>span {
     background-color: var(--global-card-background-color);
     padding: 0 20px;
     position: relative;
-    z-index: 3;
 }
 
 .same-sender {
