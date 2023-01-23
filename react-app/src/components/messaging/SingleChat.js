@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChats, putMessage } from '../../store/chats';
+import SingleMessage from './SingleMessage';
 import './SingleChat.css';
 
 const SingleChat = ({ chat }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const socket = useSelector(state => state.socket)
+  const socket = useSelector(state => state.socket);
   const chatRecipient = chat.users.filter(user => user.id !== currentUser.id)[0];
   const chats = useSelector(state => state.chats);
   const [messages, setMessages] = useState(chats[chat.id].messages);
@@ -34,7 +35,7 @@ const SingleChat = ({ chat }) => {
       setMessages(messages => [...messages, message]);
     });
 
-    return () => socket.off('chat')
+    return () => socket.off('chat');
   }, [socket, setMessages]);
 
   const sendChat = async e => {
@@ -70,41 +71,50 @@ const SingleChat = ({ chat }) => {
       >
         {messages.length > 0 ? (
           messages.map((message, idx) => (
-            <div
-              key={idx}
-              className='chat-msg-container'
-            >
-              <img
-                src={message.sender.profile.profileImageUrl}
-                alt='Profile Img'
-                className='chat-msg-img'
-              />
-              <div className='chat-msg'>
-                <span className='chat-msg-sender-name bold'>
-                  {message.sender.firstName} {message.sender.lastName}
-                </span>
-                <span className='chat-msg-timestamp'> &bull; {message.createdAt}</span>
-                <div className='chat-msg-body'>{message.body}</div>
+            <>
+              {new Date(message.createdAt).getUTCDay() !== new Date(messages[idx - 1]?.createdAt).getUTCDay() && (
+                <div className='new-send-date light-text'>
+                  {new Date(message.createdAt).getUTCDay() !== new Date().getUTCDay() ? (
+                    <>
+                      {new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(message.createdAt))}{' '}
+                      {new Date(message.createdAt).getUTCDate()}
+                    </>
+                  ) : (
+                    <div>today</div>
+                  )}
+                </div>
+              )}
+              <div
+                key={idx}
+                className='chat-msg-container'
+              >
+                {message.sender.id !== messages[idx - 1]?.sender.id ||
+                new Date(message.createdAt).getUTCDay() !== new Date(messages[idx - 1]?.createdAt).getUTCDay() ? (
+                  <SingleMessage message={message} />
+                ) : (
+                  <div className='chat-msg-body same-sender'>{message.body}</div>
+                )}
               </div>
-            </div>
+            </>
           ))
         ) : (
           <div className='chat-msg-container'>No messages, yet.</div>
         )}
-        <div className='hello'></div>
+        <div className='scroll-anchor'></div>
       </div>
       <form
         onSubmit={sendChat}
         className='chat-form'
       >
         <div className='chat-input'>
-          <input
+          <textarea
             id='chat-input'
             onChange={e => setChatInput(e.target.value)}
+            placeholder='Write a message...'
             value={chatInput}
           />
-          <button type='submit'>Send</button>
         </div>
+        <button type='submit'>Send</button>
       </form>
     </div>
   );

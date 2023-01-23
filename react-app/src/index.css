@@ -58,3 +58,8 @@ body {
 .bold {
     font-weight: var(--global-bold);
 }
+
+.light-text {
+    color: var(--global-faded-text-color);
+    font-size: 0.85em;
+}

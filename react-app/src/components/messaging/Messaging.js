@@ -17,7 +17,7 @@ const Messaging = () => {
       : new Date(b.createdAt) - new Date(a.createdAt);
   });
 
-  const [selectedChat, setSelectedChat] = useState(null);
+  const [selectedChat, setSelectedChat] = useState(chats.length > 0 ? chats[0] : null);
 
   useEffect(() => {
     dispatch(getChats());
@@ -52,11 +52,18 @@ const Messaging = () => {
       </div>
 
       <div className='messaging-chat-display'>
-        <div className='chat-display-header bold'>
-          {selectedChat
-            ? `${selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].firstName}
-            ${selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].lastName}`
-            : 'Select a Chat...'}
+        <div className='chat-display-header'>
+          {selectedChat ? (
+            <div>
+              <p className='bold'>
+                {selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].firstName}{' '}
+                {selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].lastName}
+              </p>
+              <p className='light-text'>{selectedChat.users.filter(user => +user.id !== +currentUser.id)[0].profile.bio}</p>
+            </div>
+          ) : (
+            'Select a Chat...'
+          )}
         </div>
         <div className='chat-display-body'>
           {selectedChat && (
