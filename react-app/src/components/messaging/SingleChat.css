@@ -85,15 +85,26 @@
 
 .new-send-date {
     margin: 1em 0;
+    position: relative;
     text-align: center;
     text-transform: uppercase;
 }
 
-.new-send-date::before,
 .new-send-date::after {
+    border-bottom: 1px solid var(--global-faded-text-color);
     content: '';
-    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 50%;
     width: 100%;
+    z-index: 1;
+}
+
+.new-send-date>span {
+    background-color: var(--global-card-background-color);
+    padding: 0 20px;
+    position: relative;
+    z-index: 3;
 }
 
 .same-sender {

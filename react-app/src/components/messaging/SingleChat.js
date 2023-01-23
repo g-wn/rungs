@@ -43,7 +43,7 @@ const SingleChat = ({ chat }) => {
 
     const newMessage = await dispatch(
       putMessage(chat.id, {
-        body: chatInput
+        body: chatInput.trim()
       })
     );
 
@@ -71,31 +71,32 @@ const SingleChat = ({ chat }) => {
       >
         {messages.length > 0 ? (
           messages.map((message, idx) => (
-            <>
-              {new Date(message.createdAt).getUTCDay() !== new Date(messages[idx - 1]?.createdAt).getUTCDay() && (
+            <div key={idx}>
+              {new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() && (
                 <div className='new-send-date light-text'>
-                  {new Date(message.createdAt).getUTCDay() !== new Date().getUTCDay() ? (
+                  {new Date(message.createdAt).getDay() !== new Date().getDay() ? (
                     <>
-                      {new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(message.createdAt))}{' '}
-                      {new Date(message.createdAt).getUTCDate()}
+                      <span>
+                        {new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(message.createdAt))}{' '}
+                        {new Date(message.createdAt).getDate()}
+                      </span>
                     </>
                   ) : (
-                    <div>today</div>
+                    <span>today</span>
                   )}
                 </div>
               )}
               <div
-                key={idx}
                 className='chat-msg-container'
               >
                 {message.sender.id !== messages[idx - 1]?.sender.id ||
-                new Date(message.createdAt).getUTCDay() !== new Date(messages[idx - 1]?.createdAt).getUTCDay() ? (
+                new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() ? (
                   <SingleMessage message={message} />
                 ) : (
                   <div className='chat-msg-body same-sender'>{message.body}</div>
                 )}
               </div>
-            </>
+            </div>
           ))
         ) : (
           <div className='chat-msg-container'>No messages, yet.</div>
