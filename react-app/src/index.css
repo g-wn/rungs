@@ -58,3 +58,15 @@ body {
 .bold {
     font-weight: var(--global-bold);
 }
+
+.light-text {
+    color: var(--global-faded-text-color);
+    font-size: 0.75em;
+}
+
+.hidden {
+    border: 1px solid red;
+    max-height: 0px;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}

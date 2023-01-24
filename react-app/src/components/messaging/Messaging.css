@@ -1,6 +1,9 @@
 .chat-display-header,
 .conversations-header {
+    align-items: center;
     border-bottom: 1px solid var(--global-faded-border-color);
+    display: flex;
+    height: 60px;
     padding: 0.75em;
     width: 100%;
 }
@@ -9,8 +12,11 @@
 .conversations-body {
     height: 91.25%;
     /* overflow-y: scroll; */
-    padding: 0.75em;
     width: 100%;
+}
+
+.conversations-body {
+    padding: 0.75em;
 }
 
 .messaging-chat-conversations,

@@ -1,0 +1,35 @@
+.submit-on-enter-btn-container {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 1em;
+    min-width: 300px;
+}
+
+.submit-on-enter-btn-container .circle-gray,
+.submit-on-enter-btn-container .circle-green {
+    transition: border 0.167s ease;
+}
+
+.submit-on-enter-btn-container:hover .circle-gray {
+    border: 3px solid var(--global-saturated-border-color);
+}
+
+.submit-on-enter-btn-container:hover .circle-green {
+    border: 8px solid green;
+}
+
+.circle-gray,
+.circle-green {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+}
+
+.circle-gray {
+    border: 2px solid var(--global-faded-border-color);
+}
+
+.circle-green {
+    border: 7px solid green;
+}
