@@ -1,17 +1,24 @@
+import { NavLink } from 'react-router-dom';
+
 const SingleMessage = ({ message }) => {
   const sentAt = new Date(message.createdAt);
 
   return (
     <>
-      <img
-        src={message.sender.profile.profileImageUrl}
-        alt='Profile Img'
-        className='chat-msg-img'
-      />
+      <NavLink to={`/users/${message.sender.id}`}>
+        <img
+          src={message.sender.profile.profileImageUrl}
+          alt='Profile Img'
+          className='chat-msg-img'
+        />
+      </NavLink>
       <div className='chat-msg'>
-        <span className='chat-msg-sender-name bold'>
+        <NavLink
+          to={`/users/${message.sender.id}`}
+          className='chat-msg-sender-name bold'
+        >
           {message.sender.firstName} {message.sender.lastName}
-        </span>
+        </NavLink>
         <span className='chat-msg-timestamp'>
           {' '}
           &bull; {sentAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

@@ -4,6 +4,7 @@ import { getChats, putMessage } from '../../store/chats';
 import { VscChevronUp, VscChevronDown } from 'react-icons/vsc';
 import SingleMessage from './SingleMessage';
 import './SingleChat.css';
+import SubmitOnEnterOptions from './SubmitOnEnterOptions';
 
 const SingleChat = ({ chat }) => {
   const dispatch = useDispatch();
@@ -138,7 +139,7 @@ const SingleChat = ({ chat }) => {
         </div>
         <div className='chat-btns'>
           {submitOnEnter ? (
-            <span className='light-text'>Press Enter to Send</span>
+            <span className='submit-on-enter light-text'>Press Enter to Send</span>
           ) : (
             <span>
               {chatInput.length > 0 ? (
@@ -159,12 +160,10 @@ const SingleChat = ({ chat }) => {
             </span>
           )}
           <span>
-            <button
-              type='button'
-              onClick={() => setSubmitOnEnter(!submitOnEnter)}
-            >
-              submit on enter
-            </button>
+            <SubmitOnEnterOptions
+              submitOnEnter={submitOnEnter}
+              setSubmitOnEnter={setSubmitOnEnter}
+            />
           </span>
         </div>
       </form>
