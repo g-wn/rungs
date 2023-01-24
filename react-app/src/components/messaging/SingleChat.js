@@ -68,7 +68,7 @@ const SingleChat = ({ chat }) => {
   };
 
   const sendChatOnEnter = e => {
-    if (e.key === 'Enter' && e.shiftKey == false) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       return sendChat(e);
     }
   };
@@ -123,7 +123,7 @@ const SingleChat = ({ chat }) => {
           <textarea
             id='chat-input'
             onChange={e => setChatInput(e.target.value)}
-            onKeyPress={submitOnEnter && sendChatOnEnter}
+            onKeyPress={submitOnEnter ? sendChatOnEnter : undefined}
             placeholder='Write a message...'
             value={chatInput}
           />
