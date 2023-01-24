@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChats, putMessage } from '../../store/chats';
+import { VscChevronUp, VscChevronDown } from 'react-icons/vsc';
 import SingleMessage from './SingleMessage';
 import './SingleChat.css';
 
@@ -12,6 +13,8 @@ const SingleChat = ({ chat }) => {
   const chats = useSelector(state => state.chats);
   const [messages, setMessages] = useState(chats[chat.id].messages);
   const [chatInput, setChatInput] = useState('');
+  const [expandChatInput, setExpandChatInput] = useState(false);
+  const [submitOnEnter, setSubmitOnEnter] = useState(false);
 
   useEffect(() => {
     dispatch(getChats());
@@ -63,17 +66,23 @@ const SingleChat = ({ chat }) => {
     }
   };
 
+  const sendChatOnEnter = e => {
+    if (e.key === 'Enter' && e.shiftKey == false) {
+      return sendChat(e);
+    }
+  };
+
   return (
     <div className='chat-display'>
       <div
         id='chat-msg-display'
         className='chat-msg-display'
+        style={expandChatInput ? { height: '0px', overflow: 'hidden', opacity: '0' } : { height: '100%' }}
       >
         {messages.length > 0 ? (
           messages.map((message, idx) => (
             <div key={idx}>
-
-              {new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() && (  // TODO: CHANGE TO DATE STRING.
+              {new Date(message.createdAt).getDay() !== new Date(messages[idx - 1]?.createdAt).getDay() && ( // TODO: CHANGE TO DATE STRING.
                 <div className='new-send-date light-text'>
                   {new Date(message.createdAt).toDateString() !== new Date().toDateString() ? (
                     <>
@@ -96,7 +105,6 @@ const SingleChat = ({ chat }) => {
                   <div className='chat-msg-body same-sender'>{message.body}</div>
                 )}
               </div>
-
             </div>
           ))
         ) : (
@@ -104,35 +112,59 @@ const SingleChat = ({ chat }) => {
         )}
         <div className='scroll-anchor'></div>
       </div>
+
       <form
         onSubmit={sendChat}
         className='chat-form'
+        style={expandChatInput ? { height: '100%' } : { height: '40%' }}
       >
         <div className='chat-input'>
           <textarea
             id='chat-input'
             onChange={e => setChatInput(e.target.value)}
+            onKeyPress={submitOnEnter && sendChatOnEnter}
             placeholder='Write a message...'
             value={chatInput}
           />
+          <div className='expand-chat-btn-container'>
+            <button
+              type='button'
+              className='expand-chat-btn'
+              onClick={() => setExpandChatInput(!expandChatInput)}
+            >
+              {expandChatInput ? <VscChevronDown size={25} /> : <VscChevronUp size={25} />}
+            </button>
+          </div>
         </div>
         <div className='chat-btns'>
+          {submitOnEnter ? (
+            <span className='light-text'>Press Enter to Send</span>
+          ) : (
+            <span>
+              {chatInput.length > 0 ? (
+                <button
+                  className='post-form-submit-btn-blue chat-submit'
+                  type='submit'
+                >
+                  Send
+                </button>
+              ) : (
+                <button
+                  className='post-form-submit-btn-gray chat-submit'
+                  disabled
+                >
+                  Send
+                </button>
+              )}
+            </span>
+          )}
           <span>
-            {chatInput.length > 0 ? (
-              <button
-                className='post-form-submit-btn-blue chat-submit'
-                type='submit'
-              >
-                Send
-              </button>
-            ) : (
-              <button
-                className='post-form-submit-btn-gray chat-submit'
-                disabled
-              >
-                Send
-              </button>
-            )}
+            <button
+              type='button'
+              onClick={() => setSubmitOnEnter(!submitOnEnter)}
+            >
+              submit on enter
+            </button>
           </span>
         </div>
       </form>
