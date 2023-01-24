@@ -27,7 +27,6 @@ function App() {
     // if (currentUser) {
       (async () => {
         socket = await dispatch(createSocket());
-        console.log('SOCKET IN APP --------->', socket);
       })();
     // }
   }, [currentUser, dispatch]);

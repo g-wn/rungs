@@ -3,7 +3,13 @@
     cursor: pointer;
     display: flex;
     gap: 1em;
-    margin: 0 1em 1em 0;
+    padding: 0.5em 1em 0.25em 1em;
+    transition: background-color 0.167s ease-in-out;
+    width: 100%;
+}
+
+.chat-selector-container:hover {
+    background-color: var(--global-button-hover-color);
 }
 
 .selector-details {

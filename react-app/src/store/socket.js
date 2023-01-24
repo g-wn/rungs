@@ -17,7 +17,6 @@ const disconnectSocket = socket => ({
 /* ---------------------- THUNK CREATORS ----------------------- */
 export const createSocket = () => async dispatch => {
   socket = io();
-  console.log("SOCKET IN THUNK----->", socket);
 
   dispatch(socketConnect(socket));
   return socket

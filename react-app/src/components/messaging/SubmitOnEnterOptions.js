@@ -28,6 +28,7 @@ const SubmitOnEnterOptions = ({ submitOnEnter, setSubmitOnEnter }) => {
       <button
         className='show-submit-on-enter-options-btn'
         onClick={openPop}
+        type='button'
       >
         <SlOptions size={18} />
       </button>
